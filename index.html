@@ -2990,28 +2990,27 @@
         ? `${reason} [${pieceCode}] #${inquiryId}`
         : `[TRDI] ${pieceCode} - ${pieceTitle} #${inquiryId}`;
 
+      const formData = new FormData();
+      formData.append('_subject', subject);
+      formData.append('_replyto', email);
+      formData.append('_captcha', 'false');
+      formData.append('_template', 'table');
+      formData.append('Consulta_Nro', `#${inquiryId}`);
+      formData.append('Referencia', `${pieceCode} (${pieceTitle})`);
+      formData.append('Nombre_y_Apellido', name);
+      formData.append('Email', email);
+      formData.append('Telefono', formattedPhone);
+      formData.append('Link_WhatsApp', whatsappLink);
+      formData.append('Motivo', reason);
+      formData.append('Mensaje', message);
+
       try {
         await fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
           method: 'POST',
-          keepalive: true,
           headers: {
-            'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify({
-            _subject: subject,
-            _replyto: email,
-            _captcha: 'false',
-            _template: 'table',
-            'N° de Consulta': `#${inquiryId}`,
-            'Nombre y Apellido': name,
-            'Correo Electrónico': email,
-            'Teléfono': formattedPhone,
-            'WhatsApp Directo': whatsappLink,
-            'Referencia': `${pieceCode} (${pieceTitle})`,
-            'Motivo del Contacto': reason,
-            'Mensaje / Especificaciones': message
-          })
+          body: formData
         });
       } catch (_err) {
         // Fallback if network error occurs
