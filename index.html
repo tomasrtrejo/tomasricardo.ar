@@ -2985,31 +2985,37 @@
         ? `https://wa.me/${fullPhoneDigits}?text=${encodeURIComponent(`Hola ${name}, te escribo por tu consulta en TRDI (${pieceCode}).`)}`
         : 'No especificado';
 
-      const subject = reason ? `${reason} [${pieceCode}]` : `[TRDI] ${pieceCode} - ${pieceTitle}`;
+      const inquiryId = Math.floor(1000 + Math.random() * 9000);
+      const subject = reason
+        ? `${reason} [${pieceCode}] #${inquiryId}`
+        : `[TRDI] ${pieceCode} - ${pieceTitle} #${inquiryId}`;
 
-      // Fire email dispatch in background with keepalive so UI responds instantaneously
-      fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
-        method: 'POST',
-        keepalive: true,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: subject,
-          _replyto: email,
-          _template: 'table',
-          'Nombre y Apellido': name,
-          'Correo Electrónico': email,
-          'Teléfono': formattedPhone,
-          'WhatsApp Directo': whatsappLink,
-          'Referencia': `${pieceCode} (${pieceTitle})`,
-          'Motivo del Contacto': reason,
-          'Mensaje / Especificaciones': message
-        })
-      }).catch(() => {});
-
-      await new Promise(resolve => setTimeout(resolve, 250));
+      try {
+        await fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
+          method: 'POST',
+          keepalive: true,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: subject,
+            _replyto: email,
+            _captcha: 'false',
+            _template: 'table',
+            'N° de Consulta': `#${inquiryId}`,
+            'Nombre y Apellido': name,
+            'Correo Electrónico': email,
+            'Teléfono': formattedPhone,
+            'WhatsApp Directo': whatsappLink,
+            'Referencia': `${pieceCode} (${pieceTitle})`,
+            'Motivo del Contacto': reason,
+            'Mensaje / Especificaciones': message
+          })
+        });
+      } catch (_err) {
+        // Fallback if network error occurs
+      }
 
       // Show clean confirmation message (only "✓ CONSULTA GENERADA CON ÉXITO")
       const feedbackEl = document.getElementById('contact-feedback');
