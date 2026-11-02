@@ -1,0 +1,69 @@
+{
+  "code": "col-05-bid",
+  "folderName": "col-05-bid",
+  "year": "2026",
+  "category": {
+    "es": "03 // MANUFACTURA COLABORATIVA",
+    "en": "03 // COLLABORATIVE MANUFACTURING",
+    "pt": "03 // MANUFATURA COLABORATIVA"
+  },
+  "badge": {
+    "es": "TIRANTES ENCASTRADOS // TAPICERÍA",
+    "en": "INTERLOCKED TIMBER // UPHOLSTERY",
+    "pt": "VIGAS ENCAIXADAS // ESTOFARIA"
+  },
+  "title": {
+    "es": "Banquitos Encastrados",
+    "en": "Interlocked Timber Stools",
+    "pt": "Banquetas Encaixadas"
+  },
+  "subtitle": {
+    "es": "Banquitos individual y doble hechos con maderas encastradas y pegadas, combinados con asiento tapizado",
+    "en": "Single and double benches built from interlocked, glued timber beams paired with an upholstered seat",
+    "pt": "Banquetas individual e dupla feitas com madeiras encaixadas e coladas combinadas com assento estofado"
+  },
+  "specs": [
+    {
+      "label": "FORMATOS",
+      "value": "Versión de banquito individual y versión de banco doble de dos cuerpos"
+    },
+    {
+      "label": "ESTRUCTURA",
+      "value": "Misma lógica constructiva que las mesas de centro: tirantes de madera encastrados y pegados"
+    },
+    {
+      "label": "ASIENTO",
+      "value": "Sector superior pensado para resolver con tapicería (actualmente definiendo terminación final)"
+    },
+    {
+      "label": "PRODUCCIÓN",
+      "value": "Trabajo conjunto entre carpintería pesada para la base y taller de tapicería para el asiento"
+    }
+  ],
+  "report": {
+    "es": "Estos banquitos siguen la misma forma de construcción que las mesas de centro: tirantes de madera maciza encastrados entre sí y pegados para formar una base bien sólida. Está planteado en dos tamaños —uno individual y otro doble—, sumándole arriba una parte de tapicería que estoy terminando de definir para que sea cómodo sin perder la estética de los tirantes.",
+    "en": "These stools share the same construction method as the coffee tables: solid timber beams interlocked and glued together into a heavy, solid base. Planned in both single and double sizes, adding an upholstered top section currently being finalized.",
+    "pt": "Essas banquetas seguem a mesma forma de construção das mesas de centro: vigas de madeira encaixadas e coladas em versões individual e dupla, somando uma parte de estofaria no assento."
+  },
+  "commercial": {
+    "type": "batch",
+    "price": 83,
+    "currency": "USD",
+    "isFromPrice": false,
+    "badge": {
+      "es": "MANUFACTURA COLABORATIVA",
+      "en": "COLLABORATIVE BUILD",
+      "pt": "MANUFATURA COLABORATIVA"
+    },
+    "caption": {
+      "es": "Disponibles a pedido en formato individual o doble",
+      "en": "Available to order in single or double format",
+      "pt": "Disponíveis sob encomenda em formato individual ou duplo"
+    },
+    "buttonText": {
+      "es": "CONSULTAR BANQUITOS",
+      "en": "INQUIRE STOOLS",
+      "pt": "CONSULTAR BANQUETAS"
+    }
+  }
+}

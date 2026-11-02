@@ -1,0 +1,62 @@
+{
+  "code": "btr-16-wtr",
+  "folderName": "btr-16-wtr",
+  "year": "2026",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "DIGITAL // WEB TRDI 2026",
+    "en": "DIGITAL // WEB TRDI 2026",
+    "pt": "DIGITAL // WEB TRDI 2026"
+  },
+  "title": {
+    "es": "Desarrollo de la Página Web",
+    "en": "Website Design & Development",
+    "pt": "Desenvolvimento do Site"
+  },
+  "subtitle": {
+    "es": "Concepción, estructura y desarrollo de este mismo espacio digital para organizar la bitácora, el taller y el catálogo de piezas (2026)",
+    "en": "Conception, structure, and development of this digital space to organize the logbook, workshop projects, and catalog (2026)",
+    "pt": "Concepção, estrutura e desenvolvimento deste espaço digital para organizar o diário de bordo, a oficina e o catálogo (2026)"
+  },
+  "specs": [
+    {
+      "label": "AÑO",
+      "value": "2026"
+    },
+    {
+      "label": "ENFOQUE",
+      "value": "Archivo vivo de proyectos, bitácora de taller y catálogo directo sin intermediarios"
+    },
+    {
+      "label": "ARQUITECTURA",
+      "value": "Sistema modular por carpetas e idiomas (ES / EN / PT) con lienzo interactivo de taller"
+    }
+  ],
+  "report": {
+    "es": "Desarrollo integral de la plataforma web propia (2026). Pensada como una herramienta de trabajo más del taller: un lugar donde ordenar el archivo de proyectos, mostrar tanto los planos prolijos como las pruebas en proceso y abrir un canal directo para encargos, colaboraciones y venta de piezas.",
+    "en": "Full development of this custom web platform (2026). Built as another tool in the workshop: a space to organize the project archive, show both clean technical drawings and works in progress, and open a direct channel for commissions, collaborations, and piece orders.",
+    "pt": "Desenvolvimento integral desta plataforma web própria (2026). Pensada como mais uma ferramenta da oficina: um espaço para organizar o arquivo de projetos, mostrar tanto plantas técnicas quanto testes em andamento e abrir um canal direto para encomendas, colaborações e peças."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "PLATAFORMA // 2026",
+      "en": "PLATFORM // 2026",
+      "pt": "PLATAFORMA // 2026"
+    },
+    "caption": {
+      "es": "Diseño de interfaz, identidad digital y catálogo técnico autogestionable",
+      "en": "Interface design, digital identity, and self-managed technical catalog",
+      "pt": "Design de interface, identidade digital e catálogo técnico autogerenciável"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}

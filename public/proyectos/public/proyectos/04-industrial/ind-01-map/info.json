@@ -1,0 +1,66 @@
+{
+  "code": "ind-01-map",
+  "folderName": "ind-01-map",
+  "year": "2026",
+  "category": {
+    "es": "04 // ESCALABILIDAD INDUSTRIAL",
+    "en": "04 // INDUSTRIAL SCALABILITY",
+    "pt": "04 // ESCALABILIDADE INDUSTRIAL"
+  },
+  "badge": {
+    "es": "APICULTURA // MONITOREO REMOTO",
+    "en": "BEEKEEPING // REMOTE MONITORING",
+    "pt": "APICULTURA // MONITORAMENTO REMOTO"
+  },
+  "title": {
+    "es": "Sistema de Monitorización de Apiarios",
+    "en": "Remote Apiary Monitoring System",
+    "pt": "Sistema de Monitoramento de Apiários"
+  },
+  "subtitle": {
+    "es": "Sistema de monitoreo a distancia que mide parámetros en un porcentaje de colmenas y envía la señal para predecir el estado del apiario",
+    "en": "Remote monitoring system measuring parameters across a sample percentage of hives to predict overall apiary health",
+    "pt": "Sistema de monitoramento remoto que mede parâmetros em uma porcentagem de colmeias para prever o estado do apiário"
+  },
+  "specs": [
+    {
+      "label": "MUESTREO",
+      "value": "Medición de diferentes parámetros sobre un porcentaje representativo de colmenas del apiario"
+    },
+    {
+      "label": "TRANSMISIÓN",
+      "value": "Envío de señal a distancia desde el campo sin necesidad de ir hasta el lugar para revisar"
+    },
+    {
+      "label": "PREDICCIÓN",
+      "value": "Lectura de datos para anticipar cómo se encuentra la colmena y cuándo conviene intervenir"
+    },
+    {
+      "label": "APLICACIÓN",
+      "value": "Ahorro de viajes, tiempo y combustible para productores apícolas con colmenares alejados"
+    }
+  ],
+  "report": {
+    "es": "Este proyecto es un sistema para monitorear apiarios a distancia sin tener que viajar al campo a abrir cajón por cajón. La idea no es llenar absolutamente todas las colmenas de aparatos caros, sino tomar diferentes parámetros medidos en un porcentaje de las colmenas del lugar. Esa señal se envía a distancia y, cruzando esos datos, se puede predecir cómo se encuentra la colmena y todo el apiario en general.",
+    "en": "A remote apiary monitoring system designed so beekeepers don't have to travel out to the field just to inspect hives one by one. Rather than equipping every single box, it measures key parameters across a percentage of hives, transmits the signal remotely, and predicts the overall condition of the colony.",
+    "pt": "Sistema de monitoramento remoto de apiários que coleta diferentes parâmetros em uma porcentagem de colmeias, envia o sinal à distância e permite prever como a colmeia se encontra."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "DESARROLLO APÍCOLA",
+      "en": "BEEKEEPING TECH",
+      "pt": "DESENVOLVIMENTO APÍCOLA"
+    },
+    "caption": {
+      "es": "Proyecto de monitoreo y control a distancia para producción apícola",
+      "en": "Remote monitoring and control development for beekeeping production",
+      "pt": "Projeto de monitoramento e controle remoto para produção apícola"
+    },
+    "buttonText": {
+      "es": "CONSULTAR MONITOREO",
+      "en": "INQUIRE MONITORING",
+      "pt": "CONSULTAR MONITORAMENTO"
+    }
+  }
+}

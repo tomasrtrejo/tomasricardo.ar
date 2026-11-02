@@ -1,0 +1,66 @@
+{
+  "code": "ind-08-csms",
+  "folderName": "ind-08-csms",
+  "year": "2026",
+  "category": {
+    "es": "04 // ESCALABILIDAD INDUSTRIAL",
+    "en": "04 // INDUSTRIAL SCALABILITY",
+    "pt": "04 // ESCALABILIDADE INDUSTRIAL"
+  },
+  "badge": {
+    "es": "VIVIENDA DESPLEGABLE // ACOPLE",
+    "en": "EXPANDABLE LIVING // TRUCK PODS",
+    "pt": "MÓDULOS EXPANSÍVEIS // ACOPLAMENTO"
+  },
+  "title": {
+    "es": "Módulos Habitacionales",
+    "en": "Habitation Modules",
+    "pt": "Módulos Habitacionais"
+  },
+  "subtitle": {
+    "es": "Módulos desmontables y desplegables para acoplar a camionetas, camiones o al taller móvil, con cocina, comedor, habitación y baño en el mínimo espacio",
+    "en": "Removable, expandable living pods designed to mount onto pickups, trucks, or the mobile workshop, packing kitchen, dining, bedroom, and bathroom into minimal space",
+    "pt": "Módulos desmontáveis e expansíveis para acoplar em caminhonetes, caminhões ou na oficina móvel, com cozinha, sala, quarto e banheiro no menor espaço possível"
+  },
+  "specs": [
+    {
+      "label": "CONCEPTO DE ACOPLE",
+      "value": "No es camperizar una combi fija, sino módulos independientes que se ponen y se sacan a gusto sobre camionetas, camiones o integrados al taller móvil"
+    },
+    {
+      "label": "INTERIOR COMPLETO",
+      "value": "Incluye cocina, comedor, habitación y baño para sentirse realmente como en casa en cualquier lado"
+    },
+    {
+      "label": "SISTEMA DESPLEGABLE",
+      "value": "Todo entra en el mínimo lugar posible para viajar, desplegándose hacia afuera (incluso el espacio de baño) para ganar amplitud real al acampar"
+    },
+    {
+      "label": "INTEGRACIÓN",
+      "value": "Pensado para funcionar solo sobre un vehículo de carga o haciendo juego directo con el Taller Móvil"
+    }
+  ],
+  "report": {
+    "es": "En este proyecto no se busca armar el típico camper adentro de una combi fija, sino diseñar módulos habitacionales independientes que se puedan acoplar y sacar a gusto en cajas de camionetas, camiones o integrarse directamente con el Taller Móvil. El desafío es meter una casa completa en el mínimo lugar posible: cocina, comedor, habitación y un baño de verdad para sentirse como en casa. Para lograrlo, el módulo es desplegable en distintos sentidos; así viaja compacto pero, al frenar, ciertas partes —como el baño o los laterales— salen hacia afuera de la envolvente para generar el espacio cómodo de uso.",
+    "en": "Rather than converting a fixed van, this project designs independent habitation modules that can be mounted and removed at will from pickup beds or flatbed trucks, or integrated directly with the Mobile Workshop. It packs a complete home—kitchen, dining area, bedroom, and a full bathroom—into the smallest possible footprint by using expandable slide-out and fold-out sections that open up once parked.",
+    "pt": "Em vez de transformar uma van fixa, este projeto desenvolve módulos habitacionais independentes para colocar e tirar de caminhonetes e caminhões, ou integrar à Oficina Móvel, contando com cozinha, jantar, quarto e banheiro expansível no menor espaço possível."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "MÓDULOS DESPLEGABLES",
+      "en": "EXPANDABLE MODULES",
+      "pt": "MÓDULOS EXPANSÍVEIS"
+    },
+    "caption": {
+      "es": "Desarrollo de módulos habitacionales desmontables a medida para vehículos y remolques",
+      "en": "Custom removable and expandable living modules for trucks and trailers",
+      "pt": "Desenvolvimento de módulos habitacionais desmontáveis sob medida"
+    },
+    "buttonText": {
+      "es": "CONSULTAR MÓDULOS",
+      "en": "INQUIRE MODULES",
+      "pt": "CONSULTAR MÓDULOS"
+    }
+  }
+}

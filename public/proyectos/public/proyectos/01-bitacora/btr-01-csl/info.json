@@ -1,0 +1,62 @@
+{
+  "code": "btr-01-csl",
+  "folderName": "btr-01-csl",
+  "year": "2023",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "RESTAURACIÓN // 2023",
+    "en": "RESTORATION // 2023",
+    "pt": "RESTAURAÇÃO // 2023"
+  },
+  "title": {
+    "es": "Casilla Rural",
+    "en": "Rural Trailer",
+    "pt": "Casinha Rural"
+  },
+  "subtitle": {
+    "es": "Restauración completa de casilla rural: instalaciones, envolventes y adecuación interior de los espacios (2023)",
+    "en": "Complete restoration of a rural trailer: utilities, outer shell, and interior space reconfiguration (2023)",
+    "pt": "Restauração completa de trailer rural: instalações, fechamentos e adequação de espaços (2023)"
+  },
+  "specs": [
+    {
+      "label": "AÑO",
+      "value": "2023"
+    },
+    {
+      "label": "TRABAJO",
+      "value": "Restauración integral desde adentro hacia afuera"
+    },
+    {
+      "label": "INTERVENCIÓN",
+      "value": "Instalaciones nuevas, reparación de envolventes y redistribución de espacios"
+    }
+  ],
+  "report": {
+    "es": "Proyecto realizado en 2023 que consistió en la restauración completa de una casilla rural. Se trabajó de punta a punta haciendo las instalaciones nuevas, recuperando y cerrando bien las envolventes exteriores y adecuando los espacios de adentro para dejarla lista y cómoda para su uso en el campo.",
+    "en": "Completed in 2023, this project involved the full restoration of a rural field trailer, redoing internal utilities, repairing the outer shell, and adapting the interior layout for practical everyday use.",
+    "pt": "Projeto realizado em 2023 que consistiu na restauração completa de uma casinha rural, refazendo instalações, envoltória externa e adequação dos espaços internos."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "ARCHIVO // 2023",
+      "en": "ARCHIVE // 2023",
+      "pt": "ARQUIVO // 2023"
+    },
+    "caption": {
+      "es": "Trabajo de restauración y adecuación de equipamiento rural",
+      "en": "Restoration and interior refit of rural mobile equipment",
+      "pt": "Trabalho de restauração e adequação de equipamento rural"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}

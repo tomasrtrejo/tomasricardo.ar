@@ -1,0 +1,62 @@
+{
+  "code": "btr-14-sll",
+  "folderName": "btr-14-sll",
+  "year": "2025",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "TIRANTES QUEMADOS // 2025",
+    "en": "CHARRED TIMBER // 2025",
+    "pt": "VIGAS QUEIMADAS // 2025"
+  },
+  "title": {
+    "es": "Sillón 0.1",
+    "en": "Armchair 0.1",
+    "pt": "Poltrona 0.1"
+  },
+  "subtitle": {
+    "es": "Diseño de conjunto de sillones armados de manera artesanal con tirantes de madera quemados y unidos con bulones (2025)",
+    "en": "Armchair set designed and handcrafted out of flame-charred timber beams fastened with bolts (2025)",
+    "pt": "Conjunto de poltronas projetado e construído artesanalmente com vigas de madeira queimadas unidas por parafusos (2025)"
+  },
+  "specs": [
+    {
+      "label": "AÑO",
+      "value": "2025"
+    },
+    {
+      "label": "MATERIAL",
+      "value": "Tirantes de madera maciza quemados a fuego"
+    },
+    {
+      "label": "UNIONES",
+      "value": "Armado artesanal vinculando toda la estructura mediante bulones"
+    }
+  ],
+  "report": {
+    "es": "Diseño de 2025 de un conjunto de sillones que primero proyecté y más tarde armé de manera artesanal en el taller. Está fabricado íntegramente con tirantes de madera quemados y vinculado mediante bulones a la vista, logrando un sillón pesado, directo y bien firme.",
+    "en": "A 2025 lounge chair set first designed in CAD and later built by hand in the workshop using flame-charred timber beams bolted together.",
+    "pt": "Projeto de 2025 de um conjunto de poltronas que mais tarde construí de forma artesanal na oficina, feito com vigas de madeira queimadas e unidas por parafusos estruturais."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "ARCHIVO // 2025",
+      "en": "ARCHIVE // 2025",
+      "pt": "ARQUIVO // 2025"
+    },
+    "caption": {
+      "es": "Diseño y armado artesanal en madera quemada",
+      "en": "Design and handcrafted build in charred timber",
+      "pt": "Design e construção artesanal em madeira queimada"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}
