@@ -1,0 +1,2971 @@
+<!doctype html>
+<html lang="es" class="h-full bg-[#202328] text-zinc-200">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tomás Ricardo | Diseñador Industrial & DFM</title>
+  <meta name="description" content="Portafolio interactivo de Tomás Ricardo, Diseñador Industrial especializado en Diseño para Manufactura (DFM), mecanizado CNC y producción técnica." />
+  <meta property="og:title" content="Tomás Ricardo | Diseñador Industrial & DFM" />
+  <meta property="og:description" content="Portafolio interactivo de Tomás Ricardo, Diseñador Industrial especializado en Diseño para Manufactura (DFM)." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Space Grotesk (Heavy geometric sans) & JetBrains Mono (Technical monospace) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            industrial: {
+              DEFAULT: '#FF6B26',
+              hover: '#FF8045',
+              dim: 'rgba(255, 107, 38, 0.15)',
+              border: 'rgba(255, 107, 38, 0.4)'
+            },
+            cnc: {
+              base: '#202328',
+              graphite: '#272B32',
+              surface: '#2E343D',
+              border: '#3A414B',
+              hairline: 'rgba(255, 255, 255, 0.08)'
+            }
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Space Grotesk"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      border-radius: 0 !important;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #202328;
+      color: #DDE1E6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    /* CNC Grid Pattern */
+    .bg-cnc-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    }
+    /* Accordion Drawer CSS Grid Animation */
+    .drawer-grid {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 420ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .drawer-grid.is-open {
+      grid-template-rows: 1fr;
+    }
+    /* Custom subtle scrollbar */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #202328;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #3A414B;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #FF6B26;
+    }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .panel-desc {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      margin-top: 0;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin-top 0.3s ease;
+    }
+    .panel-header:hover .panel-desc {
+      max-height: 5rem;
+      opacity: 1;
+      margin-top: 0.375rem;
+    }
+    section.is-open .panel-desc {
+      max-height: 5rem;
+      opacity: 1;
+      margin-top: 0.375rem;
+    }
+    /* Collapsible Language Selector */
+    #lang-selector:not(:hover):not(:focus-within) .lang-option:not(.is-active) {
+      opacity: 0;
+      max-width: 0;
+      padding-left: 0;
+      padding-right: 0;
+      margin: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transform: scale(0.85);
+    }
+    #lang-selector:not(:hover):not(:focus-within) .lang-sep {
+      opacity: 0;
+      max-width: 0;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .lang-option {
+      max-width: 50px;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.25s ease, max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s ease, padding 0.25s ease, color 0.15s ease;
+    }
+    .lang-sep {
+      max-width: 15px;
+      opacity: 1;
+      margin: 0 0.15rem;
+      transition: opacity 0.25s ease, max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin 0.25s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen w-full flex flex-col relative bg-cnc-base text-zinc-200 custom-scroll">
+
+  <!-- TOP BAR: Minimal CNC Navigation Bar -->
+  <header class="h-16 w-full relative overflow-hidden border-b border-cnc-border flex items-center justify-between px-4 sm:px-8 z-50 shrink-0 bg-[#121418]">
+    <!-- Header Background Image -->
+    <div class="absolute inset-0 z-0 pointer-events-none select-none">
+      <img src="/assets/backgrounds/headertr.png" alt="" class="w-full h-full object-cover object-center" />
+      <!-- Difuminado leve ascendente desde la parte inferior para integración con la página -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[#202328] via-[#202328]/35 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 flex items-center gap-4">
+      <!-- Brand Text (Click opens Sobre Mí) -->
+      <button onclick="openAboutModal()" class="flex items-center font-mono-tech text-xs bg-black/35 hover:bg-[#181B20]/95 border border-white/20 hover:border-industrial px-2.5 py-1 transition-all duration-300 cursor-pointer shadow-sm group focus:outline-none backdrop-blur-md" title="Sobre Mí // Tomás Ricardo (TRDI)">
+        <span class="text-xs sm:text-sm font-black tracking-widest text-white group-hover:text-industrial transition-colors">TRDI</span>
+      </button>
+    </div>
+
+    <!-- Actions Area: Cart Button + Language Selector -->
+    <div class="relative z-10 flex items-center gap-3">
+      <!-- Shopping Cart Button (Hidden by default, shown when cart has items) -->
+      <button id="cart-header-btn" onclick="openCartDrawer()" class="hidden items-center gap-2 font-mono-tech text-xs bg-industrial hover:bg-industrial-dark text-black font-bold px-3 py-1.5 transition-all cursor-pointer shadow-md shadow-industrial/20" title="Ver carrito de compras">
+        <span class="text-sm">🛒</span>
+        <span id="cart-header-count" class="bg-black text-white text-[10px] px-1.5 py-0.2 font-mono-tech font-bold">0</span>
+        <span id="cart-header-total" class="hidden sm:inline-block font-bold text-black tracking-tight">$0 USD</span>
+      </button>
+
+      <!-- Language Selector: [ ES | EN | PT ] - Compact with expand-on-hover -->
+      <div id="lang-selector" class="group/lang flex items-center font-mono-tech text-xs bg-black/35 hover:bg-[#181B20]/95 border border-white/20 hover:border-industrial px-2 py-1 transition-all duration-300 cursor-pointer shadow-sm backdrop-blur-md">
+        <button onclick="setLanguage('es')" id="lang-es" class="lang-option is-active px-1.5 py-0.5 font-bold text-industrial transition-all duration-200 cursor-pointer whitespace-nowrap">ES</button>
+        <span class="lang-sep text-zinc-600 select-none">|</span>
+        <button onclick="setLanguage('en')" id="lang-en" class="lang-option px-1.5 py-0.5 text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap">EN</button>
+        <span class="lang-sep text-zinc-600 select-none">|</span>
+        <button onclick="setLanguage('pt')" id="lang-pt" class="lang-option px-1.5 py-0.5 text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap">PT</button>
+        <span class="text-[9px] text-zinc-500 ml-1 transition-transform duration-300 group-hover/lang:rotate-180 select-none pointer-events-none">▾</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- FRASES DE BIENVENIDA: Debajo del header, solo las frases sin botones -->
+  <div id="welcome-quote-bar" onclick="cycleWelcomeQuote()" class="w-full bg-[#15181D] border-b border-cnc-border px-4 sm:px-8 py-3.5 sm:py-4 flex items-center justify-center relative overflow-hidden cursor-pointer select-none group">
+    <div class="absolute inset-0 bg-cnc-grid opacity-15 pointer-events-none"></div>
+    <p id="welcome-quote-text" class="relative z-10 text-xs sm:text-sm md:text-[15px] text-zinc-300 group-hover:text-white font-normal italic tracking-wide text-center max-w-4xl leading-relaxed transition-opacity duration-300">
+      "No sé muy bien qué estoy haciendo, pero lo estoy haciendo."
+    </p>
+  </div>
+
+  <!-- MAIN HORIZONTAL ACCORDION PANELS -->
+  <main class="w-full flex-1 flex flex-col divide-y divide-cnc-border">
+
+    <!-- ==================== PANEL 1: LA BITÁCORA ==================== -->
+    <section id="panel-1" data-panel="1" class="w-full relative bg-cnc-base flex flex-col transition-colors">
+      <!-- Horizontal Header Bar (Click to toggle) -->
+      <div onclick="togglePanel('1')" class="panel-header w-full py-8 sm:py-10 md:py-11 px-6 sm:px-8 md:px-12 min-h-[145px] sm:min-h-[165px] md:min-h-[175px] cursor-pointer bg-cnc-base hover:bg-cnc-graphite transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 relative group overflow-hidden border-b border-cnc-border/60">
+        <!-- Full Atmospheric Background Image -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <img src="/assets/backgrounds/bitacora.jpg" alt="" class="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.10] group-hover:scale-[1.03] group-hover:brightness-[0.55] transition-all duration-700 ease-out" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#15171B]/95 via-[#15171B]/82 to-[#15171B]/55 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-cnc-grid pointer-events-none opacity-20 group-hover:opacity-10 transition-opacity duration-700"></div>
+        </div>
+        
+        <!-- Left Title and Kicker -->
+        <div class="relative z-10 flex-1">
+          <div class="font-mono-tech text-[11px] text-industrial font-bold mb-1.5 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
+            01 // BTR
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-sm" data-i18n="p1-title">
+            LA BITÁCORA
+          </h2>
+          <p class="panel-desc text-xs sm:text-sm text-zinc-300/90 font-normal max-w-3xl leading-relaxed" data-i18n="p1-tagline">
+            Un espacio de exploración y archivo con trabajos de la facultad, proyectos para terceros y cosas que fui haciendo para aprender y mostrar el camino recorrido.
+          </p>
+        </div>
+
+
+      </div>
+
+      <!-- Expandable Drawer (Content revealed vertically beneath) -->
+      <div id="drawer-1" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
+        <div class="overflow-hidden min-h-0">
+          <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <!-- Series Grid -->
+            <div id="grid-p1" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Item 1 -->
+              <div onclick="openTechModal('p1', 0)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">BTR-01A</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p1-item1-title">Cuaderno de Esfuerzos y Radios</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p1-item1-desc">
+                    Cálculo de concentradores de tensión en transiciones ortogonales de perfiles extruidos de aluminio 6061-T6.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div onclick="openTechModal('p1', 1)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">BTR-02B</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p1-item2-title">Registro de Encastres y Guías</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p1-item2-desc">
+                    Estudio de ajustes deslizantes H7/g6 para correderas axiales con bujes autolubricados de bronce sinterizado.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div onclick="openTechModal('p1', 2)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">BTR-03C</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p1-item3-title">Matriz de Espesores de Pared</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p1-item3-desc">
+                    Guía de estandarización de paredes constantes para reducir rechupes y líneas de soldadura en inyección plástica.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PANEL 2: ARTEFACTOS PERSONALES ==================== -->
+    <section id="panel-2" data-panel="2" class="w-full relative bg-cnc-base flex flex-col transition-colors">
+      <div onclick="togglePanel('2')" class="panel-header w-full py-8 sm:py-10 md:py-11 px-6 sm:px-8 md:px-12 min-h-[145px] sm:min-h-[165px] md:min-h-[175px] cursor-pointer bg-cnc-base hover:bg-cnc-graphite transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 relative group overflow-hidden border-b border-cnc-border/60">
+        <!-- Full Atmospheric Background Image -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <img src="/assets/backgrounds/artefactos.jpg" alt="" class="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.10] group-hover:scale-[1.03] group-hover:brightness-[0.55] transition-all duration-700 ease-out" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#15171B]/95 via-[#15171B]/82 to-[#15171B]/55 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-cnc-grid pointer-events-none opacity-20 group-hover:opacity-10 transition-opacity duration-700"></div>
+        </div>
+        
+        <!-- Left Title and Kicker -->
+        <div class="relative z-10 flex-1">
+          <div class="font-mono-tech text-[11px] text-industrial font-bold mb-1.5 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
+            02 // ART
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-sm" data-i18n="p2-title">
+            LO ARTESANAL
+          </h2>
+          <p class="panel-desc text-xs sm:text-sm text-zinc-300/90 font-normal max-w-3xl leading-relaxed" data-i18n="p2-tagline">
+            Búsqueda creativa pura y contacto con el taller, mirando los materiales que tengo a mano, probando formas y armando cosas como medio de expresión.
+          </p>
+        </div>
+
+
+      </div>
+
+      <div id="drawer-2" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
+        <div class="overflow-hidden min-h-0">
+          <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <div id="grid-p2" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Item 1 -->
+              <div onclick="openTechModal('p2', 0)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">ART-01</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p2-item1-title">Pesa Dodecaédrica de Inercia</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p2-item1-desc">
+                    Objeto háptico con 12 caras mecanizadas en CNC de 5 ejes, acabado granallado micro-esfera de vidrio y anodizado duro militar tipo III.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div onclick="openTechModal('p2', 1)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">ART-02</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p2-item2-title">Porta-Instrumentos Monolítico</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p2-item2-desc">
+                    Canal parabólico fresado para soporte de calibradores Vernier. Base pesada con insertos de corcho acústico y fijación magnética oculta.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div onclick="openTechModal('p2', 2)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">ART-03</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p2-item3-title">Lente Macro de Inspección</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p2-item3-desc">
+                    Carcasa roscada con paso micrométrico M32x0.5 para verificación óptica de rugosidad superficial Ra en taller.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PANEL 3: MANUFACTURA COLABORATIVA ==================== -->
+    <section id="panel-3" data-panel="3" class="w-full relative bg-cnc-base flex flex-col transition-colors">
+      <div onclick="togglePanel('3')" class="panel-header w-full py-8 sm:py-10 md:py-11 px-6 sm:px-8 md:px-12 min-h-[145px] sm:min-h-[165px] md:min-h-[175px] cursor-pointer bg-cnc-base hover:bg-cnc-graphite transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 relative group overflow-hidden border-b border-cnc-border/60">
+        <!-- Full Atmospheric Background Image -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <img src="/assets/backgrounds/colaborativa.jpg" alt="" class="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.10] group-hover:scale-[1.03] group-hover:brightness-[0.55] transition-all duration-700 ease-out" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#15171B]/95 via-[#15171B]/82 to-[#15171B]/55 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-cnc-grid pointer-events-none opacity-20 group-hover:opacity-10 transition-opacity duration-700"></div>
+        </div>
+        
+        <!-- Left Title and Kicker -->
+        <div class="relative z-10 flex-1">
+          <div class="font-mono-tech text-[11px] text-industrial font-bold mb-1.5 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
+            03 // COLAB
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-sm" data-i18n="p3-title">
+            MANUFACTURA COLABORATIVA
+          </h2>
+          <p class="panel-desc text-xs sm:text-sm text-zinc-300/90 font-normal max-w-3xl leading-relaxed" data-i18n="p3-tagline">
+            Valorizar el oficio y el trabajo en equipo, juntarme con artesanos para diseñar y estandarizar productos que podamos fabricar juntos bajo una misma marca.
+          </p>
+        </div>
+
+
+      </div>
+
+      <div id="drawer-3" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
+        <div class="overflow-hidden min-h-0">
+          <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <div id="grid-p3" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Item 1 -->
+              <div onclick="openTechModal('p3', 0)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">COL-01</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p3-item1-title">Luminaria Fusión Bronce-Aluminio</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p3-item1-desc">
+                    Cuerpo vaciado en arena por maestros artesanos, posterior refrentado CNC en caras de contacto para sello estanco IP65.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div onclick="openTechModal('p3', 1)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">COL-02</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p3-item2-title">Banqueta Torsión Madera-Acero</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p3-item2-desc">
+                    Nudos de conexión en chapa plegada cortada por láser y madera maciza de nogal desbastada en fresadora de 4 ejes.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div onclick="openTechModal('p3', 2)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">COL-03</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p3-item3-title">Matricería de Repujado Cónico</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p3-item3-desc">
+                    Diseño de mandriles en resina de poliuretano de alta densidad para repujado en torno de chapa de cobre de 1.2mm.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PANEL 4: ESCALABILIDAD INDUSTRIAL ==================== -->
+    <section id="panel-4" data-panel="4" class="w-full relative bg-cnc-base flex flex-col transition-colors">
+      <div onclick="togglePanel('4')" class="panel-header w-full py-8 sm:py-10 md:py-11 px-6 sm:px-8 md:px-12 min-h-[145px] sm:min-h-[165px] md:min-h-[175px] cursor-pointer bg-cnc-base hover:bg-cnc-graphite transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 relative group overflow-hidden border-b border-cnc-border/60">
+        <!-- Full Atmospheric Background Image -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <img src="/assets/backgrounds/industrial.jpg" alt="" class="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.10] group-hover:scale-[1.03] group-hover:brightness-[0.55] transition-all duration-700 ease-out" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#15171B]/95 via-[#15171B]/82 to-[#15171B]/55 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-cnc-grid pointer-events-none opacity-20 group-hover:opacity-10 transition-opacity duration-700"></div>
+        </div>
+        
+        <!-- Left Title and Kicker -->
+        <div class="relative z-10 flex-1">
+          <div class="font-mono-tech text-[11px] text-industrial font-bold mb-1.5 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
+            04 // IND
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-sm" data-i18n="p4-title">
+            ESCALABILIDAD INDUSTRIAL
+          </h2>
+          <p class="panel-desc text-xs sm:text-sm text-zinc-300/90 font-normal max-w-3xl leading-relaxed" data-i18n="p4-tagline">
+            Acá la cosa se pone seria, con proyectos de escala, maquinaria pesada y desarrollos productivos pensados para fabricarse en serie, mostrando en qué estoy y hacia dónde aspiro llegar.
+          </p>
+        </div>
+
+
+      </div>
+
+      <div id="drawer-4" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
+        <div class="overflow-hidden min-h-0">
+          <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <div id="grid-p4" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Item 1 -->
+              <div onclick="openTechModal('p4', 0)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">IND-01</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p4-item1-title">Carcasa de Sensor Industrial IoT</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p4-item1-desc">
+                    Carcasa ultradelgada con ángulos de desmolde de 1.2&deg; integrados, cierre snap-fit de alta durabilidad y juntas de sobreinyección en TPE.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div onclick="openTechModal('p4', 1)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">IND-02</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p4-item2-title">Perfil Modular de Disipación Térmica</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p4-item2-desc">
+                    Geometría de aletas con espesores variables para flujo laminar convectivo pasivo en luminarias LED industriales para minería.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div onclick="openTechModal('p4', 2)" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 p-5 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">IND-03</span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2" data-i18n="p4-item3-title">Gabinete Eléctrico Desplegable</h4>
+                  <p class="text-xs text-zinc-400 leading-normal" data-i18n="p4-item3-desc">
+                    Desarrollo en chapa plegada con ranuras de alivio de doblez cortadas en fibra láser que permiten 92% de aprovechamiento de chapa.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FLOATING TECHNICAL CONSOLE (MODAL) ==================== -->
+  <div id="tech-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-5 lg:p-8 opacity-0 pointer-events-none transition-all duration-300">
+    <!-- Click backdrop to close -->
+    <div class="absolute inset-0 z-0 cursor-pointer" onclick="closeTechModal()"></div>
+
+    <!-- Floating Console Box -->
+    <div id="tech-modal-box" class="relative z-10 w-full max-w-4xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[92vh] overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+      
+      <!-- Modal Top Bar -->
+      <div class="h-14 border-b border-cnc-border bg-[#202328] px-4 sm:px-6 flex items-center justify-between shrink-0 select-none">
+        <div class="flex items-center gap-2.5 sm:gap-4 overflow-hidden">
+          <span class="w-2 h-2 bg-industrial inline-block animate-pulse shrink-0"></span>
+          <span id="modal-code" class="font-mono-tech text-xs sm:text-sm font-bold text-industrial tracking-wider shrink-0">BTR-01A</span>
+        </div>
+      </div>
+
+      <!-- Main Scrollable Content Container (With Drag & Touch Listener) -->
+      <div id="modal-scroll-area" class="flex-1 overflow-y-auto custom-scroll p-6 sm:p-8 md:p-10 select-text cursor-grab active:cursor-grabbing">
+        <div id="modal-body-content" class="transition-transform duration-200">
+          <!-- Dynamically populated by renderTechModalContent() -->
+        </div>
+      </div>
+
+      <!-- Sticky Commercial Action Footer Bar -->
+      <div id="modal-footer-bar" class="border-t border-cnc-border bg-[#1A1D23] p-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+        <!-- Left: Price (shown when item is commercial) -->
+        <div id="modal-price-container" class="hidden items-center gap-3 w-full sm:w-auto font-mono-tech text-xs">
+          <span id="modal-price-label" class="text-zinc-500 uppercase text-[11px]">PRECIO:</span>
+          <span id="modal-price-display" class="text-base font-black text-industrial font-mono-tech">$145 USD</span>
+        </div>
+        
+        <!-- Right: Actions (Add to Cart / Contact) -->
+        <div id="modal-actions-container" class="flex items-center gap-2.5 w-full sm:w-auto justify-end sm:ml-auto">
+          <button id="modal-add-cart-btn" onclick="addToCartCurrentItem()" class="hidden w-full sm:w-auto px-5 py-2.5 bg-industrial hover:bg-industrial-dark text-black font-mono-tech font-bold text-xs tracking-wider uppercase transition-colors items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20">
+            <span>🛒</span>
+            <span id="modal-cart-btn-text" data-i18n="btn-add-cart">AGREGAR AL CARRITO</span>
+          </button>
+          <button id="modal-action-btn" onclick="openContactModal(false)" class="w-full sm:w-auto px-5 py-2.5 border border-cnc-border hover:border-zinc-400 text-zinc-300 font-mono-tech text-xs tracking-wider uppercase transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+            <span id="modal-action-text" data-i18n="btn-contact">CONSULTA</span>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== POPUP MODAL: CONTACTO ==================== -->
+  <div id="contact-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="absolute inset-0 z-0 cursor-pointer" onclick="closeContactModal()"></div>
+    
+    <!-- Modal Dialog Window -->
+    <div class="relative z-10 w-full max-w-xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
+      <!-- Modal Header -->
+      <div class="h-14 border-b border-cnc-border bg-[#202328] px-5 sm:px-6 flex items-center justify-between shrink-0 select-none">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2 h-2 bg-industrial inline-block animate-pulse"></span>
+          <span class="font-mono-tech text-xs sm:text-sm font-bold text-white tracking-wider uppercase" data-i18n="contact-header-title">CONTACTAR A TOMÁS RICARDO</span>
+        </div>
+      </div>
+
+      <!-- Scrollable Form Container -->
+      <div class="flex-1 overflow-y-auto custom-scroll p-6 sm:p-8 space-y-5">
+        <!-- Referenced Item Badge -->
+        <div class="bg-cnc-surface/80 border border-cnc-border p-3.5 flex items-center justify-between gap-2 font-mono-tech text-xs">
+          <div class="flex items-center gap-2 overflow-hidden">
+            <span class="text-zinc-500 shrink-0" data-i18n="contact-lbl-ref">REFERENCIA:</span>
+            <span id="contact-item-code" class="text-industrial font-bold shrink-0">ART-01</span>
+            <span class="text-zinc-600 hidden sm:inline">&bull;</span>
+            <span id="contact-item-title" class="text-white font-medium truncate">Rack RR</span>
+          </div>
+        </div>
+
+        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 font-mono-tech text-xs">
+          <!-- Nombre -->
+          <div>
+            <label class="block text-zinc-400 uppercase font-semibold text-[11px] mb-1.5" for="contact-name" data-i18n="contact-lbl-name">
+              NOMBRE Y APELLIDO *
+            </label>
+            <input type="text" id="contact-name" required placeholder="Ej. Martín González" data-i18n-placeholder="contact-ph-name" class="w-full bg-[#121418] border border-cnc-border focus:border-industrial text-white px-3.5 py-2.5 text-xs outline-none transition-colors">
+          </div>
+
+          <!-- Email & Teléfono -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-zinc-400 uppercase font-semibold text-[11px] mb-1.5" for="contact-email" data-i18n="contact-lbl-email">
+                CORREO ELECTRÓNICO *
+              </label>
+              <input type="email" id="contact-email" required placeholder="tu@email.com" data-i18n-placeholder="contact-ph-email" class="w-full bg-[#121418] border border-cnc-border focus:border-industrial text-white px-3.5 py-2.5 text-xs outline-none transition-colors">
+            </div>
+            <div>
+              <label class="block text-zinc-400 uppercase font-semibold text-[11px] mb-1.5" for="contact-phone" data-i18n="contact-lbl-phone">
+                TELÉFONO / WHATSAPP
+              </label>
+              <input type="tel" id="contact-phone" placeholder="+54 9 11 ..." data-i18n-placeholder="contact-ph-phone" class="w-full bg-[#121418] border border-cnc-border focus:border-industrial text-white px-3.5 py-2.5 text-xs outline-none transition-colors">
+            </div>
+          </div>
+
+          <!-- Motivo de Contacto -->
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="block text-zinc-400 uppercase font-semibold text-[11px]" for="contact-reason" data-i18n="contact-lbl-reason">
+                MOTIVO DEL CONTACTO *
+              </label>
+              <span id="contact-reason-counter" class="text-[10px] text-zinc-500 font-mono-tech">0 / 10 palabras</span>
+            </div>
+            <textarea id="contact-reason" required rows="2" placeholder="Escribí el motivo de tu consulta (máx. 10 palabras)..." data-i18n-placeholder="contact-ph-reason" class="w-full bg-[#121418] border border-cnc-border focus:border-industrial text-white p-3 text-xs outline-none transition-colors resize-none" oninput="validateReasonWordCount(this)"></textarea>
+            <p id="contact-reason-warning" class="hidden text-red-400 text-[10px] mt-1" data-i18n="contact-reason-limit">Límite de 10 palabras alcanzado.</p>
+          </div>
+
+          <!-- Mensaje / Detalles técnicos -->
+          <div>
+            <label class="block text-zinc-400 uppercase font-semibold text-[11px] mb-1.5" for="contact-message" data-i18n="contact-lbl-message">
+              ESPECIFICACIONES / MENSAJE *
+            </label>
+            <textarea id="contact-message" required rows="4" placeholder="Contame qué tenés en mente, medidas, materiales o tu consulta..." data-i18n-placeholder="contact-ph-message" class="w-full bg-[#121418] border border-cnc-border focus:border-industrial text-white p-3 text-xs outline-none transition-colors resize-none"></textarea>
+          </div>
+
+          <!-- Submission Feedback Box -->
+          <div id="contact-feedback" class="hidden"></div>
+
+          <!-- Botones de Acción -->
+          <div class="pt-2 flex items-center justify-end gap-3">
+            <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20">
+              <span data-i18n="contact-btn-submit">ENVIAR CORREO</span>
+              <span>✉</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== ABOUT ME (SOBRE MÍ) MODAL ==================== -->
+  <div id="about-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+    <!-- Click backdrop to close -->
+    <div class="absolute inset-0 z-0 cursor-pointer" onclick="closeAboutModal()"></div>
+
+    <!-- Modal Box -->
+    <div id="about-modal-box" class="relative z-10 w-full max-w-2xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[90vh] overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+      
+      <!-- Modal Top Bar -->
+      <div class="h-14 border-b border-cnc-border bg-[#202328] px-4 sm:px-6 flex items-center justify-between shrink-0 select-none">
+        <div class="flex items-center gap-2.5 overflow-hidden">
+          <span class="w-2 h-2 bg-industrial inline-block animate-pulse"></span>
+          <span class="font-mono-tech text-xs sm:text-sm font-bold text-white tracking-wider uppercase" data-i18n="about-header-title">PERFIL TÉCNICO // SOBRE MÍ</span>
+        </div>
+      </div>
+
+      <!-- Scrollable Body Content -->
+      <div class="flex-1 overflow-y-auto custom-scroll p-6 sm:p-8 space-y-6">
+        
+        <!-- Bio Header Card with Monogram -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-5 bg-cnc-surface/70 border border-cnc-border">
+          <div class="w-16 h-16 shrink-0 bg-cnc-base border-2 border-industrial/80 flex items-center justify-center font-mono-tech font-black text-2xl text-industrial shadow-inner">
+            TR
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 font-mono-tech text-[10px] text-industrial mb-1">
+              <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
+              <span>TRDI // ID-01</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight" data-i18n="about-title">TOMÁS RICARDO</h3>
+            <p class="text-xs text-zinc-400 font-mono-tech mt-0.5" data-i18n="about-subtitle">Diseño & Fabricación // TRDI</p>
+          </div>
+        </div>
+
+        <!-- Manifesto / Bio Paragraphs -->
+        <div class="space-y-3.5 text-xs text-zinc-300 leading-relaxed font-sans">
+          <p class="bg-[#121418] border-l-2 border-industrial p-3.5 text-zinc-200" data-i18n="about-bio-p1">
+            Soy Tomás Ricardo. Hago diseño y fabricación de conceptos, objetos, mobiliario y piezas técnicas, abarcando desde la primera idea y el modelado 3D hasta la construcción física.
+          </p>
+          <p data-i18n="about-bio-p2">
+            Combino diseño técnico con oficio manual. Trabajo con dibujo a mano alzada, bocetos, herramientas digitales, planos y materiales reales pensándolos para que el desarrollo sea sólido, funcional y pensado para el uso real.
+          </p>
+          <p data-i18n="about-bio-p3">
+            Me gusta integrar a las diferentes personas y actores que intervienen en el proceso creativo. Las piezas no nacen por arte de magia: hay que proyectarlas en sus distintos aspectos, tanto a nivel macro como en cada detalle micro.
+          </p>
+          <p class="text-zinc-400" data-i18n="about-bio-p4">
+            Este espacio reúne proyectos de exploración, piezas de taller y desarrollos industriales, pensado como punto de encuentro para nuevos trabajos a medida, producciones en serie y colaboraciones.
+          </p>
+        </div>
+
+        <!-- Pillars / Core Competencies -->
+        <div class="space-y-2.5 pt-2">
+          <div class="font-mono-tech text-[11px] text-zinc-400 uppercase font-semibold flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
+            <span data-i18n="about-pillars-title">CÓMO TRABAJO</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono-tech text-xs">
+            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
+              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-1-title">01. PLANOS TÉCNICOS & MODELADO</span>
+              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-1">Bocetos a mano alzada, modelado 3D y documentación técnica precisa para definir y fabricar cada pieza.</p>
+            </div>
+            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
+              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-2-title">02. PIEZAS ARTESANALES</span>
+              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-2">Construcción física y oficio directo de taller, experimentando y trabajando con materiales reales.</p>
+            </div>
+            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
+              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-3-title">03. DESARROLLO DE PRODUCTOS</span>
+              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-3">Proyección integral de objetos y sistemas desde la idea inicial, resolviendo tanto la escala macro como el detalle micro.</p>
+            </div>
+            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
+              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-4-title">04. PROYECTOS PARA TERCEROS Y COLABORATIVOS</span>
+              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-4">Trabajos en conjunto y encargos, integrando clientes, proveedores, talleres y distintos oficios en el proceso.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action / Contact Row -->
+        <div class="pt-4 border-t border-cnc-border/80 flex items-center justify-end font-mono-tech text-xs">
+          <button onclick="closeAboutModal(); openContactModal(false);" class="w-full sm:w-auto px-5 py-2 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20" data-i18n="about-btn-contact">
+            <span>CONTACTAR</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- ==================== SHOPPING CART DRAWER (FASE 1) ==================== -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none overflow-hidden transition-all duration-300">
+    <!-- Backdrop -->
+    <div id="cart-drawer-backdrop" onclick="closeCartDrawer()" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300 cursor-pointer"></div>
+
+    <!-- Sliding Side Drawer Panel -->
+    <div id="cart-drawer-box" class="absolute top-0 right-0 bottom-0 w-full max-w-md bg-[#16181D] border-l border-cnc-border shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out z-10">
+      
+      <!-- Drawer Top Bar -->
+      <div class="h-16 border-b border-cnc-border bg-[#1E2127] px-5 flex items-center justify-between shrink-0 select-none">
+        <div class="flex items-center gap-2.5">
+          <span class="text-industrial text-base">🛒</span>
+          <span class="font-mono-tech text-xs sm:text-sm font-bold text-white tracking-wider uppercase" data-i18n="cart-header-title">CARRITO // ORDEN DE TALLER</span>
+        </div>
+      </div>
+
+      <!-- Scrollable Cart Items List -->
+      <div class="flex-1 overflow-y-auto custom-scroll p-5 space-y-3">
+        <!-- Empty State -->
+        <div id="cart-drawer-empty" class="py-16 text-center space-y-3">
+          <span class="text-4xl text-zinc-600 block mb-2">🛒</span>
+          <p class="font-mono-tech text-xs text-zinc-300 uppercase font-semibold" data-i18n="cart-empty-title">El carrito está vacío</p>
+          <p class="text-xs text-zinc-500 max-w-xs mx-auto" data-i18n="cart-empty-desc">Selecciona cualquier pieza del catálogo con disponibilidad para agregarla a tu pedido.</p>
+        </div>
+
+        <!-- Populated Items List -->
+        <div id="cart-drawer-list" class="space-y-3"></div>
+      </div>
+
+      <!-- Drawer Sticky Footer -->
+      <div id="cart-drawer-footer" class="border-t border-cnc-border bg-[#1A1D23] p-5 space-y-3 shrink-0 hidden">
+        <div class="flex items-center justify-between font-mono-tech">
+          <span class="text-xs text-zinc-400 uppercase" data-i18n="cart-lbl-subtotal">SUBTOTAL ESTIMADO:</span>
+          <span id="cart-drawer-total" class="text-lg font-black text-industrial">$0 ARS</span>
+        </div>
+
+        <p class="text-[11px] text-zinc-400 font-mono-tech leading-snug bg-[#121418] border border-cnc-border/80 px-3 py-2" data-i18n="cart-shipping-note">
+          * El costo de envío no está previsto en el subtotal (a convenir).
+        </p>
+
+        <button onclick="proceedToCheckoutStep()" class="w-full py-3 bg-industrial hover:bg-industrial-dark text-black font-mono-tech font-bold text-xs tracking-wider uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20">
+          <span data-i18n="cart-btn-checkout">INICIAR COMPRA</span>
+          <span>→</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: Vanilla JS Architecture (i18n Dictionary + Independent Panel Toggling) -->
+  <script>
+    // ==================== 1. i18n TRANSLATION DICTIONARY ====================
+    const i18nData = {
+      es: {
+        'btn-expand': 'DESPLEGAR',
+        'btn-collapse': 'COLAPSAR',
+        'btn-expand-all': 'DESPLEGAR TODAS',
+        'btn-collapse-all': 'COLAPSAR TODAS',
+        'btn-contact': 'CONSULTA',
+
+        'p1-kicker': 'EXPLORACIÓN & ARCHIVO • 01',
+        'p1-title': 'LA BITÁCORA',
+        'p1-tagline': 'Un espacio de exploración y archivo con trabajos de la facultad, proyectos para terceros y cosas que fui haciendo para aprender y mostrar el camino recorrido.',
+        'p1-meta': '4 CUADERNOS • 28 ENTRADAS',
+        'p1-exp-title': 'LA BITÁCORA',
+        'p1-manifesto': 'Manifiesto de diseño: La manufactura no comienza en la máquina CNC sino en el primer trazo sobre papel milimetrado. Aquí se desglosan los cuadernos de cálculo de radios de curvatura, tolerancias ISO 2768-mK y estudios de interferencia mecánica.',
+        'p1-item1-title': 'Cuaderno de Esfuerzos y Radios',
+        'p1-item1-desc': 'Cálculo de concentradores de tensión en transiciones ortogonales de perfiles extruidos de aluminio 6061-T6.',
+        'p1-item2-title': 'Registro de Encastres y Guías',
+        'p1-item2-desc': 'Estudio de ajustes deslizantes H7/g6 para correderas axiales con bujes autolubricados de bronce sinterizado.',
+        'p1-item3-title': 'Matriz de Espesores de Pared',
+        'p1-item3-desc': 'Guía de estandarización de paredes constantes para reducir rechupes y líneas de soldadura en inyección plástica.',
+
+        'p2-kicker': 'TALLER & EXPRESIÓN • 02',
+        'p2-title': 'LO ARTESANAL',
+        'p2-tagline': 'Búsqueda creativa pura y contacto con el taller, mirando los materiales que tengo a mano, probando formas y armando cosas como medio de expresión.',
+        'p2-meta': 'SERIE LIMITADA • ALUMINIO 7075',
+        'p2-exp-title': 'LO ARTESANAL',
+        'p2-manifesto': 'Manifiesto de origen: La búsqueda de la inercia perfecta. Cada artefacto se mecaniza partiendo de un bloque sólido de aleación aeroespacial, eliminando uniones superfluas para que la forma responda pura y exclusivamente al centro de gravedad de la mano.',
+        'p2-item1-title': 'Pesa Dodecaédrica de Inercia',
+        'p2-item1-desc': 'Objeto háptico con 12 caras mecanizadas en CNC de 5 ejes, acabado granallado micro-esfera de vidrio y anodizado duro militar tipo III.',
+        'p2-item2-title': 'Porta-Instrumentos Monolítico',
+        'p2-item2-desc': 'Canal parabólico fresado para soporte de calibradores Vernier. Base pesada con insertos de corcho acústico y fijación magnética oculta.',
+        'p2-item3-title': 'Lente Macro de Inspección',
+        'p2-item3-desc': 'Carcasa roscada con paso micrométrico M32x0.5 para verificación óptica de rugosidad superficial Ra en taller.',
+
+        'p3-kicker': 'OFICIOS & ESTANDARIZACIÓN • 03',
+        'p3-title': 'MANUFACTURA COLABORATIVA',
+        'p3-tagline': 'Valorizar el oficio y el trabajo en equipo, juntarme con artesanos para diseñar y estandarizar productos que podamos fabricar juntos bajo una misma marca.',
+        'p3-meta': '8 TALLERES • BRONCE, MADERA & ACERO',
+        'p3-exp-title': 'MANUFACTURA COLABORATIVA',
+        'p3-manifesto': 'Manifiesto de cooperación: Diseñar para manufactura no es reemplazar el conocimiento del artesano con código G, sino dotar a las fundiciones y tornerías tradicionales de interfaces digitales donde ambos mundos coexisten sin perder identidad.',
+        'p3-item1-title': 'Luminaria Fusión Bronce-Aluminio',
+        'p3-item1-desc': 'Cuerpo vaciado en arena por maestros artesanos, posterior refrentado CNC en caras de contacto para sello estanco IP65.',
+        'p3-item2-title': 'Banqueta Torsión Madera-Acero',
+        'p3-item2-desc': 'Nudos de conexión en chapa plegada cortada por láser y madera maciza de nogal desbastada en fresadora de 4 ejes.',
+        'p3-item3-title': 'Matricería de Repujado Cónico',
+        'p3-item3-desc': 'Diseño de mandriles en resina de poliuretano de alta densidad para repujado en torno de chapa de cobre de 1.2mm.',
+
+        'p4-kicker': 'MAQUINARIA & PRODUCCIÓN • 04',
+        'p4-title': 'ESCALABILIDAD INDUSTRIAL',
+        'p4-tagline': 'Acá la cosa se pone seria, con proyectos de escala, maquinaria pesada y desarrollos productivos pensados para fabricarse en serie, mostrando en qué estoy y hacia dónde aspiro llegar.',
+        'p4-meta': '> 100K UNIDADES • MOLDE MATRICIAL',
+        'p4-exp-title': 'ESCALABILIDAD INDUSTRIAL',
+        'p4-manifesto': 'Manifiesto de escala: En la manufactura de volumen, un segundo de enfriamiento ahorrado o un radio desmoldable de 1.5° representa cientos de miles de dólares en eficiencia de ciclo. Diseñamos herramentales y piezas concebidas desde la raíz para la producción automatizada sin retrabajos.',
+        'p4-item1-title': 'Carcasa de Sensor Industrial IoT',
+        'p4-item1-desc': 'Carcasa ultradelgada con ángulos de desmolde de 1.2° integrados, cierre snap-fit de alta durabilidad y juntas de sobreinyección en TPE.',
+        'p4-item2-title': 'Perfil Modular de Disipación Térmica',
+        'p4-item2-desc': 'Geometría de aletas con espesores variables para flujo laminar convectivo pasivo en luminarias LED industriales para minería.',
+        'p4-item3-title': 'Gabinete Eléctrico Desplegable',
+        'p4-item3-desc': 'Desarrollo en chapa plegada con ranuras de alivio de doblez cortadas en fibra láser que permiten 92% de aprovechamiento de chapa.',
+        'footer-role': 'DFM & DISEÑO INDUSTRIAL',
+        'footer-desc': 'Diseño para Manufactura, interfaces CNC de precisión, tolerancias dimensionales e hibridación técnica.',
+        'footer-canvas-hint': 'LIENZO DE FIRMAS: HAZ CLIC O ARRASTRA PARA ESTAMPAR TU FIRMA',
+        'btn-stamp': '+ ESTAMPAR FIRMA',
+        'btn-clear-canvas': 'RESETEAR LIENZO',
+        'footer-rights': '© 2026 TOMÁS RICARDO • BUENOS AIRES, ARGENTINA',
+        'about-header-title': 'PERFIL // SOBRE MÍ',
+        'about-title': 'TOMÁS RICARDO',
+        'about-subtitle': 'Diseño & Fabricación // TRDI',
+        'about-lbl-loc': 'UBICACIÓN',
+        'about-lbl-focus': 'ENFOQUE',
+        'about-lbl-norm': 'NORMATIVA',
+        'about-lbl-status': 'ESTADO',
+        'about-status-val': 'DISPONIBLE PARA PROYECTOS',
+        'about-bio-p1': 'Soy Tomás Ricardo. Hago diseño y fabricación de conceptos, objetos, mobiliario y piezas técnicas, abarcando desde la primera idea y el modelado 3D hasta la construcción física.',
+        'about-bio-p2': 'Combino diseño técnico con oficio manual. Trabajo con dibujo a mano alzada, bocetos, herramientas digitales, planos y materiales reales pensándolos para que el desarrollo sea sólido, funcional y pensado para el uso real.',
+        'about-bio-p3': 'Me gusta integrar a las diferentes personas y actores que intervienen en el proceso creativo. Las piezas no nacen por arte de magia: hay que proyectarlas en sus distintos aspectos, tanto a nivel macro como en cada detalle micro.',
+        'about-bio-p4': 'Este espacio reúne proyectos de exploración, piezas de taller y desarrollos industriales, pensado como punto de encuentro para nuevos trabajos a medida, producciones en serie y colaboraciones.',
+        'about-pillars-title': 'CÓMO TRABAJO',
+        'about-pillar-1-title': '01. PLANOS TÉCNICOS & MODELADO',
+        'about-pillar-1': 'Bocetos a mano alzada, modelado 3D y documentación técnica precisa para definir y fabricar cada pieza.',
+        'about-pillar-2-title': '02. PIEZAS ARTESANALES',
+        'about-pillar-2': 'Construcción física y oficio directo de taller, experimentando y trabajando con materiales reales.',
+        'about-pillar-3-title': '03. DESARROLLO DE PRODUCTOS',
+        'about-pillar-3': 'Proyección integral de objetos y sistemas desde la idea inicial, resolviendo tanto la escala macro como el detalle micro.',
+        'about-pillar-4-title': '04. PROYECTOS PARA TERCEROS Y COLABORATIVOS',
+        'about-pillar-4': 'Trabajos en conjunto y encargos, integrando clientes, proveedores, talleres y distintos oficios en el proceso.',
+        'about-btn-contact': 'CONTACTAR',
+        'btn-add-cart': 'AGREGAR AL CARRITO',
+        'contact-header-title': 'CONTACTAR A TOMÁS RICARDO',
+        'contact-lbl-ref': 'REFERENCIA:',
+        'contact-lbl-name': 'NOMBRE Y APELLIDO *',
+        'contact-ph-name': 'Ej. Martín González',
+        'contact-lbl-email': 'CORREO ELECTRÓNICO *',
+        'contact-ph-email': 'tu@email.com',
+        'contact-lbl-phone': 'TELÉFONO / WHATSAPP',
+        'contact-ph-phone': '+54 9 11 ...',
+        'contact-lbl-reason': 'MOTIVO DEL CONTACTO *',
+        'contact-ph-reason': 'Escribí el motivo de tu consulta (máx. 10 palabras)...',
+        'contact-reason-limit': 'Límite de 10 palabras alcanzado.',
+        'contact-words-unit': 'palabras',
+        'contact-lbl-message': 'ESPECIFICACIONES / MENSAJE *',
+        'contact-ph-message': 'Contame qué tenés en mente, medidas, materiales o tu consulta...',
+        'contact-btn-submit': 'ENVIAR CORREO',
+        'cart-header-title': 'CARRITO // ORDEN DE TALLER',
+        'cart-empty-title': 'El carrito está vacío',
+        'cart-empty-desc': 'Seleccioná cualquier pieza del catálogo disponible para agregarla a tu pedido.',
+        'cart-lbl-subtotal': 'SUBTOTAL ESTIMADO:',
+        'cart-shipping-note': '* El costo de envío no está previsto en el subtotal (a convenir).',
+        'cart-btn-checkout': 'INICIAR COMPRA'
+      },
+      en: {
+        'btn-expand': 'EXPAND',
+        'btn-collapse': 'COLLAPSE',
+        'btn-expand-all': 'EXPAND ALL',
+        'btn-collapse-all': 'COLLAPSE ALL',
+        'btn-contact': 'INQUIRY',
+
+        'p1-kicker': 'EXPLORATION & ARCHIVE • 01',
+        'p1-title': 'THE LOGBOOK',
+        'p1-tagline': "An exploratory archive with university projects, client work, and past experiments showing how I learned and what I've made along the way.",
+        'p1-meta': '4 NOTEBOOKS • 28 LOG ENTRIES',
+        'p1-exp-title': 'THE LOGBOOK',
+        'p1-manifesto': 'Design manifesto: Manufacturing does not start in the CNC machining center, but on the first pencil stroke over millimeter paper. Here lies the repository of bend radii formulas, ISO 2768-mK tolerances, and kinetic interference studies.',
+        'p1-item1-title': 'Stress & Fillet Logbook',
+        'p1-item1-desc': 'Calculation of stress concentrations in orthogonal transitions of 6061-T6 extruded aluminum profiles.',
+        'p1-item2-title': 'Slide Fits & Guide Ways',
+        'p1-item2-desc': 'H7/g6 sliding fits analysis for axial carriages fitted with sintered oil-impregnated bronze bushings.',
+        'p1-item3-title': 'Wall Thickness Matrix',
+        'p1-item3-desc': 'Standardization guide for uniform wall thickness preventing sink marks and knit lines in injection molding.',
+
+        'p2-kicker': 'WORKSHOP & CRAFT • 02',
+        'p2-title': 'THE CRAFT',
+        'p2-tagline': 'Pure creative exploration and hands-on workshop craft, looking at raw materials, testing shapes, and building things as a direct way of expressing ideas.',
+        'p2-meta': 'LIMITED RUN • 7075 ALUMINUM',
+        'p2-exp-title': 'THE CRAFT',
+        'p2-manifesto': 'Origin manifesto: The pursuit of pure inertia. Each artifact is subtractively sculpted from an aerospace-grade billet, omitting frivolous fasteners so that the contours adhere strictly to the hand’s center of gravity.',
+        'p2-item1-title': 'Dodecahedral Inertia Weight',
+        'p2-item1-desc': 'Haptic desk monolith featuring 12 five-axis CNC faceted faces, glass-bead blasted texture, and Type III military hardcoat anodize.',
+        'p2-item2-title': 'Monolithic Tool Cradle',
+        'p2-item2-desc': 'Parabolic milled trough for Vernier calipers with counterweighted base, acoustical cork dampening, and neodymium magnetic arrestors.',
+        'p2-item3-title': 'Macro Inspection Barrel',
+        'p2-item3-desc': 'Micro-threaded M32x0.5 ocular casing engineered for shop-floor optical verification of Ra surface roughness.',
+
+        'p3-kicker': 'CRAFT & STANDARDS • 03',
+        'p3-title': 'COLLABORATIVE MANUFACTURING',
+        'p3-tagline': 'Valuing craft and collective work, teaming up with artisans to design and standardize products manufactured together under a shared brand.',
+        'p3-meta': '8 ATELIERS • BRONZE, WOOD & STEEL',
+        'p3-exp-title': 'COLLABORATIVE MANUFACTURING',
+        'p3-manifesto': 'Partnership manifesto: Designing for manufacturing does not discard artisanal mastery in favor of G-code; it bridges heritage foundries and manual lathes with digital coordinate tooling so both disciplines merge seamlessly.',
+        'p3-item1-title': 'Bronze-Aluminum Casting Lamp',
+        'p3-item1-desc': 'Sand-cast foundry bronze chassis post-machined on CNC datum surfaces for airtight IP65 elastomer seals.',
+        'p3-item2-title': 'Torsional Timber-Steel Bench',
+        'p3-item2-desc': 'Laser-cut folded steel joinery brackets interlocking with 4-axis sculpted American black walnut solid rails.',
+        'p3-item3-title': 'Conical Metal Spinning Mandrel',
+        'p3-item3-desc': 'High-density polyurethane tooling mandrel engineered for manual spinning of 1.2mm copper sheet cones.',
+
+        'p4-kicker': 'MACHINERY & SCALE • 04',
+        'p4-title': 'INDUSTRIAL SCALABILITY',
+        'p4-tagline': 'Where things get serious, with large-scale engineering, heavy machinery, and industrial developments designed for batch production, showing what I build and where I aim to go.',
+        'p4-meta': '> 100K UNITS • MATRIX TOOLING',
+        'p4-exp-title': 'INDUSTRIAL SCALABILITY',
+        'p4-manifesto': 'Scale manifesto: In high-volume production, 1 second clipped from thermal cooling or a 1.5° release draft translates directly into hundreds of thousands in capital efficiency. We architect components ready for robotic production without re-tooling.',
+        'p4-item1-title': 'IoT Industrial Sensor Enclosure',
+        'p4-item1-desc': 'Ultra-thin wall shell with integrated 1.2° draft angles, snap-fit cyclic latches, and dual-shot overmolded TPE gasket.',
+        'p4-item2-title': 'Convective Heat Sink Profile',
+        'p4-item2-desc': 'High-fin-ratio extrusion profile with balanced wall tapers driving passive laminar airflow in mining LED luminaires.',
+        'p4-item3-title': 'Origami Sheet Metal Enclosure',
+        'p4-item3-desc': 'Laser-cut sheet layout with micro-relief relief cuts yielding 92% raw material utilization per standard 3000x1500mm sheet.',
+        'footer-role': 'DFM & INDUSTRIAL DESIGN',
+        'footer-desc': 'Design for Manufacturing, precision CNC interfaces, dimensional tolerances, and technical craftsmanship.',
+        'footer-canvas-hint': 'SIGNATURE CANVAS: CLICK OR DRAG TO STAMP YOUR AUTOGRAPH',
+        'btn-stamp': '+ STAMP SIGNATURE',
+        'btn-clear-canvas': 'RESET CANVAS',
+        'footer-rights': '© 2026 TOMÁS RICARDO • BUENOS AIRES, ARGENTINA',
+        'about-header-title': 'PROFILE // ABOUT ME',
+        'about-title': 'TOMÁS RICARDO',
+        'about-subtitle': 'Design & Fabrication // TRDI',
+        'about-lbl-loc': 'LOCATION',
+        'about-lbl-focus': 'FOCUS',
+        'about-lbl-norm': 'STANDARD',
+        'about-lbl-status': 'STATUS',
+        'about-status-val': 'OPEN FOR COMMISSIONS & PROJECTS',
+        'about-bio-p1': 'I am Tomás Ricardo. I design and fabricate concepts, objects, furniture, and technical pieces, covering everything from the initial idea and 3D modeling to physical construction.',
+        'about-bio-p2': 'I combine technical design with manual craft. I work with freehand drawing, sketches, digital tools, blueprints, and real materials—thinking them through so each development is solid, functional, and built for real-world use.',
+        'about-bio-p3': 'I like integrating the different people and actors involved in the creative process. Pieces do not appear by magic: they have to be projected across multiple dimensions, both at the macro scale and down to the micro detail.',
+        'about-bio-p4': 'This space brings together exploratory projects, workshop pieces, and industrial developments, conceived as a meeting point for bespoke commissions, batch production, and collaborations.',
+        'about-pillars-title': 'HOW I WORK',
+        'about-pillar-1-title': '01. TECHNICAL PLANS & 3D MODELING',
+        'about-pillar-1': 'Freehand sketches, 3D modeling, and accurate technical documentation to define and build each piece.',
+        'about-pillar-2-title': '02. ARTISANAL PIECES',
+        'about-pillar-2': 'Physical construction and hands-on workshop craft, experimenting and working directly with real materials.',
+        'about-pillar-3-title': '03. PRODUCT DEVELOPMENT',
+        'about-pillar-3': 'End-to-end projection of objects and systems from initial concept, solving both the macro view and micro details.',
+        'about-pillar-4-title': '04. THIRD-PARTY & COLLABORATIVE PROJECTS',
+        'about-pillar-4': 'Joint projects and commissions, integrating clients, suppliers, workshops, and diverse trades into the process.',
+        'about-btn-contact': 'GET IN TOUCH',
+        'btn-add-cart': 'ADD TO CART',
+        'contact-header-title': 'CONTACT TOMÁS RICARDO',
+        'contact-lbl-ref': 'REFERENCE:',
+        'contact-lbl-name': 'FULL NAME *',
+        'contact-ph-name': 'e.g. Martin Gonzalez',
+        'contact-lbl-email': 'EMAIL ADDRESS *',
+        'contact-ph-email': 'you@email.com',
+        'contact-lbl-phone': 'PHONE / WHATSAPP',
+        'contact-ph-phone': '+1 / +54 ...',
+        'contact-lbl-reason': 'SUBJECT / REASON FOR INQUIRY *',
+        'contact-ph-reason': 'Write the subject or reason for your inquiry (max 10 words)...',
+        'contact-reason-limit': '10-word limit reached.',
+        'contact-words-unit': 'words',
+        'contact-lbl-message': 'SPECIFICATIONS / MESSAGE *',
+        'contact-ph-message': 'Tell me what you have in mind, dimensions, materials, or your question...',
+        'contact-btn-submit': 'SEND EMAIL',
+        'cart-header-title': 'CART // WORKSHOP ORDER',
+        'cart-empty-title': 'Your cart is empty',
+        'cart-empty-desc': 'Select any available piece from the catalog to add it to your order.',
+        'cart-lbl-subtotal': 'ESTIMATED SUBTOTAL:',
+        'cart-shipping-note': '* Shipping cost is not included in the subtotal (to be arranged).',
+        'cart-btn-checkout': 'START ORDER'
+      },
+      pt: {
+        'btn-expand': 'DESDOBRAR',
+        'btn-collapse': 'RECOLHER',
+        'btn-expand-all': 'EXPANDIR TODAS',
+        'btn-collapse-all': 'RECOLHER TODAS',
+        'btn-contact': 'CONSULTA',
+
+        'p1-kicker': 'EXPLORAÇÃO & ARQUIVO • 01',
+        'p1-title': 'O DIÁRIO DE BORDO',
+        'p1-tagline': 'Um espaço de exploração e arquivo com projetos da faculdade, trabalhos para terceiros e coisas que fui fazendo para aprender e mostrar a trajetória.',
+        'p1-meta': '4 CADERNOS • 28 REGISTROS',
+        'p1-exp-title': 'O DIÁRIO DE BORDO',
+        'p1-manifesto': 'Manifesto de design: A manufatura não começa no centro de usinagem CNC, mas no primeiro traço sobre o papel milimetrado. Aqui se consolidam os cálculos de raios de dobra, tolerâncias ISO 2768-mK e estudos cinemáticos.',
+        'p1-item1-title': 'Caderno de Tensões e Raios',
+        'p1-item1-desc': 'Cálculo de concentração de tensões em transições ortogonais de perfis extrudados de alumínio 6061-T6.',
+        'p1-item2-title': 'Registro de Ajustes e Guias',
+        'p1-item2-desc': 'Estudo de ajustes deslizantes H7/g6 para eixos lineares com buchas autolubrificadas de bronze sinterizado.',
+        'p1-item3-title': 'Matriz de Espessuras de Parede',
+        'p1-item3-desc': 'Guia de padronização de espessuras constantes para eliminar rechupes e linhas de emenda na injeção plástica.',
+
+        'p2-kicker': 'OFICINA & EXPRESSÃO • 02',
+        'p2-title': 'O ARTESANAL',
+        'p2-tagline': 'Busca criativa pura e contato direto com a oficina, olhando os materiais à mão, testando formas e construindo peças como meio de expressão.',
+        'p2-meta': 'SÉRIE LIMITADA • ALUMÍNIO 7075',
+        'p2-exp-title': 'O ARTESANAL',
+        'p2-manifesto': 'Manifesto de origem: A busca pela inércia ideal. Cada artefato é usinado a partir de um bloco aeroespacial maciço, removendo elementos supérfluos para que a forma dialogue estritamente com o centro de gravidade da mão.',
+        'p2-item1-title': 'Peso Dodecaédrico de Inércia',
+        'p2-item1-desc': 'Objeto tátil com 12 faces usinadas em CNC de 5 eixos, acabamento fosco por microesferas de vidro e anodização dura Tipo III.',
+        'p2-item2-title': 'Porta-Instrumentos Monolítico',
+        'p2-item2-desc': 'Canal parabólico fresado para paquímetros, base com amortecimento de cortiça acústica e fixação magnética oculta.',
+        'p2-item3-title': 'Cilindro Óptico de Inspeção',
+        'p2-item3-desc': 'Câmara usinada com rosca micrométrica M32x0.5 para inspeção óptica de rugosidade superficial Ra na oficina.',
+
+        'p3-kicker': 'OFÍCIOS & PADRONIZAÇÃO • 03',
+        'p3-title': 'MANUFATURA COLABORATIVA',
+        'p3-tagline': 'Valorizar o ofício e o trabalho em equipe, unir-me a artesãos para criar produtos padronizados e fabricados juntos sob uma mesma marca.',
+        'p3-meta': '8 OFICINAS • BRONZE, MADEIRA E AÇO',
+        'p3-exp-title': 'MANUFATURA COLABORATIVA',
+        'p3-manifesto': 'Manifesto de cooperação: Projetar para manufatura não é anular o saber artesanal através de código G, mas equipar oficinas e fundições tradicionais com referências digitais onde ambas as práticas se potenciam.',
+        'p3-item1-title': 'Luminária Fundida Bronze-Alumínio',
+        'p3-item1-desc': 'Corpo moldado em areia por mestres fundidores, com faces usinadas em CNC para vedação estanque IP65.',
+        'p3-item2-title': 'Banco Torção Madeira-Aço',
+        'p3-item2-desc': 'Nós de articulação em chapa cortada a laser e dobrada com assento em nogueira maciça usinada em 4 eixos.',
+        'p3-item3-title': 'Mandril de Repuxo Cônico',
+        'p3-item3-desc': 'Molde em resina de poliuretano de alta densidade para repuxo manual em torno mecânico de chapas de cobre de 1.2mm.',
+
+        'p4-kicker': 'MAQUINÁRIO & ESCALA • 04',
+        'p4-title': 'ESCALABILIDAD INDUSTRIAL',
+        'p4-tagline': 'Onde o trabalho fica sério, com projetos de escala, maquinário pesado e desenvolvimentos pensados para fabricação seriada, mostrando o que faço e onde quero chegar.',
+        'p4-meta': '> 100K UNIDADES • MOLDE MATRIZ',
+        'p4-exp-title': 'ESCALABILIDADE INDUSTRIAL',
+        'p4-manifesto': 'Manifesto de escala: Na manufatura seriada, economizar 1 segundo no resfriamento ou incorporar um ângulo de saída de 1.5° representa enorme ganho econômico. Projetamos componentes preparados para montagem automatizada.',
+        'p4-item1-title': 'Carcaça de Sensor IoT Industrial',
+        'p4-item1-desc': 'Carcaça de parede ultrafina com saídas de 1.2° calibradas, travas snap-fit duráveis e gaxeta sobreinjetada em TPE.',
+        'p4-item2-title': 'Perfil Dissipador Térmico Modular',
+        'p4-item2-desc': 'Geometria de aletas cônicas promovendo convecção laminar passiva para luminárias LED de mineração.',
+        'p4-item3-title': 'Gabinete Metálico Dobrável',
+        'p4-item3-desc': 'Planificação em chapa fina com alívios de dobra a laser garantindo 92% de aproveitamento de chapa comercial.',
+        'footer-role': 'DFM & DESIGN INDUSTRIAL',
+        'footer-desc': 'Design para Manufatura, interfaces CNC de precisão, tolerâncias dimensionais e manufatura híbrida.',
+        'footer-canvas-hint': 'TELA DE ASSINATURAS: CLIQUE OU ARRASTE PARA ESTAMPAR SUA ASSINATURA',
+        'btn-stamp': '+ ESTAMPAR ASSINATURA',
+        'btn-clear-canvas': 'REINICIAR TELA',
+        'footer-rights': '© 2026 TOMÁS RICARDO • BUENOS AIRES, ARGENTINA',
+        'about-header-title': 'PERFIL // SOBRE MIM',
+        'about-title': 'TOMÁS RICARDO',
+        'about-subtitle': 'Design & Fabricação // TRDI',
+        'about-lbl-loc': 'LOCALIZAÇÃO',
+        'about-lbl-focus': 'FOCO',
+        'about-lbl-norm': 'NORMATIVA',
+        'about-lbl-status': 'STATUS',
+        'about-status-val': 'DISPONÍVEL PARA PROJETOS',
+        'about-bio-p1': 'Sou Tomás Ricardo. Faço design e fabricação de conceitos, objetos, mobiliário e peças técnicas, abrangendo desde a primeira ideia e a modelagem 3D até a construção física.',
+        'about-bio-p2': 'Combino design técnico com ofício manual. Trabalho com desenho à mão livre, esboços, ferramentas digitais, plantas técnicas e materiais reais, pensando cada detalhe para que o desenvolvimento seja sólido, funcional e feito para o uso real.',
+        'about-bio-p3': 'Gosto de integrar as diferentes pessoas e atores que participam do processo criativo. As peças não nascem num passe de mágica: é preciso projetá-las em seus diversos aspectos, tanto em nível macro quanto no detalhe micro.',
+        'about-bio-p4': 'Este espaço reúne projetos de exploração, peças de oficina e desenvolvimentos industriais, pensado como ponto de encontro para novos trabalhos sob medida, produções em série e colaborações.',
+        'about-pillars-title': 'COMO TRABALHO',
+        'about-pillar-1-title': '01. DESENHOS TÉCNICOS & MODELAGEM',
+        'about-pillar-1': 'Esboços à mão livre, modelagem 3D e documentação técnica precisa para definir e fabricar cada peça.',
+        'about-pillar-2-title': '02. PEÇAS ARTESANAIS',
+        'about-pillar-2': 'Construção física e ofício direto na oficina, experimentando e trabalhando com materiais reais.',
+        'about-pillar-3-title': '03. DESENVOLVIMENTO DE PRODUTOS',
+        'about-pillar-3': 'Projeção integral de objetos e sistemas desde a ideia inicial, resolvendo tanto a escala macro quanto o detalhe micro.',
+        'about-pillar-4-title': '04. PROJETOS PARA TERCEIROS E COLABORATIVOS',
+        'about-pillar-4': 'Trabalhos em conjunto e encomendas, integrando clientes, fornecedores, oficinas e diferentes ofícios no processo.',
+        'about-btn-contact': 'ENTRAR EM CONTATO',
+        'btn-add-cart': 'ADICIONAR AO CARRINHO',
+        'contact-header-title': 'CONTATAR TOMÁS RICARDO',
+        'contact-lbl-ref': 'REFERÊNCIA:',
+        'contact-lbl-name': 'NOME E SOBRENOME *',
+        'contact-ph-name': 'Ex. Martín González',
+        'contact-lbl-email': 'E-MAIL *',
+        'contact-ph-email': 'voce@email.com',
+        'contact-lbl-phone': 'TELEFONE / WHATSAPP',
+        'contact-ph-phone': '+55 / +54 ...',
+        'contact-lbl-reason': 'MOTIVO DO CONTATO *',
+        'contact-ph-reason': 'Escreva o motivo da sua consulta (máx. 10 palavras)...',
+        'contact-reason-limit': 'Limite de 10 palavras atingido.',
+        'contact-words-unit': 'palavras',
+        'contact-lbl-message': 'ESPECIFICAÇÕES / MENSAGEM *',
+        'contact-ph-message': 'Conte o que você tem em mente, medidas, materiais ou sua dúvida...',
+        'contact-btn-submit': 'ENVIAR E-MAIL',
+        'cart-header-title': 'CARRINHO // PEDIDO DE OFICINA',
+        'cart-empty-title': 'O carrinho está vazio',
+        'cart-empty-desc': 'Selecione qualquer peça disponível no catálogo para adicioná-la ao seu pedido.',
+        'cart-lbl-subtotal': 'SUBTOTAL ESTIMADO:',
+        'cart-shipping-note': '* O custo de envio não está previsto no subtotal (a combinar).',
+        'cart-btn-checkout': 'INICIAR COMPRA'
+      }
+    };
+
+    const welcomeQuotes = {
+      es: [
+        '"No sé muy bien qué estoy haciendo, pero lo estoy haciendo."',
+        '"Mucho de lo que vas a ver acá nació probando, errando y volviendo a empezar."',
+        '"Algunas cosas ya están listas, otras están por la mitad y otras recién las estoy aprendiendo, paciencia."',
+        '"Más que un catálogo cerrado, esto es el registro de mi crear, mi hacer."',
+        '"Acá conviven planos prolijos con viruta, soldadura y cosas atadas con alambre o pegadas con cinta."',
+        '"Todavía estoy buscando mi forma de hacer las cosas; mientras tanto, las hago."',
+        '"Si ves algo sin fotos es porque probablemente todavía tengo las manos sucias terminándolo."',
+        '"Un poco de oficio, un poco de estudio y otro poco de puro capricho."'
+      ],
+      en: [
+        '"I don\'t really know what I\'m doing, but I\'m doing it."',
+        '"Much of what you\'ll see here was born from trying, failing, and starting over."',
+        '"Some things are ready, others are halfway through, and others I\'m only just learning—patience."',
+        '"More than a closed catalog, this is the record of my creating, my making."',
+        '"Here, neat blueprints live alongside wood shavings, welds, and things tied with wire or taped together."',
+        '"I\'m still looking for my own way of doing things; in the meantime, I make them."',
+        '"If you see something without photos, it\'s probably because my hands are still dirty finishing it."',
+        '"A bit of craft, a bit of study, and another bit of pure whim."'
+      ],
+      pt: [
+        '"Não sei muito bem o que estou fazendo, mas estou fazendo."',
+        '"Muito do que você vai ver aqui nasceu tentando, errando e começando de novo."',
+        '"Algumas coisas já estão prontas, outras estão pela metade e outras estou recém aprendendo, paciência."',
+        '"Mais do que um catálogo fechado, este é o registro do meu criar, do meu fazer."',
+        '"Aqui convivem desenhos técnicos caprichados com serragem, solda e coisas amarradas com arame ou coladas com fita."',
+        '"Ainda estou procurando meu próprio jeito de fazer as coisas; enquanto isso, vou fazendo."',
+        '"Se você vir algo sem fotos, provavelmente é porque ainda estou com as mãos sujas terminando."',
+        '"Um pouco de ofício, um pouco de estudo e outro pouco de puro capricho."'
+      ]
+    };
+
+    let currentLanguage = 'es';
+    let currentQuoteIndex = Math.floor(Math.random() * welcomeQuotes.es.length);
+    let quoteTimer = null;
+
+    // ==================== MULTI-CURRENCY CONVERSION ENGINE (USD base -> ARS / BRL / USD) ====================
+    const exchangeRates = {
+      USD: 1,
+      ARS: 1200,
+      BRL: 5.75
+    };
+
+    async function fetchLiveExchangeRates() {
+      try {
+        const res = await fetch('https://open.er-api.com/v6/latest/USD');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.rates) {
+            if (typeof data.rates.ARS === 'number' && data.rates.ARS > 100) {
+              exchangeRates.ARS = data.rates.ARS;
+            }
+            if (typeof data.rates.BRL === 'number' && data.rates.BRL > 1) {
+              exchangeRates.BRL = data.rates.BRL;
+            }
+          }
+        }
+      } catch (_e) {
+        // Fallback rates remain active if offline
+      }
+      if (typeof updateCartUI === 'function') updateCartUI();
+      const modalEl = document.getElementById('tech-modal');
+      if (modalEl && !modalEl.classList.contains('pointer-events-none') && typeof renderTechModalContent === 'function') {
+        renderTechModalContent();
+      }
+    }
+
+    function formatPrice(usdAmount, lang = currentLanguage, isFrom = false) {
+      const baseUsd = Number(usdAmount) || 0;
+      const fromPrefix = isFrom
+        ? (lang === 'en' ? 'From ' : (lang === 'pt' ? 'A partir de ' : 'Desde '))
+        : '';
+
+      if (lang === 'es') {
+        const arsVal = Math.round((baseUsd * exchangeRates.ARS) / 100) * 100;
+        return `${fromPrefix}$${arsVal.toLocaleString('es-AR')} ARS`;
+      }
+      if (lang === 'pt') {
+        const brlVal = Math.round(baseUsd * exchangeRates.BRL);
+        return `${fromPrefix}R$ ${brlVal.toLocaleString('pt-BR')} BRL`;
+      }
+      return `${fromPrefix}$${Math.round(baseUsd).toLocaleString('en-US')} USD`;
+    }
+
+    function updateWelcomeQuote() {
+      const el = document.getElementById('welcome-quote-text');
+      if (!el) return;
+      const list = welcomeQuotes[currentLanguage] || welcomeQuotes.es;
+      el.textContent = list[currentQuoteIndex % list.length];
+    }
+
+    function cycleWelcomeQuote() {
+      const el = document.getElementById('welcome-quote-text');
+      if (!el) return;
+      el.classList.add('opacity-0');
+      setTimeout(() => {
+        const list = welcomeQuotes[currentLanguage] || welcomeQuotes.es;
+        currentQuoteIndex = (currentQuoteIndex + 1) % list.length;
+        updateWelcomeQuote();
+        el.classList.remove('opacity-0');
+      }, 250);
+      resetQuoteTimer();
+    }
+
+    function resetQuoteTimer() {
+      if (quoteTimer) clearInterval(quoteTimer);
+      quoteTimer = setInterval(() => {
+        cycleWelcomeQuote();
+      }, 9000);
+    }
+
+    const panelStates = {
+      '1': false,
+      '2': false,
+      '3': false,
+      '4': false
+    };
+
+    // Set Language
+    function setLanguage(lang) {
+      if (!i18nData[lang]) return;
+      currentLanguage = lang;
+      updateWelcomeQuote();
+
+      // Update Button Styles in language selector
+      ['es', 'en', 'pt'].forEach(l => {
+        const btn = document.getElementById('lang-' + l);
+        if (btn) {
+          if (l === lang) {
+            btn.className = 'lang-option is-active px-1.5 py-0.5 font-bold text-industrial transition-all duration-200 cursor-pointer whitespace-nowrap';
+          } else {
+            btn.className = 'lang-option px-1.5 py-0.5 text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap';
+          }
+        }
+      });
+
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nData[lang] && i18nData[lang][key]) {
+          el.textContent = i18nData[lang][key];
+        }
+      });
+
+      // Update all data-i18n-placeholder elements
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (i18nData[lang] && i18nData[lang][key]) {
+          el.setAttribute('placeholder', i18nData[lang][key]);
+        }
+      });
+
+      // Update word counter label in contact modal
+      const reasonEl = document.getElementById('contact-reason');
+      if (reasonEl && typeof validateReasonWordCount === 'function') {
+        validateReasonWordCount(reasonEl);
+      }
+
+      // If contact modal is open, update reference title and cart prefill if opened from cart
+      const contactModal = document.getElementById('contact-modal');
+      if (contactModal && !contactModal.classList.contains('pointer-events-none')) {
+        if (window.contactOpenedFromCart && typeof populateCartCheckoutFields === 'function') {
+          populateCartCheckoutFields();
+        } else {
+          const panelItems = (projectsDatabase && projectsDatabase[activePanelId]) || (projectsDatabase && projectsDatabase['p1']) || [];
+          const data = panelItems[activeItemIdx] || panelItems[0];
+          const titleEl = document.getElementById('contact-item-title');
+          if (data && titleEl) {
+            titleEl.textContent = getLocalized(data.title, lang);
+          }
+        }
+      }
+
+      // Update dynamic indicators for open/closed panels
+      for (let id = 1; id <= 4; id++) {
+        updatePanelUI(id.toString());
+      }
+
+      // If modal is open, re-render content in the active language
+      const modalEl = document.getElementById('tech-modal');
+      if (modalEl && !modalEl.classList.contains('pointer-events-none') && typeof renderTechModalContent === 'function') {
+        renderTechModalContent();
+      }
+      if (typeof renderAllGrids === 'function') {
+        renderAllGrids();
+      }
+      if (typeof updateCartUI === 'function') {
+        updateCartUI();
+      }
+    }
+
+    // Toggle individual panel
+    function togglePanel(id) {
+      panelStates[id] = !panelStates[id];
+      const drawer = document.getElementById('drawer-' + id);
+      const panel = document.getElementById('panel-' + id);
+
+      if (panelStates[id]) {
+        drawer.classList.add('is-open');
+        panel.classList.add('is-open', 'border-industrial/40');
+      } else {
+        drawer.classList.remove('is-open');
+        panel.classList.remove('is-open', 'border-industrial/40');
+      }
+
+      updatePanelUI(id);
+    }
+
+    function updatePanelUI(id) {
+      const isOpen = panelStates[id];
+      const signEl = document.getElementById('sign-' + id);
+      const labelEl = document.getElementById('label-' + id);
+      const badgeEl = document.getElementById('badge-' + id);
+
+      if (signEl) {
+        signEl.textContent = isOpen ? '−' : '+';
+        if (isOpen) {
+          signEl.className = 'text-industrial font-bold text-lg';
+        } else {
+          signEl.className = 'text-zinc-400 group-hover:text-industrial transition-colors font-bold';
+        }
+      }
+      if (labelEl) {
+        labelEl.textContent = isOpen ? i18nData[currentLanguage]['btn-collapse'] : i18nData[currentLanguage]['btn-expand'];
+      }
+      if (badgeEl) {
+        if (isOpen) {
+          badgeEl.className = 'px-3 py-1.5 bg-industrial/15 border border-industrial text-industrial transition-colors flex items-center gap-2';
+        } else {
+          badgeEl.className = 'px-3 py-1.5 bg-cnc-surface/80 border border-cnc-border group-hover:border-industrial/60 transition-colors flex items-center gap-2';
+        }
+      }
+    }
+
+
+    // ==================== COMMERCIAL CATALOG PRICING (GRUPOS 02 Y 03 - BASE USD) ====================
+    const commercialCatalogDefaults = {
+      // 02 // LO ARTESANAL
+      'art-01-mrk': { price: 145, currency: 'USD', isFromPrice: false },
+      'art-02-pra': { price: 45, currency: 'USD', isFromPrice: true },
+      'art-03-lmn': { price: 60, currency: 'USD', isFromPrice: true },
+      'art-04-jwr': { price: 30, currency: 'USD', isFromPrice: true },
+      'ART-01': { price: 145, currency: 'USD', isFromPrice: false },
+      'ART-02': { price: 45, currency: 'USD', isFromPrice: true },
+      'ART-03': { price: 60, currency: 'USD', isFromPrice: true },
+      // 03 // MANUFACTURA COLABORATIVA
+      'col-01-mep': { price: 26, currency: 'USD', isFromPrice: true },
+      'col-02-mrm': { price: 57, currency: 'USD', isFromPrice: false },
+      'col-03-prp': { price: 22, currency: 'USD', isFromPrice: false },
+      'col-04-avr': { price: 75, currency: 'USD', isFromPrice: true },
+      'col-05-bid': { price: 83, currency: 'USD', isFromPrice: false },
+      'col-06-ecj': { price: 156, currency: 'USD', isFromPrice: false },
+      'col-07-pcj': { price: 128, currency: 'USD', isFromPrice: false },
+      'col-08-txl': { price: 47, currency: 'USD', isFromPrice: true },
+      'COL-01': { price: 26, currency: 'USD', isFromPrice: true },
+      'COL-02': { price: 57, currency: 'USD', isFromPrice: false },
+      'COL-03': { price: 22, currency: 'USD', isFromPrice: false }
+    };
+
+    // ==================== 2. DETAILED PROJECT DATASET (12 ITEMS) ====================
+    const projectsDatabase = {
+      p1: [
+        {
+          code: 'BTR-01A',
+          year: '2026',
+          category: { es: '01 // LA BITÁCORA', en: '01 // THE LOGBOOK', pt: '01 // A BITÁCORA' },
+          badge: { es: 'DFM NOTEBOOK', en: 'DFM NOTEBOOK', pt: 'CADERNO DFM' },
+          title: { es: 'Cuaderno de Esfuerzos y Radios', en: 'Stress & Radius Notebook', pt: 'Caderno de Esforços e Raios' },
+          subtitle: { es: 'Cálculo de concentradores de tensión en transiciones ortogonales de aluminio', en: 'Stress concentration factor calculations in orthogonal transitions', pt: 'Cálculo de concentradores de tensão em transições ortogonais' },
+          specs: [
+            { label: 'MATERIAL', value: 'Aluminio 6061-T6 Extruido' },
+            { label: 'TOLERANCIA', value: 'ISO 2768-mK (±0.1 mm)' },
+            { label: 'RADIO MÍNIMO', value: 'Rmin ≥ 1.5 mm calibrado' },
+            { label: 'MÉTODO', value: 'Análisis FEA + Galgas Extensiométricas' },
+            { label: 'APLICACIÓN', value: 'Estructuras aeroespaciales & drones' },
+            { label: 'DOCUMENTO', value: 'Cuaderno técnico físico #01 (56 págs)' }
+          ],
+          report: {
+            es: 'En el mecanizado CNC de alta velocidad, las esquinas vivas en perfiles huecos son el punto inicial de fatiga estructural. Este estudio documenta 120 ensayos de flexión cíclica demostrando que un radio de transición de apenas 1.5 mm reduce el concentrador de tensión Kt de 3.2 a 1.4, duplicando la vida útil del componente sin aumentar peso.',
+            en: 'In high-speed CNC machining, sharp corners in hollow profiles represent the primary initiation site for structural fatigue. This paper documents 120 cyclic bending tests demonstrating that a 1.5 mm transition radius drops the stress concentration factor Kt from 3.2 to 1.4, doubling component lifecycle without adding mass.',
+            pt: 'Na usinagem CNC de alta velocidade, os cantos vivos em perfis ocos são o ponto inicial de fadiga estrutural. Este estudo documenta 120 ensaios de flexão cíclica demonstrando que um raio de transição de 1.5 mm reduz o fator Kt de 3.2 para 1.4, duplicando a vida útil sem aumentar peso.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'CONSULTORÍA DFM', en: 'DFM CONSULTING', pt: 'CONSULTORIA DFM' },
+            caption: { es: 'Estudio de radios y tolerancias aplicable a tu desarrollo industrial', en: 'Stress & radius study applicable to your industrial product', pt: 'Estudo de raios e tolerâncias para seu produto' },
+            buttonText: { es: 'SOLICITAR CONSULTORÍA DFM', en: 'REQUEST DFM AUDIT', pt: 'SOLICITAR CONSULTORIA DFM' }
+          }
+        },
+        {
+          code: 'BTR-02B',
+          year: '2025',
+          category: { es: '01 // LA BITÁCORA', en: '01 // THE LOGBOOK', pt: '01 // A BITÁCORA' },
+          badge: { es: 'PROTO-LOG', en: 'PROTO-LOG', pt: 'PROTO-LOG' },
+          title: { es: 'Registro de Encastres y Guías', en: 'Sliding Fits & Guide Log', pt: 'Registro de Encaixes e Guias' },
+          subtitle: { es: 'Estudio de ajustes deslizantes H7/g6 para correderas axiales', en: 'H7/g6 sliding fits analysis for axial guides with sintered bronze bushings', pt: 'Estudo de ajustes deslizantes H7/g6 para corrediças axiais' },
+          specs: [
+            { label: 'AJUSTE', value: 'H7/g6 (Juego diametral: 0.009 - 0.025 mm)' },
+            { label: 'BUJES', value: 'Bronce Sinterizado Autolubricado SAE 841' },
+            { label: 'EJE', value: 'Acero Inoxidable AISI 304 Rectificado' },
+            { label: 'RUGOSIDAD', value: 'Ra ≤ 0.2 µm (Rectificado cilíndrico)' },
+            { label: 'DURABILIDAD', value: '> 50,000 ciclos sin lubricación externa' },
+            { label: 'TEMPERATURA', value: '-20°C a +120°C operacional' }
+          ],
+          report: {
+            es: 'El comportamiento de las guías lineales de precisión depende críticamente de la dilatación térmica diferencial entre el buje de bronce y el alojamiento de aluminio. En este tomo se tabulan los diámetros calibrados antes y después del prensado, garantizando que el juego libre no se bloquee por estrangulamiento térmico.',
+            en: 'The performance of precision linear slides hinges on the differential thermal expansion between bronze bushings and aluminum housings. This log tabulates calibrated tolerances before and after press-fitting, preventing thermal binding during continuous cycles.',
+            pt: 'O desempenho das guias lineares de precisão depende da dilatação térmica diferencial entre a bucha de bronze e o alojamento de alumínio. Este caderno documenta tolerâncias antes e depois da prensagem, evitando travamentos térmicos.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'REVISIÓN DE AJUSTES', en: 'FIT VERIFICATION', pt: 'REVISÃO DE AJUSTES' },
+            caption: { es: 'Auditoría de tolerancias ISO y holguras dinámicas', en: 'ISO tolerance audit and dynamic clearance calculation', pt: 'Auditoria de tolerâncias ISO e folgas dinâmicas' },
+            buttonText: { es: 'COTIZAR AUDITORÍA MECÁNICA', en: 'QUOTE MECHANICAL AUDIT', pt: 'COTAR AUDITORIA MECÂNICA' }
+          }
+        },
+        {
+          code: 'BTR-03C',
+          year: '2025',
+          category: { es: '01 // LA BITÁCORA', en: '01 // THE LOGBOOK', pt: '01 // A BITÁCORA' },
+          badge: { es: 'DRAFTING MATRIX', en: 'DRAFTING MATRIX', pt: 'MATRIZ DRAFTING' },
+          title: { es: 'Matriz de Espesores de Pared', en: 'Wall Thickness Matrix', pt: 'Matriz de Espessuras de Parede' },
+          subtitle: { es: 'Estandarización de nervios y transiciones para moldeo e inyección', en: 'Wall standardization to eliminate sink marks in technical polymers', pt: 'Padronização de nervuras para injeção plástica' },
+          specs: [
+            { label: 'POLÍMEROS', value: 'POM (Acetal), PA66-GF30, ABS Grado Técnico' },
+            { label: 'RELACIÓN NERVIO', value: 'T_nervio = 0.5 a 0.6 × T_pared' },
+            { label: 'DESMOLDE', value: '1.5° mínimo / 2.0° en caras texturadas' },
+            { label: 'CONTRACCIÓN', value: '1.8% compensada en modelo CAD' },
+            { label: 'SOFTWARE', value: 'Simulación Moldflow + Validación CMM' }
+          ],
+          report: {
+            es: 'Un defecto típico en piezas plásticas técnicas es el rechupe superficial provocado por acumulaciones de masa en la raíz de los nervios de refuerzo. Esta matriz define las proporciones óptimas de aligeramiento para conseguir rigidez torsional con tiempos de enfriamiento un 22% menores.',
+            en: 'A classic defect in technical plastic molding is cosmetic sink marks caused by mass accumulation at rib intersections. This matrix provides exact core-out ratios to maximize torsional rigidity while shaving 22% off cycle cooling times.',
+            pt: 'Um defeito comum em injeção de plásticos técnicos são os rechuches provocados pelo acúmulo de massa na base das nervuras. Esta matriz padroniza espessuras para atingir rigidez com ciclos de resfriamento 22% mais velozes.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'DFM PARA MATRICERÍA', en: 'TOOLING DFM', pt: 'DFM PARA MATRIZES' },
+            caption: { es: 'Optimización de piezas para inyección y reducción de tiempos de ciclo', en: 'Part optimization for plastic injection and cycle time reduction', pt: 'Otimização de peças plásticas para injeção' },
+            buttonText: { es: 'SOLICITAR CONSULTORÍA DFM', en: 'REQUEST INJECTION DFM', pt: 'SOLICITAR CONSULTORIA DFM' }
+          }
+        }
+      ],
+      p2: [
+        {
+          code: 'ART-01',
+          year: '2026',
+          category: { es: '02 // ARTEFACTOS PERSONALES', en: '02 // PERSONAL ARTIFACTS', pt: '02 // ARTEFATOS PESSOAIS' },
+          badge: { es: 'SERIE DISPONIBLE', en: 'AVAILABLE BATCH', pt: 'SÉRIE DISPONÍVEL' },
+          title: { es: 'Pesa Dodecaédrica de Inercia', en: 'Dodecahedral Inertia Weight', pt: 'Peso Dodecaédrico de Inércia' },
+          subtitle: { es: 'Objeto háptico monolítico con 12 caras fresadas en CNC de 5 ejes', en: 'Monolithic haptic desk object with 12 faces milled via 5-axis CNC', pt: 'Objeto háptico monolítico com 12 faces fresadas em CNC 5 eixos' },
+          specs: [
+            { label: 'PESO', value: '240 gramos (±0.8g tolerancia de masa)' },
+            { label: 'MATERIAL', value: 'Duraluminio Aeroespacial 7075-T651' },
+            { label: 'MECANIZADO', value: 'Fresado multieje contorneado continuo' },
+            { label: 'ACABADO', value: 'Microesferas de vidrio #150 + Anodizado Duro III' },
+            { label: 'COLOR', value: 'Grafito Industrial Mate (Profundidad 45µm)' },
+            { label: 'SERIALIZACIÓN', value: 'Grabado láser numérico con número de lote' },
+            { label: 'EMBALAJE', value: 'Estuche de chapa plegada con inserto de EVA fresado' }
+          ],
+          report: {
+            es: 'Concebida como un ancla táctil para el escritorio de diseño, la pesa dodecaédrica se fresa a partir de un tocho macizo de Duraluminio 7075-T651. Sus aristas biseladas a 45° con radio micrométrico proporcionan una rotación fluida entre los dedos, ofreciendo una sensación de inercia y equilibrio magnético en la mano.',
+            en: 'Designed as a tactile anchor for the engineer desk, this dodecahedron is carved from a solid ingot of 7075-T651 aerospace duralumin. Its 45° chamfered facets with micro-radii provide sublime handling, balancing weight distribution effortlessly across the palm.',
+            pt: 'Concebida como uma âncora tátil para a mesa de projeto, o peso dodecaédrico é usinado a partir de um bloco sólido de Duralumínio 7075-T651. Suas arestas chanfradas a 45° garantem conforto na pegada e equilíbrio de inércia na mão.'
+          },
+          commercial: {
+            type: 'batch',
+            price: 145,
+            currency: 'USD',
+            stock: 8,
+            badge: { es: 'RESERVA DE SERIE', en: 'BATCH RESERVATION', pt: 'RESERVA DE SÉRIE' },
+            caption: { es: 'Tirada limitada mecanizada en Buenos Aires • Entrega inmediata o 3 semanas', en: 'Limited batch machined in Buenos Aires • Ready to ship or 3-week lead time', pt: 'Série limitada usinada em Buenos Aires • Envio imediato ou 3 semanas' },
+            buttonText: { es: 'SOLICITAR PIEZA NUMERADA', en: 'ORDER SERIALIZED PIECE', pt: 'SOLICITAR PEÇA NUMERADA' }
+          }
+        },
+        {
+          code: 'ART-02',
+          year: '2025',
+          category: { es: '02 // ARTEFACTOS PERSONALES', en: '02 // PERSONAL ARTIFACTS', pt: '02 // ARTEFATOS PESSOAIS' },
+          badge: { es: 'POR ENCARGO', en: 'MADE TO ORDER', pt: 'SOB ENCOMENDA' },
+          title: { es: 'Porta-Instrumentos Monolítico', en: 'Monolithic Instrument Cradle', pt: 'Porta-Instrumentos Monolítico' },
+          subtitle: { es: 'Soporte fresado para calibres Vernier y micrómetros con fijación magnética', en: 'Precision-milled tray for Vernier calipers and micrometers with magnetic docking', pt: 'Suporte usinado para paquímetros e micrômetros com encaixe magnético' },
+          specs: [
+            { label: 'PESO', value: '580 gramos (base antideslizante con corcho)' },
+            { label: 'MATERIAL', value: 'Aluminio 6082-T6 de bloque macizo' },
+            { label: 'CANAL', value: 'Perfil parabólico adaptado a hojas Vernier' },
+            { label: 'MAGNETOS', value: 'Neodimio N52 integrados bajo caras ciegas' },
+            { label: 'RECUBRIMIENTO', value: 'Cerakote Titanium Charcoal H-Series' },
+            { label: 'TOLERANCIA', value: 'Planitud de base ≤ 0.02 mm' }
+          ],
+          report: {
+            es: 'Un calibre de precisión nunca debe apoyarse sobre virutas de taller o superficies abrasivas. El porta-instrumentos monolítico proporciona un canal de reposo suspendido en el aire que protege las puntas de medición de interiores y exteriores, manteniéndolo siempre listo para la verificación en máquina.',
+            en: 'Precision calipers should never rest on abrasive shop surfaces or metal swarf. This cradle features a suspended parabolic channel protecting internal and external measuring jaws from micro-scratches while keeping the instrument immediately reachable.',
+            pt: 'Um paquímetro de precisão nunca deve repousar sobre limalhas de usinagem. Este suporte oferece um canal suspenso que protege as pontas de medição contra desgaste, pronto para verificação em máquina.'
+          },
+          commercial: {
+            type: 'batch',
+            price: 195,
+            currency: 'USD',
+            stock: 5,
+            badge: { es: 'ENCARGO PERSONALIZADO', en: 'CUSTOM COMMISSION', pt: 'ENCOMENDA PERSONALIZADA' },
+            caption: { es: 'Fabricación unitaria por encargo con iniciales grabadas por CNC', en: 'Hand-machined custom commission with bespoke CNC engraving', pt: 'Fabricação sob encomenda com gravação CNC personalizada' },
+            buttonText: { es: 'ENCARGAR PIEZA DE TALLER', en: 'COMMISSION WORKSHOP PIECE', pt: 'ENCOMENDAR PEÇA DE OFICINA' }
+          }
+        },
+        {
+          code: 'ART-03',
+          year: '2025',
+          category: { es: '02 // ARTEFACTOS PERSONALES', en: '02 // PERSONAL ARTIFACTS', pt: '02 // ARTEFATOS PESSOAIS' },
+          badge: { es: 'SERIE LIMITADA', en: 'LIMITED EDITION', pt: 'EDIÇÃO LIMITADA' },
+          title: { es: 'Lente Macro de Inspección', en: 'Macro Inspection Eyepiece', pt: 'Lente Macro de Inspeção' },
+          subtitle: { es: 'Carcasa torneada con rosca fina M32x0.5 para verificación superficial Ra', en: 'Turned optics housing with M32x0.5 fine thread for shop-floor Ra surface checks', pt: 'Corpo usinado com rosca micrométrica para verificação de rugosidade Ra' },
+          specs: [
+            { label: 'PESO', value: '190 gramos' },
+            { label: 'ÓPTICA', value: 'Triplete acromático 10x de vidrio Schot' },
+            { label: 'ROSCADO', value: 'M32 × 0.5 clase 6H (Enfoque helicoidal)' },
+            { label: 'MOLETEADO', value: 'Moleteado cruzado DIN 82-RGE paso 0.8 mm' },
+            { label: 'MATERIAL', value: 'Latón CW614N pavonado en caliente' },
+            { label: 'RETÍCULA', value: 'Vidrio grabado a láser con escala de 0.05 mm' }
+          ],
+          report: {
+            es: 'Diseñada para evaluar la calidad del corte por electroerosión (EDM) y fresado trocoidal directamente al pie del torno. Su mecanismo de enfoque helicoidal en latón pesado garantiza un movimiento sedoso sin juego axial, mientras la retícula calibrada permite medir rebabas y cordones microscópicos.',
+            en: 'Engineered for inspecting EDM spark texture and trochoidal milling passes right beside the CNC lathe. The heavy brass helicoid delivers silky smooth focusing with zero backlash, while the calibrated laser reticle gauges micro-burrs effortlessly.',
+            pt: 'Projetada para avaliar a qualidade superficial em eletroerosão e fresamento diretamente na máquina. O mecanismo helicoidal em latão pesado garante foco preciso sem folga axial com retícula calibrada.'
+          },
+          commercial: {
+            type: 'batch',
+            badge: { es: 'ENCARGO DE PRECISIÓN', en: 'PRECISION COMMISSION', pt: 'ENCOMENDA DE PRECISÃO' },
+            caption: { es: 'Óptica de taller calibrada individualmente • Estuche de madera maciza', en: 'Individually calibrated shop optics • Hardwood presentation case', pt: 'Óptica de oficina calibrada individualmente • Estojo de madeira' },
+            buttonText: { es: 'RESERVAR LENTE DE INSPECCIÓN', en: 'RESERVE INSPECTION EYEPIECE', pt: 'RESERVAR LENTE DE INSPEÇÃO' }
+          }
+        }
+      ],
+      p3: [
+        {
+          code: 'COL-01',
+          year: '2026',
+          category: { es: '03 // MANUFACTURA COLABORATIVA', en: '03 // COLLABORATIVE MANUFACTURING', pt: '03 // MANUFATURA COLABORATIVA' },
+          badge: { es: 'ALIANZA LOCAL', en: 'LOCAL WORKSHOP', pt: 'PARCERIA LOCAL' },
+          title: { es: 'Luminaria Fusión Bronce-Aluminio', en: 'Bronze-Aluminum Cast Lamp', pt: 'Luminária Fusão Bronze-Alumínio' },
+          subtitle: { es: 'Vaciado en arena artesanal con refrentado CNC en caras de sellado IP65', en: 'Sand-cast metal body blended with CNC machined sealing flanges for IP65 rating', pt: 'Fundição artesanal em areia com refilamento CNC nas faces de vedação IP65' },
+          specs: [
+            { label: 'COOPERACIÓN', value: 'Fundiciones del Valle (Taller de 4ta generación)' },
+            { label: 'FUNDICIÓN', value: 'Bronce fosforado CuSn8 vaciado por gravedad en arena' },
+            { label: 'MECANIZADO', value: 'Fresado CNC de ranura para o-ring tórico y roscas M4' },
+            { label: 'ESTANQUEIDAD', value: 'IP65 hermético a polvo y agua' },
+            { label: 'TOLERANCIA CNC', value: '±0.03 mm en caras de ensamble' },
+            { label: 'PESO', value: '3.4 kg de masa térmica disipadora' }
+          ],
+          report: {
+            es: 'Este proyecto ejemplifica la hibridación técnica: la rugosidad orgánica de la fundición artesanal se conserva intacta en el cuerpo exterior, mientras que las superficies funcionales (asientos de placa LED, alojamientos de juntas y tornillería) se rectifican mediante CNC para garantizar hermeticidad industrial.',
+            en: 'A textbook example of craft-digital synthesis: the organic granular patina of manual sand casting is preserved on external surfaces, whereas critical functional interfaces (LED heat dissipation pad, o-ring gland) are precisely surfaced on a CNC.',
+            pt: 'Um exemplo de hibridação técnica: a textura orgânica da fundição manual é preservada no corpo exterior, enquanto as faces funcionais (alojamento de vedação e placa LED) são usinadas em CNC para garantir estanqueidade.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'PROYECTO ARQUITECTÓNICO', en: 'ARCHITECTURAL PROJECT', pt: 'PROJETO ARQUITETÔNICO' },
+            caption: { es: 'Fabricación bajo plano para estudios de arquitectura y luminarias especiales', en: 'Custom architectural production runs and bespoke lighting installations', pt: 'Fabricação sob medida para projetos de arquitetura e iluminação' },
+            buttonText: { es: 'COTIZAR TIRADA DE FUNDICIÓN', en: 'QUOTE CASTING BATCH', pt: 'COTAR LOTE DE FUNDIÇÃO' }
+          }
+        },
+        {
+          code: 'COL-02',
+          year: '2025',
+          category: { es: '03 // MANUFACTURA COLABORATIVA', en: '03 // COLLABORATIVE MANUFACTURING', pt: '03 // MANUFATURA COLABORATIVA' },
+          badge: { es: 'EBANISTERÍA TÉCNICA', en: 'TECHNICAL JOINERY', pt: 'MARCENARIA TÉCNICA' },
+          title: { es: 'Banqueta Torsión Madera-Acero', en: 'Torsion Stool: Timber-Steel', pt: 'Banqueta Torção Madeira-Aço' },
+          subtitle: { es: 'Nodos estructurales en chapa plegada láser y nogal desbastado en 4 ejes', en: 'Laser-cut folded steel nodes coupled with 4-axis routed solid walnut limbs', pt: 'Nós estruturais em chapa dobrada a laser e nogueira maciça usinada' },
+          specs: [
+            { label: 'COOPERACIÓN', value: 'Carpintería Técnica Barrios' },
+            { label: 'MADERA', value: 'Nogal Macizo estacionado (Humedad < 9%)' },
+            { label: 'ACERO', value: 'Chapa F24 de 3.2 mm cortada por fibra láser' },
+            { label: 'UNIONES', value: 'Tornillos pasantes avellanados M6 grado 10.9' },
+            { label: 'CARGA', value: 'Ensayada a 350 kg de carga estática puntual' },
+            { label: 'PESO TOTAL', value: '5.1 kg' }
+          ],
+          report: {
+            es: 'Las fibras de la madera reaccionan ante la humedad deformando las uniones rígidas tradicionales. Mediante nodos flotantes de acero plegado que admiten 0.8 mm de expansión higroscópica sin inducir tensiones internas, la banqueta logra una estabilidad estructural inalterable en cualquier estación.',
+            en: 'Natural timber grain shifts across seasons, threatening rigid glued joints. By engineering folded steel connection nodes with 0.8 mm slotted tolerances, wood expansion is accommodated seamlessly without introducing structural warping.',
+            pt: 'As fibras naturais da madeira reagem à umidade, tensionando junções coladas. Por meio de nós de chapa de aço dobrada que acomodam 0.8 mm de dilatação higroscópica, o banco mantém estabilidade impecável.'
+          },
+          commercial: {
+            type: 'batch',
+            badge: { es: 'FABRICACIÓN POR PEDIDO', en: 'COMMISSION BATCH', pt: 'PRODUÇÃO SOB ENCOMENDA' },
+            caption: { es: 'Series cortas de 5 a 20 unidades numeradas para espacios gastronómicos y residenciales', en: 'Short runs of 5 to 20 numbered units for hospitality and residential projects', pt: 'Séries curtas de 5 a 20 unidades para hotelaria e residências' },
+            buttonText: { es: 'SOLICITAR COTIZACIÓN DE MOBILIARIO', en: 'INQUIRE FURNITURE BATCH', pt: 'COTAR LOTE DE MOBILIÁRIO' }
+          }
+        },
+        {
+          code: 'COL-03',
+          year: '2025',
+          category: { es: '03 // MANUFACTURA COLABORATIVA', en: '03 // COLLABORATIVE MANUFACTURING', pt: '03 // MANUFATURA COLABORATIVA' },
+          badge: { es: 'REPUJADO + DFM', en: 'METAL SPINNING', pt: 'REPUXO METÁLICO' },
+          title: { es: 'Matricería de Repujado Cónico', en: 'Conical Metal Spinning Mandrel', pt: 'Matriz de Repuxo Cônico' },
+          subtitle: { es: 'Mandriles en resina técnica de alta densidad para repujado en torno manual', en: 'High-density polyurethane resin tooling for manual lathe copper spinning', pt: 'Mandris em resina de alta densidade para repuxo em torno manual' },
+          specs: [
+            { label: 'COOPERACIÓN', value: 'Tornería Metalúrgica Andina' },
+            { label: 'MATERIAL MANDRIL', value: 'Resina Polyol de Uretano Mecanizable (Densidad 1.2 g/cm³)' },
+            { label: 'CHAPA', value: 'Cobre electrolítico 99.9% de 1.2 mm espesor' },
+            { label: 'CICLOS', value: '> 800 repujados sin pérdida de cota' },
+            { label: 'TIEMPO REPUJADO', value: '4.5 minutos por campana' },
+            { label: 'VENTAJA DFM', value: 'Costo de herramental 70% menor que matriz de acero' }
+          ],
+          report: {
+            es: 'El repujado manual sobre torno es uno de los métodos más económicos para tiradas de 50 a 500 piezas cónicas, pero solía requerir matrices de acero templado prohibitivas. Al diseñar mandriles mecanizados en resina técnica de alta densidad, permitimos a talleres medianos fabricar reflectores de cobre con una inversión mínima de herramental.',
+            en: 'Lathe metal spinning is remarkably cost-effective for 50-500 cone-shaped batches, but traditionally suffered from expensive hardened steel mandrils. By designing tools in dense machinable polyurethane resin, we slashed tooling costs by 70% for local copper forming shops.',
+            pt: 'O repuxo manual em torno é vantajoso para lotes de 50 a 500 peças cônicas, mas exigia matrizes de aço caras. Usinando mandris em resina densa de poliuretano, reduzimos em 70% o investimento de ferramental em cobre.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'DESARROLLO DE HERRAMENTAL', en: 'TOOLING DEVELOPMENT', pt: 'DESENVOLVIMENTO DE FERRAMENTAL' },
+            caption: { es: 'Diseño de matrices y mandriles optimizados para conformado de chapa', en: 'Bespoke mandrel and press tool engineering for metal forming shops', pt: 'Projeto de matrizes e mandris para conformação de chapas' },
+            buttonText: { es: 'CONSULTAR DESARROLLO DE MATRIZ', en: 'COMMISSION TOOLING DESIGN', pt: 'CONSULTAR PROJETO DE MATRIZ' }
+          }
+        }
+      ],
+      p4: [
+        {
+          code: 'IND-01',
+          year: '2026',
+          category: { es: '04 // ESCALABILIDAD INDUSTRIAL', en: '04 // INDUSTRIAL SCALING', pt: '04 // ESCALABILIDADE INDUSTRIAL' },
+          badge: { es: 'INYECCIÓN > 250K', en: 'INJECTION > 250K', pt: 'INJEÇÃO > 250K' },
+          title: { es: 'Carcasa de Sensor Industrial IoT', en: 'Industrial IoT Sensor Enclosure', pt: 'Carcaça de Sensor IoT Industrial' },
+          subtitle: { es: 'Carcasa de pared ultrafina con salidas de desmolde 1.2° y junta sobreinyectada en TPE', en: 'Thin-wall enclosure with 1.2° draft angles and co-injected TPE sealing gasket', pt: 'Carcaça de parede fina com saídas de 1.2° e junta sobreinjetada em TPE' },
+          specs: [
+            { label: 'VOLUMEN ANUAL', value: '250,000 unidades / año' },
+            { label: 'MATERIAL', value: 'Policarbonato Makrolon FR + Junta TPE 40 Shore A' },
+            { label: 'TIEMPO CICLO', value: '14.2 segundos (Molde 8 cavidades con colada caliente)' },
+            { label: 'NORMATIVA', value: 'IP67 &bull; UL94 V-0 Ignífugo &bull; IK08 Anti-impacto' },
+            { label: 'CIERRE', value: 'Snap-fit con bisel de retención de 30°' },
+            { label: 'ENFRIAMIENTO', value: 'Canales conformales por impresión 3D en acero DMLS' }
+          ],
+          report: {
+            es: 'En tiradas de un cuarto de millón de unidades, cada segundo ahorrado en la prensa de inyección equivale a miles de dólares de rentabilidad. El sensor integra canales conformales de enfriamiento en el molde y un diseño de pared constante de 1.8 mm que eliminó totalmente las marcas de rechupe y garantizó la estanqueidad IP67.',
+            en: 'In quarter-million production batches, every second shaved off press cycle time translates to significant bottom-line savings. The sensor leverages 3D conformal cooling lines and uniform 1.8 mm wall thickness to completely eradicate cosmetic sink while securing airtight IP67 compliance.',
+            pt: 'Em tiragens de 250 mil unidades, cada segundo economizado na injetora representa lucro significativo. O sensor incorpora refrigeração conformal e parede uniforme de 1.8 mm, garantindo vedação IP67 sem rechuches.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'DFM PARA ALTA PRODUCCIÓN', en: 'HIGH-VOLUME DFM', pt: 'DFM PARA ALTA PRODUÇÃO' },
+            caption: { es: 'Auditoría integral de moldes de inyección, simulación reológica y costos', en: 'Full plastic mold audit, Moldflow rheology simulation, and cost engineering', pt: 'Auditoria de moldes de injeção, simulação reológica e custos' },
+            buttonText: { es: 'COTIZAR CONSULTORÍA DE PRODUCTO', en: 'QUOTE PRODUCT CONSULTING', pt: 'COTAR CONSULTORIA DE PRODUTO' }
+          }
+        },
+        {
+          code: 'IND-02',
+          year: '2025',
+          category: { es: '04 // ESCALABILIDAD INDUSTRIAL', en: '04 // INDUSTRIAL SCALING', pt: '04 // ESCALABILIDADE INDUSTRIAL' },
+          badge: { es: 'EXTRUSIÓN CONTINUA', en: 'EXTRUSION PROFILE', pt: 'EXTRUSÃO CONTÍNUA' },
+          title: { es: 'Perfil Modular de Disipación Térmica', en: 'Modular Extruded Thermal Heatsink', pt: 'Perfil Modular de Dissipação Térmica' },
+          subtitle: { es: 'Geometría de aletas cónicas para convección laminar en luminarias de minería', en: 'Tapered fin geometry promoting passive laminar airflow for mining LED luminaires', pt: 'Geometria de aletas cônicas promovendo convecção laminar passiva' },
+          specs: [
+            { label: 'PROCESSO', value: 'Extrusión de aluminio continuo en prensa de 2500 Ton' },
+            { label: 'ALEACIÓN', value: 'Aluminio AA6063-T6 (Conductividad: 201 W/m·K)' },
+            { label: 'RELACIÓN DE EXTRUSIÓN', value: 'Aspect Ratio 18:1 (Aletas de 42 mm por 1.4 mm espesor)' },
+            { label: 'DISIPACIÓN', value: 'Hasta 180W térmicos pasivos sin ventiladores' },
+            { label: 'RENDIMIENTO', value: '+34% de flujo CFM convectivo frente a perfiles estándar' },
+            { label: 'ACABADO', value: 'Anodizado negro mate radiativo de 25 µm' }
+          ],
+          report: {
+            es: 'En entornos mineros subterráneos, los ventiladores de refrigeración se obstruyen rápidamente con polvo y fallan. Este perfil extruido aprovecha el efecto chimenea mediante aletas ligeramente cónicas que inducen un flujo laminar continuo, manteniendo la temperatura de juntura LED por debajo de 65°C.',
+            en: 'In dusty subterranean mining tunnels, active cooling fans inevitably seize. This bespoke aluminum extrusion harnesses thermal chimney buoyancy via micro-tapered vertical fins, keeping LED junction temperatures below 65°C solely through natural convection.',
+            pt: 'Em minas subterrâneas, ventoinhas ativas falham com poeira abrasiva. Este perfil extrudado aproveita o efeito chaminé por meio de aletas cônicas que induzem fluxo laminar, mantendo os LEDs abaixo de 65°C por convecção passiva.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'MATRICERÍA DE EXTRUSIÓN', en: 'EXTRUSION TOOLING', pt: 'MATRIZ DE EXTRUSÃO' },
+            caption: { es: 'Desarrollo de perfiles a medida, cálculos térmicos FEA y gestión con extrusoras', en: 'Custom profile development, thermal FEA simulation, and die sourcing', pt: 'Desenvolvimento de perfis sob medida e simulação térmica' },
+            buttonText: { es: 'COTIZAR PERFIL EXTRUIDO', en: 'QUOTE EXTRUSION PROFILE', pt: 'COTAR PERFIL EXTRUDADO' }
+          }
+        },
+        {
+          code: 'IND-03',
+          year: '2025',
+          category: { es: '04 // ESCALABILIDAD INDUSTRIAL', en: '04 // INDUSTRIAL SCALING', pt: '04 // ESCALABILIDADE INDUSTRIAL' },
+          badge: { es: 'CHAPA LASER + CNC', en: 'SHEET METAL DFM', pt: 'CHAPA LASER + CNC' },
+          title: { es: 'Gabinete Eléctrico Desplegable', en: 'Fold-Flat Electrical Enclosure', pt: 'Gabinete Elétrico Desdobrável' },
+          subtitle: { es: 'Desarrollo en chapa plegada con aliviaderos láser: 92% de aprovechamiento', en: 'Sheet metal fold-out housing with laser relief kerfs achieving 92% raw sheet yield', pt: 'Gabinete em chapa dobrada com alívios a laser garantindo 92% de rendimento' },
+          specs: [
+            { label: 'CORTE', value: 'Láser de fibra óptica Trumpf 4kW en chapa galvanizada 2.5 mm' },
+            { label: 'APROVECHAMIENTO', value: '92% de chapa estándar 1250 × 2500 mm (Nesting dinámico)' },
+            { label: 'DOBLADO', value: 'Plegadora CNC de 7 ejes con compensación de retroceso elástico' },
+            { label: 'ARMADO', value: 'Ensamble sin soldadura mediante pestañas tab-and-slot' },
+            { label: 'TIEMPO DE MONTAJE', value: '3.8 minutos por operario en línea' },
+            { label: 'PINTURA', value: 'Polvo poliéster electrostático texturado RAL 7016' }
+          ],
+          report: {
+            es: 'El costo principal en chapa metálica es el desperdicio de material ("scrap") y las horas de soldador calificado. Este gabinete utiliza ranuras calculadas que permiten a una sola pieza troquelada plegarse como un origami rígido, trabándose mecánicamente con remaches estructurales sin requerir cordones de soldadura.',
+            en: 'The largest cost drivers in precision sheet metal are material scrap and certified welder labor. This enclosure employs engineered relief notches, folding from a single flat blank like rigid origami and locking via tabs and structural blind rivets with zero welding required.',
+            pt: 'O principal custo em chapas finas é a sucata de corte e as horas de soldagem. Este gabinete utiliza rasgos calculados que permitem a uma única chapa desdobrada dobrar-se como origami, travando-se sem necessidade de solda.'
+          },
+          commercial: {
+            type: 'rfq',
+            badge: { es: 'OPTIMIZACIÓN DE CORTE', en: 'NESTING OPTIMIZATION', pt: 'OTIMIZAÇÃO DE CORTE' },
+            caption: { es: 'Rediseño para corte láser, plegado CNC y supresión de soldadura', en: 'Sheet metal redesign for fiber laser nesting, press brake folding, and zero-weld assembly', pt: 'Redesenho de chapas para corte laser, dobra CNC e eliminação de solda' },
+            buttonText: { es: 'SOLICITAR AUDITORÍA DE CHAPA', en: 'REQUEST SHEET METAL DFM', pt: 'SOLICITAR AUDITORIA DE CHAPA' }
+          }
+        }
+      ]
+    };
+
+    // ==================== 2.5 DYNAMIC FILE-BASED CMS ENGINE ====================
+    function getLocalized(val, lang = currentLanguage) {
+      if (!val) return '';
+      if (typeof val === 'string') return val;
+      return val[lang] || val['es'] || Object.values(val)[0] || '';
+    }
+
+    function renderPanelGrid(panelId) {
+      try {
+        const gridEl = document.getElementById('grid-' + panelId);
+        if (!gridEl) return;
+        const items = projectsDatabase && projectsDatabase[panelId];
+        if (!items || items.length === 0) return;
+
+        // Sort items dynamically by views descending (ties by code)
+        items.sort((a, b) => {
+          const vA = typeof a.views === 'number' ? a.views : 0;
+          const vB = typeof b.views === 'number' ? b.views : 0;
+          if (vB !== vA) return vB - vA;
+          return (a.code || '').localeCompare(b.code || '', undefined, { numeric: true, sensitivity: 'base' });
+        });
+
+        gridEl.innerHTML = items.map((item, idx) => {
+          const title = getLocalized(item.title);
+          const desc = getLocalized(item.subtitle) || getLocalized(item.description);
+          const folderName = item.folderName || (item._folder ? item._folder.split('/').pop() : '') || item.code || '';
+          const code = folderName;
+          const validImages = (item.images || []).filter(f => typeof f === 'string' && !f.toLowerCase().endsWith('cover.svg'));
+          const firstImg = validImages[0];
+          const imgUrl = firstImg ? (firstImg.startsWith('http') || firstImg.startsWith('/') ? firstImg : `/proyectos/${item._folder}/${firstImg}`) : null;
+          const views = typeof item.views === 'number' ? item.views : 0;
+
+          return `
+            <div onclick="openTechModal('${panelId}', ${idx})" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm overflow-hidden">
+              ${imgUrl ? `
+                <div class="w-full h-36 bg-cnc-base border-b border-cnc-border relative overflow-hidden flex items-center justify-center">
+                  <img src="${imgUrl}" alt="${title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-300" onerror="this.parentElement.style.display='none'" />
+                  <div class="absolute inset-0 bg-black/20 group-hover/card:bg-transparent transition-colors pointer-events-none"></div>
+                </div>
+              ` : ''}
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold">${code}</span>
+                    <span class="text-zinc-500 font-mono-tech text-[10px] flex items-center gap-1 group-hover/card:text-zinc-300 transition-colors" title="${views} visitas">
+                      <span class="text-zinc-600 text-[11px]">👁</span>
+                      <span>${views}</span>
+                    </span>
+                  </div>
+                  <h4 class="text-base font-bold text-white mb-2 leading-snug">${title}</h4>
+                  <p class="text-xs text-zinc-400 leading-normal">${desc}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.warn('Grid render fallback for', panelId, err);
+      }
+    }
+
+    function renderAllGrids() {
+      ['p1', 'p2', 'p3', 'p4'].forEach(renderPanelGrid);
+    }
+
+    async function loadProjectsFromFolders() {
+      try {
+        // First try live dynamic API
+        try {
+          const apiRes = await fetch('/api/projects?t=' + Date.now());
+          if (apiRes.ok) {
+            const apiJson = await apiRes.json();
+            if (apiJson && apiJson.fullData) {
+              for (const [panelId, list] of Object.entries(apiJson.fullData)) {
+                if (Array.isArray(list) && list.length > 0) {
+                  projectsDatabase[panelId] = list;
+                }
+              }
+              renderAllGrids();
+              return;
+            }
+          }
+        } catch (e) {
+          // Fallback to manifest.json
+        }
+
+        const res = await fetch('/proyectos/manifest.json?t=' + Date.now());
+        if (!res.ok) return;
+        const manifest = await res.json();
+        if (!manifest || !manifest.projects) return;
+
+        let hasNewData = false;
+        for (const [panelId, folderList] of Object.entries(manifest.projects)) {
+          if (!Array.isArray(folderList) || folderList.length === 0) continue;
+          const loaded = [];
+          for (const entry of folderList) {
+            const relFolder = typeof entry === 'string' ? entry : (entry && entry.folder);
+            const autoImages = (entry && entry.autoImages) || [];
+            if (!relFolder) continue;
+            try {
+              const infoRes = await fetch(`/proyectos/${relFolder}/info.json?t=${Date.now()}`);
+              if (infoRes.ok) {
+                const data = await infoRes.json();
+                data._folder = relFolder;
+                data.folderName = relFolder.split('/').pop();
+                data.code = data.folderName;
+                if (entry && entry.views !== undefined) {
+                  data.views = entry.views;
+                }
+                if ((!data.images || data.images.length === 0) && autoImages.length > 0) {
+                  data.images = autoImages;
+                }
+                if (commercialCatalogDefaults[data.code]) {
+                  data.commercial = data.commercial || {};
+                  if (!data.commercial.price) {
+                    data.commercial.price = commercialCatalogDefaults[data.code].price;
+                  }
+                  data.commercial.currency = commercialCatalogDefaults[data.code].currency || 'USD';
+                  if (data.commercial.isFromPrice === undefined) {
+                    data.commercial.isFromPrice = Boolean(commercialCatalogDefaults[data.code].isFromPrice);
+                  }
+                }
+                loaded.push(data);
+              }
+            } catch (err) {
+              console.warn('Could not load:', relFolder, err);
+            }
+          }
+          if (loaded.length > 0) {
+            projectsDatabase[panelId] = loaded;
+            hasNewData = true;
+          }
+        }
+        if (hasNewData) {
+          renderAllGrids();
+        }
+      } catch (err) {
+        console.log('Using default bundled projects:', err);
+      }
+    }
+
+    // ==================== 3. FLOATING MODAL LOGIC & GESTURES ====================
+    let activePanelId = 'p1';
+    let activeItemIdx = 0;
+
+    function openTechModal(panelId, itemIdx) {
+      activePanelId = panelId;
+      activeItemIdx = itemIdx;
+
+      // Increment view count dynamically and notify backend
+      const items = projectsDatabase && projectsDatabase[panelId];
+      const item = items && items[itemIdx];
+      if (item && item.code) {
+        item.views = (typeof item.views === 'number' ? item.views : 0) + 1;
+        fetch('/api/projects/' + encodeURIComponent(item.code) + '/view', { method: 'POST' }).catch(() => {});
+      }
+
+      renderTechModalContent();
+
+      const modalEl = document.getElementById('tech-modal');
+      const boxEl = document.getElementById('tech-modal-box');
+      if (modalEl && boxEl) {
+        modalEl.classList.remove('opacity-0', 'pointer-events-none');
+        modalEl.classList.add('opacity-100');
+        boxEl.classList.remove('scale-95', 'opacity-0');
+        boxEl.classList.add('scale-100', 'opacity-100');
+      }
+
+      // Scroll modal body to top
+      const scrollArea = document.getElementById('modal-scroll-area');
+      if (scrollArea) scrollArea.scrollTop = 0;
+    }
+
+    function closeTechModal() {
+      const modalEl = document.getElementById('tech-modal');
+      const boxEl = document.getElementById('tech-modal-box');
+      if (modalEl && boxEl) {
+        boxEl.classList.remove('scale-100', 'opacity-100');
+        boxEl.classList.add('scale-95', 'opacity-0');
+        modalEl.classList.remove('opacity-100');
+        modalEl.classList.add('opacity-0', 'pointer-events-none');
+      }
+
+      // Re-render active grid to update rank and view counter
+      if (activePanelId) {
+        renderPanelGrid(activePanelId);
+      }
+    }
+
+    function nextTechModalItem() {
+      const items = projectsDatabase[activePanelId];
+      if (!items) return;
+      activeItemIdx = (activeItemIdx + 1) % items.length;
+      animateModalSlide('left');
+    }
+
+    function prevTechModalItem() {
+      const items = projectsDatabase[activePanelId];
+      if (!items) return;
+      activeItemIdx = (activeItemIdx - 1 + items.length) % items.length;
+      animateModalSlide('right');
+    }
+
+    function animateModalSlide(direction) {
+      const contentEl = document.getElementById('modal-body-content');
+      if (!contentEl) {
+        renderTechModalContent();
+        return;
+      }
+      
+      const outTranslate = direction === 'left' ? '-30px' : '30px';
+      const inTranslate = direction === 'left' ? '30px' : '-30px';
+
+      contentEl.style.transition = 'transform 120ms ease, opacity 120ms ease';
+      contentEl.style.opacity = '0';
+      contentEl.style.transform = `translateX(${outTranslate})`;
+
+      setTimeout(() => {
+        renderTechModalContent();
+        const scrollArea = document.getElementById('modal-scroll-area');
+        if (scrollArea) scrollArea.scrollTop = 0;
+
+        contentEl.style.transition = 'none';
+        contentEl.style.transform = `translateX(${inTranslate})`;
+
+        requestAnimationFrame(() => {
+          contentEl.style.transition = 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease';
+          contentEl.style.opacity = '1';
+          contentEl.style.transform = 'translateX(0)';
+        });
+      }, 120);
+    }
+
+    function setModalGalleryImage(index) {
+      window.activeGalleryIndex = index;
+      renderTechModalContent();
+    }
+
+    function renderTechModalContent() {
+      if (window.lastModalItemIdx !== activeItemIdx || window.lastModalPanelId !== activePanelId) {
+        window.activeGalleryIndex = 0;
+        window.lastModalItemIdx = activeItemIdx;
+        window.lastModalPanelId = activePanelId;
+      }
+      const items = projectsDatabase[activePanelId];
+      if (!items || !items[activeItemIdx]) return;
+      const data = items[activeItemIdx];
+      const lang = currentLanguage || 'es';
+
+      // Update Top Bar Indicators
+      const codeEl = document.getElementById('modal-code');
+      const catEl = document.getElementById('modal-category');
+      const badgeEl = document.getElementById('modal-status-badge');
+      const counterEl = document.getElementById('modal-index-counter');
+
+      if (codeEl) codeEl.textContent = data.folderName || (data._folder ? data._folder.split('/').pop() : '') || data.code;
+      if (catEl) catEl.textContent = data.category[lang] || data.category.es;
+      if (badgeEl) badgeEl.textContent = data.badge[lang] || data.badge.es;
+      if (counterEl) counterEl.textContent = `0${activeItemIdx + 1} / 0${items.length}`;
+
+      // Update Commercial Footer Bar
+      const commercialCaptionEl = document.getElementById('modal-commercial-caption');
+      const actionBtnTextEl = document.getElementById('modal-action-text');
+      const cartBtnTextEl = document.getElementById('modal-cart-btn-text');
+
+      if (commercialCaptionEl) {
+        commercialCaptionEl.textContent = (data.commercial.caption[lang] || data.commercial.caption.es).toUpperCase();
+      }
+      if (actionBtnTextEl) {
+        actionBtnTextEl.textContent = (i18nData[lang] && i18nData[lang]['btn-contact']) ? i18nData[lang]['btn-contact'] : 'CONSULTA';
+      }
+      if (cartBtnTextEl && i18nData[lang] && i18nData[lang]['btn-add-cart']) {
+        cartBtnTextEl.textContent = i18nData[lang]['btn-add-cart'];
+      }
+
+      // Configure Commercial Price & Add to Cart (STRICT: Panels 02 & 03 = Cart, Panels 01 & 04 = Contact Only)
+      const priceContainer = document.getElementById('modal-price-container');
+      const priceDisplay = document.getElementById('modal-price-display');
+      const addCartBtn = document.getElementById('modal-add-cart-btn');
+      const actionBtn = document.getElementById('modal-action-btn');
+
+      const isPurchasableGroup = (activePanelId === 'p2' || activePanelId === 'p3');
+
+      const footerBar = document.getElementById('modal-footer-bar');
+
+      if (isPurchasableGroup) {
+        if (footerBar) {
+          footerBar.className = 'border-t border-cnc-border bg-[#1A1D23] p-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0';
+        }
+        // Enforce pricing for groups 02 and 03
+        const fallbackInfo = commercialCatalogDefaults[data.code] || { price: 145, currency: 'USD', isFromPrice: false };
+        data.commercial = data.commercial || {};
+        data.commercial.price = data.commercial.price || fallbackInfo.price;
+        data.commercial.currency = 'USD';
+        if (data.commercial.isFromPrice === undefined) {
+          data.commercial.isFromPrice = Boolean(fallbackInfo.isFromPrice);
+        }
+
+        if (priceContainer) {
+          priceContainer.classList.remove('hidden');
+          priceContainer.classList.add('flex');
+        }
+        const priceLabelEl = document.getElementById('modal-price-label');
+        if (priceLabelEl) {
+          priceLabelEl.textContent = (lang === 'en' ? 'PRICE:' : (lang === 'pt' ? 'PREÇO:' : 'PRECIO:'));
+        }
+        if (priceDisplay) {
+          priceDisplay.textContent = formatPrice(data.commercial.price, lang, Boolean(data.commercial.isFromPrice));
+        }
+        if (addCartBtn) {
+          addCartBtn.classList.remove('hidden');
+          addCartBtn.classList.add('flex');
+        }
+        if (actionBtn) {
+          actionBtn.className = 'w-full sm:w-auto px-4 py-2.5 border border-cnc-border hover:border-zinc-400 text-zinc-300 font-mono-tech text-xs tracking-wider uppercase transition-colors flex items-center justify-center gap-1.5 cursor-pointer';
+          if (actionBtnTextEl) actionBtnTextEl.textContent = (i18nData[lang] && i18nData[lang]['btn-contact']) ? i18nData[lang]['btn-contact'] : 'CONSULTA';
+        }
+      } else {
+        // Panels 01 (La Bitácora) and 04 (Escalabilidad Industrial): Pure Contact / Consultation only (ALWAYS ALIGNED RIGHT)
+        if (footerBar) {
+          footerBar.className = 'border-t border-cnc-border bg-[#1A1D23] p-4 sm:px-8 flex flex-col sm:flex-row items-center justify-end gap-3 shrink-0';
+        }
+        if (priceContainer) {
+          priceContainer.classList.add('hidden');
+          priceContainer.classList.remove('flex');
+        }
+        if (addCartBtn) {
+          addCartBtn.classList.add('hidden');
+          addCartBtn.classList.remove('flex');
+        }
+        if (actionBtn) {
+          actionBtn.className = 'w-full sm:w-auto px-6 py-2.5 bg-industrial hover:bg-industrial-dark text-black font-mono-tech font-bold text-xs tracking-wider uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20 sm:ml-auto';
+          if (actionBtnTextEl) {
+            actionBtnTextEl.textContent = (i18nData[lang] && i18nData[lang]['btn-contact']) ? i18nData[lang]['btn-contact'] : 'CONSULTA';
+          }
+        }
+      }
+
+      // Generate Specs Table HTML
+      const specsHtml = data.specs.map(spec => `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between py-2 border-b border-cnc-border/60 text-xs font-mono-tech gap-1">
+          <span class="text-zinc-500 font-semibold tracking-wider">${spec.label}</span>
+          <span class="text-zinc-200 font-medium">${spec.value}</span>
+        </div>
+      `).join('');
+
+      // Generate Schematic SVG Blueprint matching project
+      const schematicSvg = `
+        <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-zinc-600">
+          <rect width="100%" height="100%" fill="#14171C"/>
+          <g stroke="currentColor" stroke-dasharray="4 4" stroke-opacity="0.35">
+            <line x1="0" y1="40" x2="800" y2="40" />
+            <line x1="0" y1="120" x2="800" y2="120" />
+            <line x1="0" y1="200" x2="800" y2="200" />
+            <line x1="200" y1="0" x2="200" y2="240" />
+            <line x1="400" y1="0" x2="400" y2="240" />
+            <line x1="600" y1="0" x2="600" y2="240" />
+          </g>
+          <!-- Schematic Drawing Centerpiece -->
+          <g stroke="#FF6B26" stroke-width="1.75" fill="none">
+            <path d="M 280 60 L 520 60 L 560 100 L 560 170 L 520 190 L 280 190 L 240 170 L 240 100 Z" />
+            <circle cx="400" cy="125" r="42" stroke="#E1E8F2" stroke-width="1.5" stroke-dasharray="6 3" />
+            <circle cx="400" cy="125" r="14" fill="#FF6B26" fill-opacity="0.25" stroke="#FF6B26" stroke-width="1.5"/>
+            <!-- Dimension extension lines -->
+            <line x1="240" y1="198" x2="240" y2="216" stroke="#8892A0" stroke-width="1"/>
+            <line x1="560" y1="198" x2="560" y2="216" stroke="#8892A0" stroke-width="1"/>
+            <line x1="240" y1="210" x2="560" y2="210" stroke="#8892A0" stroke-width="1" marker-start="url(#dot)" marker-end="url(#dot)"/>
+          </g>
+          <!-- Dimension Labels -->
+          <text x="400" y="224" fill="#8892A0" font-family="Courier, monospace" font-size="11" text-anchor="middle">L = 320.00 mm (ISO 2768-mK)</text>
+          <text x="250" y="32" fill="#FF6B26" font-family="Courier, monospace" font-size="10" font-weight="bold">PLANO DE MECANIZADO // CÓD: ${data.code}</text>
+          <text x="740" y="32" fill="#525B68" font-family="Courier, monospace" font-size="10" text-anchor="end">ESCALA 1:1 • TOL ±0.03</text>
+        </svg>
+      `;
+
+      // Build gallery of project images (only real uploaded images, no default placeholder SVGs)
+      let imagesList = [];
+      const rawImages = data.images || (data.gallery ? data.gallery : (data.cover ? [data.cover] : []));
+      if (rawImages && rawImages.length > 0) {
+        imagesList = rawImages
+          .filter(img => {
+            const name = typeof img === 'string' ? img : (img && img.url ? img.url : '');
+            return name && !name.endsWith('cover.svg');
+          })
+          .map((img, idx) => {
+            if (typeof img === 'string') {
+              const url = (img.startsWith('http') || img.startsWith('/')) ? img : (data._folder ? `/proyectos/${data._folder}/${img}` : img);
+              return { url, tag: `FIG. 0${idx + 1}` };
+            }
+            if (img.url && !img.url.startsWith('http') && !img.url.startsWith('/') && data._folder) {
+              return { ...img, url: `/proyectos/${data._folder}/${img.url}` };
+            }
+            return img;
+          });
+      }
+
+      // Active selected gallery image index (defaults to 0)
+      window.activeGalleryIndex = window.activeGalleryIndex || 0;
+      if (window.activeGalleryIndex >= imagesList.length) window.activeGalleryIndex = 0;
+
+      // Store current images list for modal and lightbox navigation
+      window.currentModalImages = imagesList;
+
+      const docInProgressText = lang === 'en'
+        ? 'VISUAL DOCUMENTATION IN PROGRESS'
+        : (lang === 'pt' ? 'DOCUMENTAÇÃO VISUAL EM PROCESSO' : 'DOCUMENTACIÓN EN PROCESO');
+
+      const descHeaderLabel = lang === 'en'
+        ? 'DESCRIPTION'
+        : (lang === 'pt' ? 'DESCRIÇÃO' : 'DESCRIPCIÓN');
+
+      const mediaSectionHtml = imagesList.length > 0 ? `
+          <!-- 2. SERIE DE IMÁGENES (SCROLLEABLE HORIZONTALMENTE + BOTONES FLECHA + BOTÓN AGRANDAR) -->
+          <div class="mb-10 relative group/reel select-none" id="modal-reel-wrapper">
+            <!-- Contenedor scrolleable con snap para las imágenes -->
+            <div id="modal-image-reel" class="flex overflow-x-auto snap-x snap-mandatory border border-cnc-border bg-[#101216] no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none relative" style="scrollbar-width: none; -ms-overflow-style: none;">
+              ${imagesList.map((img, idx) => `
+                <div class="flex-shrink-0 w-full snap-center h-64 sm:h-80 md:h-96 flex items-center justify-center p-2 sm:p-4 relative" data-img-idx="${idx}">
+                  <img src="${img.url}" alt="" class="w-full h-full object-contain pointer-events-none select-none" />
+                </div>
+              `).join('')}
+            </div>
+
+            <!-- Botón flecha izquierda (Foto anterior) -->
+            <button id="reel-prev-btn" onclick="modalReelPrev(event)" title="Foto anterior" aria-label="Foto anterior" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-10 sm:h-10 bg-black/85 hover:bg-industrial hover:text-black border border-white/20 hover:border-industrial text-white flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm group ${imagesList.length <= 1 ? 'hidden' : ''}">
+              <svg class="w-5 h-5 transition-transform group-hover:-translate-x-0.5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+
+            <!-- Botón flecha derecha (Siguiente foto) -->
+            <button id="reel-next-btn" onclick="modalReelNext(event)" title="Siguiente foto" aria-label="Siguiente foto" class="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-10 sm:h-10 bg-black/85 hover:bg-industrial hover:text-black border border-white/20 hover:border-industrial text-white flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm group ${imagesList.length <= 1 ? 'hidden' : ''}">
+              <svg class="w-5 h-5 transition-transform group-hover:translate-x-0.5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+
+            <!-- Cuadradito en la esquina derecha abajo para agrandar las imágenes -->
+            <button id="reel-expand-btn" onclick="openLightboxFromReel(event)" title="Agrandar imagen" class="absolute bottom-3 right-3 z-30 w-8 h-8 bg-black/85 hover:bg-industrial hover:text-black border border-white/20 hover:border-industrial text-white flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm group" aria-label="Agrandar imagen">
+              <svg class="w-4 h-4 transition-transform group-hover:scale-110 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+              </svg>
+            </button>
+
+            <!-- Indicadores sutiles de posición -->
+            <div class="flex items-center justify-center gap-2 mt-3" id="reel-indicators">
+              ${imagesList.map((_, idx) => `
+                <button onclick="scrollToModalImage(${idx})" class="w-6 sm:w-8 h-1 transition-all cursor-pointer ${idx === 0 ? 'bg-industrial' : 'bg-zinc-700 hover:bg-zinc-500'}" id="reel-dot-${idx}"></button>
+              `).join('')}
+            </div>
+          </div>
+      ` : `
+          <!-- SIN IMÁGENES: CARTEL DISCRETO DE DOCUMENTACIÓN EN PROCESO -->
+          <div class="mb-8 border border-dashed border-cnc-border/80 bg-[#121418]/70 px-5 py-4 flex items-center gap-2.5 font-mono-tech text-xs text-zinc-400">
+            <span class="w-1.5 h-1.5 bg-industrial/80 inline-block"></span>
+            <span class="tracking-wider uppercase">${docInProgressText}</span>
+          </div>
+      `;
+
+      // Inject full content strictly in the requested order:
+      // 1. NOMBRE DEL PROYECTO
+      // 2. SERIE DE IMÁGENES (O AVISO DE DOCUMENTACIÓN EN PROCESO)
+      // 3. APARTADO CON LA DESCRIPCIÓN DEL PROYECTO
+      const bodyContentEl = document.getElementById('modal-body-content');
+      if (bodyContentEl) {
+        bodyContentEl.innerHTML = `
+          <!-- 1. NOMBRE DEL PROYECTO -->
+          <div class="border-b border-cnc-border/80 pb-6 mb-8">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight font-sans uppercase mb-3">
+              ${data.title[lang] || data.title.es}
+            </h1>
+            <p class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed max-w-3xl">
+              ${data.subtitle[lang] || data.subtitle.es}
+            </p>
+          </div>
+
+          ${mediaSectionHtml}
+
+          <!-- 3. APARTADO CON LA DESCRIPCIÓN DEL PROYECTO -->
+          <div>
+            <div>
+              <div class="font-mono-tech text-xs font-bold text-white uppercase tracking-widest mb-4 flex items-center gap-2 border-b border-cnc-border/60 pb-3">
+                <span class="w-2 h-0.5 bg-industrial inline-block"></span>
+                <span>${descHeaderLabel}</span>
+              </div>
+              
+              <div class="prose prose-invert max-w-none text-zinc-300 font-light leading-relaxed text-sm sm:text-base bg-[#15171B] border border-cnc-border/60 p-6 sm:p-7">
+                <p class="leading-relaxed">
+                  ${data.report[lang] || data.report.es}
+                </p>
+              </div>
+            </div>
+          </div>
+        `;
+        if (imagesList.length > 0) {
+          initReelListeners();
+        }
+      }
+    }
+
+    // ==================== 4. GESTURE & SCROLL LISTENERS (BOTONES FLECHA + DESLIZAR + LIGHTBOX) ====================
+    function modalReelPrev(e) {
+      if (e) e.stopPropagation();
+      const reel = document.getElementById('modal-image-reel');
+      if (!reel) return;
+      const itemWidth = reel.clientWidth;
+      if (itemWidth <= 0) return;
+      const currentIdx = Math.round(reel.scrollLeft / itemWidth);
+      const newIdx = Math.max(0, currentIdx - 1);
+      scrollToModalImage(newIdx);
+    }
+
+    function modalReelNext(e) {
+      if (e) e.stopPropagation();
+      const reel = document.getElementById('modal-image-reel');
+      if (!reel) return;
+      const itemWidth = reel.clientWidth;
+      if (itemWidth <= 0) return;
+      const currentIdx = Math.round(reel.scrollLeft / itemWidth);
+      const totalImages = reel.children.length;
+      const newIdx = Math.min(totalImages - 1, currentIdx + 1);
+      scrollToModalImage(newIdx);
+    }
+
+    function scrollToModalImage(index) {
+      const reel = document.getElementById('modal-image-reel');
+      if (!reel) return;
+      const count = reel.children.length;
+      if (count === 0) return;
+      const clampedIndex = Math.max(0, Math.min(index, count - 1));
+      const targetChild = reel.children[clampedIndex];
+      if (targetChild) {
+        reel.scrollTo({ left: targetChild.offsetLeft, behavior: 'smooth' });
+      }
+      updateReelDots(clampedIndex);
+      updateReelButtons(clampedIndex, count);
+    }
+
+    function updateReelDots(activeIndex) {
+      const container = document.getElementById('reel-indicators');
+      if (!container) return;
+      Array.from(container.children).forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.className = 'w-6 sm:w-8 h-1 bg-industrial transition-all cursor-pointer';
+        } else {
+          dot.className = 'w-6 sm:w-8 h-1 bg-zinc-700 hover:bg-zinc-500 transition-all cursor-pointer';
+        }
+      });
+    }
+
+    function updateReelButtons(activeIdx, total) {
+      const prevBtn = document.getElementById('reel-prev-btn');
+      const nextBtn = document.getElementById('reel-next-btn');
+      if (prevBtn) {
+        prevBtn.style.opacity = activeIdx <= 0 ? '0.3' : '1';
+        prevBtn.style.pointerEvents = activeIdx <= 0 ? 'none' : 'auto';
+      }
+      if (nextBtn) {
+        nextBtn.style.opacity = activeIdx >= total - 1 ? '0.3' : '1';
+        nextBtn.style.pointerEvents = activeIdx >= total - 1 ? 'none' : 'auto';
+      }
+    }
+
+    // Attach scroll listener to reel: supports swipe/drag with mouse & touch
+    function initReelListeners() {
+      const reel = document.getElementById('modal-image-reel');
+      if (!reel) return;
+
+      reel.addEventListener('scroll', () => {
+        const itemWidth = reel.clientWidth;
+        if (itemWidth > 0) {
+          const activeIdx = Math.round(reel.scrollLeft / itemWidth);
+          updateReelDots(activeIdx);
+          updateReelButtons(activeIdx, reel.children.length);
+        }
+      }, { passive: true });
+
+      // Mouse drag to scroll smoothly inside images reel
+      let isReelDragging = false;
+      let reelStartX = 0;
+      let reelScrollLeft = 0;
+
+      reel.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button')) return;
+        isReelDragging = true;
+        reelStartX = e.pageX - reel.offsetLeft;
+        reelScrollLeft = reel.scrollLeft;
+        reel.style.scrollBehavior = 'auto';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isReelDragging) return;
+        e.preventDefault();
+        const x = e.pageX - reel.offsetLeft;
+        const walk = (x - reelStartX) * 1.4;
+        reel.scrollLeft = reelScrollLeft - walk;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isReelDragging) return;
+        isReelDragging = false;
+        reel.style.scrollBehavior = 'smooth';
+        const itemWidth = reel.clientWidth;
+        if (itemWidth > 0) {
+          const nearestIdx = Math.round(reel.scrollLeft / itemWidth);
+          scrollToModalImage(nearestIdx);
+        }
+      });
+
+      // Initialize button states
+      updateReelButtons(0, reel.children.length);
+    }
+
+    // ==================== LIGHTBOX MODAL (AGRANDAR IMAGEN) ====================
+    window.currentLightboxIndex = 0;
+
+    function openLightboxFromReel(e) {
+      if (e) e.stopPropagation();
+      const reel = document.getElementById('modal-image-reel');
+      if (!reel) return;
+      const itemWidth = reel.clientWidth;
+      const activeIdx = itemWidth > 0 ? Math.round(reel.scrollLeft / itemWidth) : 0;
+      openLightbox(activeIdx);
+    }
+
+    function openLightbox(index) {
+      if (!window.currentModalImages || window.currentModalImages.length === 0) return;
+      window.currentLightboxIndex = Math.max(0, Math.min(index || 0, window.currentModalImages.length - 1));
+
+      let lightbox = document.getElementById('tech-lightbox');
+      if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.id = 'tech-lightbox';
+        lightbox.className = 'fixed inset-0 z-[300] bg-black/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 select-none';
+        
+        // Clicking outside the image container exits the lightbox
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox || e.target.id === 'lightbox-backdrop-catcher') {
+            closeLightbox();
+          }
+        });
+
+        document.body.appendChild(lightbox);
+      }
+
+      renderLightboxContent();
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleLightboxKeyDown);
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('tech-lightbox');
+      if (lightbox) {
+        lightbox.classList.add('hidden');
+      }
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleLightboxKeyDown);
+
+      // Synchronize back to reel position
+      scrollToModalImage(window.currentLightboxIndex);
+    }
+
+    function handleLightboxKeyDown(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowRight') {
+        nextLightboxImage();
+      } else if (e.key === 'ArrowLeft') {
+        prevLightboxImage();
+      }
+    }
+
+    function prevLightboxImage(e) {
+      if (e) e.stopPropagation();
+      if (!window.currentModalImages || window.currentModalImages.length === 0) return;
+      if (window.currentLightboxIndex > 0) {
+        window.currentLightboxIndex--;
+        renderLightboxContent();
+      }
+    }
+
+    function nextLightboxImage(e) {
+      if (e) e.stopPropagation();
+      if (!window.currentModalImages || window.currentModalImages.length === 0) return;
+      if (window.currentLightboxIndex < window.currentModalImages.length - 1) {
+        window.currentLightboxIndex++;
+        renderLightboxContent();
+      }
+    }
+
+    function renderLightboxContent() {
+      const lightbox = document.getElementById('tech-lightbox');
+      if (!lightbox || !window.currentModalImages) return;
+      const images = window.currentModalImages;
+      const current = images[window.currentLightboxIndex];
+      const total = images.length;
+      const idx = window.currentLightboxIndex;
+
+      lightbox.innerHTML = `
+        <!-- Fondo clickeable para salir (cliquear afuera de la imagen) -->
+        <div id="lightbox-backdrop-catcher" class="absolute inset-0 z-0 cursor-default" onclick="closeLightbox()"></div>
+
+        <!-- Contenedor de la imagen (cliquear aquí NO sale; clics en mitades/bordes cambian de foto) -->
+        <div id="lightbox-card" class="relative z-10 max-w-[94vw] max-h-[92vh] flex flex-col items-center justify-center p-2 sm:p-4 bg-[#0e1014] border border-cnc-border/80 shadow-2xl" onclick="event.stopPropagation()">
+          
+          <!-- Imagen principal con zonas invisibles izquierda y derecha -->
+          <div class="relative flex items-center justify-center max-w-[90vw] max-h-[82vh] overflow-hidden" id="lightbox-image-box">
+            ${current.url ? `
+              <img src="${current.url}" alt="" class="max-w-[90vw] max-h-[82vh] object-contain select-none pointer-events-none" />
+            ` : `
+              <div class="w-[82vw] h-[72vh] flex items-center justify-center p-4">
+                ${current.svg}
+              </div>
+            `}
+
+            <!-- Botón flecha izquierda en visor ampliado -->
+            <button onclick="prevLightboxImage(event)" class="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/85 hover:bg-industrial hover:text-black text-white border border-white/20 hover:border-industrial flex items-center justify-center transition-all cursor-pointer shadow-2xl backdrop-blur-sm group ${total <= 1 ? 'hidden' : ''}" title="Foto anterior" aria-label="Foto anterior" style="opacity: ${idx <= 0 ? '0.3' : '1'}; pointer-events: ${idx <= 0 ? 'none' : 'auto'};">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:-translate-x-0.5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+
+            <!-- Botón flecha derecha en visor ampliado -->
+            <button onclick="nextLightboxImage(event)" class="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/85 hover:bg-industrial hover:text-black text-white border border-white/20 hover:border-industrial flex items-center justify-center transition-all cursor-pointer shadow-2xl backdrop-blur-sm group ${total <= 1 ? 'hidden' : ''}" title="Siguiente foto" aria-label="Siguiente foto" style="opacity: ${idx >= total - 1 ? '0.3' : '1'}; pointer-events: ${idx >= total - 1 ? 'none' : 'auto'};">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-0.5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Barra inferior sutil: solo contador -->
+          <div class="mt-3 flex items-center justify-center w-full font-mono-tech text-xs border-t border-cnc-border/40 pt-2 px-1">
+            <span class="text-industrial font-bold">${idx + 1} / ${total}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Global Modal Dragging (PAGES NAVIGATION: Outside the image box)
+    let isPageDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragDeltaX = 0;
+
+    const dragArea = document.getElementById('modal-scroll-area');
+
+    if (dragArea) {
+      // Mouse Drag: Page navigation anywhere OUTSIDE the image box
+      dragArea.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button, a, input, select')) return;
+        
+        // If clicking inside the image box, it scrolls images, NOT pages
+        if (e.target.closest('#modal-image-reel')) {
+          return;
+        }
+
+        // Anywhere OUTSIDE the image box: initiates page navigation
+        isPageDragging = true;
+        dragStartX = e.clientX;
+        dragStartY = e.clientY;
+        dragDeltaX = 0;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isPageDragging) return;
+        dragDeltaX = e.clientX - dragStartX;
+        const deltaY = Math.abs(e.clientY - dragStartY);
+
+        // Tactile horizontal resistance animation
+        if (Math.abs(dragDeltaX) > 15 && Math.abs(dragDeltaX) > deltaY) {
+          const contentEl = document.getElementById('modal-body-content');
+          if (contentEl) {
+            contentEl.style.transform = `translateX(${dragDeltaX * 0.22}px)`;
+          }
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isPageDragging) return;
+        isPageDragging = false;
+
+        const contentEl = document.getElementById('modal-body-content');
+        if (contentEl) {
+          contentEl.style.transform = 'translateX(0)';
+        }
+
+        // Horizontal threshold of 45px for changing pages
+        if (dragDeltaX < -45) {
+          nextTechModalItem();
+        } else if (dragDeltaX > 45) {
+          prevTechModalItem();
+        }
+      });
+
+      // Touch Events for Mobile: Anywhere OUTSIDE the image box navigates pages
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isPageTouch = false;
+      let touchDeltaX = 0;
+
+      dragArea.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        const touch = e.touches[0];
+        
+        // If touch starts inside image reel, image reel handles images
+        if (e.target.closest('#modal-image-reel')) {
+          isPageTouch = false;
+          return;
+        }
+
+        // Anywhere OUTSIDE the image box
+        isPageTouch = true;
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchDeltaX = 0;
+      }, { passive: true });
+
+      dragArea.addEventListener('touchmove', (e) => {
+        if (!isPageTouch || e.touches.length !== 1) return;
+        touchDeltaX = e.touches[0].clientX - touchStartX;
+        const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+
+        // Cancel page swipe if user is clearly scrolling vertically to read text
+        if (deltaY > Math.abs(touchDeltaX) * 1.4 && Math.abs(touchDeltaX) < 30) {
+          isPageTouch = false;
+        }
+      }, { passive: true });
+
+      dragArea.addEventListener('touchend', () => {
+        if (!isPageTouch) return;
+        isPageTouch = false;
+        if (touchDeltaX < -50) {
+          nextTechModalItem();
+        } else if (touchDeltaX > 50) {
+          prevTechModalItem();
+        }
+      });
+    }
+
+    // Keyboard Shortcuts (Arrow Left, Arrow Right, Escape)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const cartDrawer = document.getElementById('cart-drawer');
+        if (cartDrawer && !cartDrawer.classList.contains('pointer-events-none')) {
+          closeCartDrawer();
+          return;
+        }
+        const aboutModal = document.getElementById('about-modal');
+        if (aboutModal && !aboutModal.classList.contains('pointer-events-none')) {
+          closeAboutModal();
+          return;
+        }
+        const contactModal = document.getElementById('contact-modal');
+        if (contactModal && !contactModal.classList.contains('pointer-events-none')) {
+          closeContactModal();
+          return;
+        }
+        closeTechModal();
+        return;
+      }
+
+      const modalEl = document.getElementById('tech-modal');
+      const isModalOpen = modalEl && !modalEl.classList.contains('pointer-events-none');
+      if (!isModalOpen) return;
+
+      if (e.key === 'ArrowRight') {
+        nextTechModalItem();
+      } else if (e.key === 'ArrowLeft') {
+        prevTechModalItem();
+      }
+    });
+
+    // ==================== 6. ABOUT ME (SOBRE MÍ) MODAL ====================
+    function openAboutModal() {
+      const modal = document.getElementById('about-modal');
+      const box = document.getElementById('about-modal-box');
+      if (modal && box) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+        box.classList.remove('scale-95', 'opacity-0');
+        box.classList.add('scale-100', 'opacity-100');
+      }
+    }
+
+    function closeAboutModal() {
+      const modal = document.getElementById('about-modal');
+      const box = document.getElementById('about-modal-box');
+      if (modal && box) {
+        box.classList.remove('scale-100', 'opacity-100');
+        box.classList.add('scale-95', 'opacity-0');
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    // ==================== 4.5 SHOPPING CART ENGINE (MULTI-CURRENCY) ====================
+    let cart = []; // Array of { code, titleObj, priceUsd, qty }
+    window.contactOpenedFromCart = false;
+
+    function getCartItem(code) {
+      return cart.find(item => item.code === code);
+    }
+
+    function findProjectByCode(code) {
+      for (const p in projectsDatabase) {
+        const found = (projectsDatabase[p] || []).find(x => x.code === code);
+        if (found) return found;
+      }
+      return null;
+    }
+
+    function addToCart(code, customPriceUsd, customTitleObj) {
+      let item = getCartItem(code);
+      if (item) {
+        item.qty += 1;
+      } else {
+        const dbItem = findProjectByCode(code);
+        const fallback = commercialCatalogDefaults[code] || { price: 145 };
+        const priceUsd = customPriceUsd || (dbItem && dbItem.commercial && dbItem.commercial.price ? dbItem.commercial.price : fallback.price);
+        const titleObj = customTitleObj || (dbItem && dbItem.title ? dbItem.title : { es: code, en: code, pt: code });
+
+        cart.push({
+          code,
+          titleObj,
+          priceUsd: Number(priceUsd) || 145,
+          qty: 1
+        });
+      }
+      updateCartUI();
+      openCartDrawer();
+    }
+
+    function addToCartCurrentItem() {
+      const items = (projectsDatabase && projectsDatabase[activePanelId]) || [];
+      const item = items[activeItemIdx];
+      if (!item) return;
+
+      const code = item.code;
+      const fallback = commercialCatalogDefaults[code] || { price: 145 };
+      const priceUsd = (item.commercial && item.commercial.price) ? item.commercial.price : fallback.price;
+      const titleObj = item.title || { es: code, en: code, pt: code };
+
+      addToCart(code, priceUsd, titleObj);
+    }
+
+    function updateCartQuantity(code, delta) {
+      const item = getCartItem(code);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(x => x.code !== code);
+      }
+      updateCartUI();
+    }
+
+    function removeFromCart(code) {
+      cart = cart.filter(x => x.code !== code);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const headerBtn = document.getElementById('cart-header-btn');
+      const countEl = document.getElementById('cart-header-count');
+      const totalEl = document.getElementById('cart-header-total');
+      const drawerList = document.getElementById('cart-drawer-list');
+      const drawerTotal = document.getElementById('cart-drawer-total');
+      const drawerEmpty = document.getElementById('cart-drawer-empty');
+      const drawerFooter = document.getElementById('cart-drawer-footer');
+
+      const lang = currentLanguage || 'es';
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPriceUsd = cart.reduce((sum, item) => sum + (item.priceUsd * item.qty), 0);
+      const formattedTotal = formatPrice(totalPriceUsd, lang, false);
+
+      const unitSuffix = lang === 'en' ? 'ea.' : 'c/u';
+      const removeTitle = lang === 'en' ? 'Remove' : (lang === 'pt' ? 'Remover' : 'Eliminar');
+
+      // Header button visibility
+      if (headerBtn) {
+        if (totalQty > 0) {
+          headerBtn.classList.remove('hidden');
+          headerBtn.classList.add('flex');
+          if (countEl) countEl.textContent = totalQty;
+          if (totalEl) totalEl.textContent = formattedTotal;
+        } else {
+          headerBtn.classList.add('hidden');
+          headerBtn.classList.remove('flex');
+        }
+      }
+
+      // Drawer Content
+      if (drawerList && drawerTotal && drawerEmpty && drawerFooter) {
+        if (cart.length === 0) {
+          drawerList.innerHTML = '';
+          drawerEmpty.classList.remove('hidden');
+          drawerFooter.classList.add('hidden');
+        } else {
+          drawerEmpty.classList.add('hidden');
+          drawerFooter.classList.remove('hidden');
+          drawerTotal.textContent = formattedTotal;
+
+          drawerList.innerHTML = cart.map(item => {
+            const dbItem = findProjectByCode(item.code);
+            const title = getLocalized((dbItem && dbItem.title) || item.titleObj || item.code, lang);
+            const unitFormatted = formatPrice(item.priceUsd, lang, false);
+            const lineFormatted = formatPrice(item.priceUsd * item.qty, lang, false);
+
+            return `
+              <div class="bg-cnc-surface/80 border border-cnc-border p-3.5 flex items-center justify-between gap-3 font-mono-tech text-xs">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-industrial font-bold text-[11px]">${item.code}</span>
+                    <span class="text-white font-medium truncate text-xs">${title}</span>
+                  </div>
+                  <div class="text-zinc-400 text-[11px]">
+                    ${unitFormatted} ${unitSuffix}
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-2 shrink-0">
+                  <div class="flex items-center border border-cnc-border bg-[#14171C]">
+                    <button onclick="updateCartQuantity('${item.code}', -1)" class="px-2 py-0.5 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer font-bold">−</button>
+                    <span class="px-2 text-white font-bold text-xs">${item.qty}</span>
+                    <button onclick="updateCartQuantity('${item.code}', 1)" class="px-2 py-0.5 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer font-bold">+</button>
+                  </div>
+                  
+                  <span class="font-bold text-white text-xs min-w-[5rem] text-right">${lineFormatted}</span>
+                  
+                  <button onclick="removeFromCart('${item.code}')" class="text-zinc-500 hover:text-red-400 transition-colors p-1 cursor-pointer" title="${removeTitle}">
+                    ✕
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    function openCartDrawer() {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      const box = document.getElementById('cart-drawer-box');
+      if (drawer && backdrop && box) {
+        drawer.classList.remove('pointer-events-none');
+        backdrop.classList.remove('opacity-0');
+        backdrop.classList.add('opacity-100');
+        box.classList.remove('translate-x-full');
+        box.classList.add('translate-x-0');
+      }
+    }
+
+    function closeCartDrawer() {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      const box = document.getElementById('cart-drawer-box');
+      if (drawer && backdrop && box) {
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        box.classList.remove('translate-x-0');
+        box.classList.add('translate-x-full');
+        setTimeout(() => {
+          drawer.classList.add('pointer-events-none');
+        }, 300);
+      }
+    }
+
+    function populateCartCheckoutFields() {
+      const lang = currentLanguage || 'es';
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPriceUsd = cart.reduce((sum, item) => sum + (item.priceUsd * item.qty), 0);
+      const formattedTotal = formatPrice(totalPriceUsd, lang, false);
+
+      const codeEl = document.getElementById('contact-item-code');
+      const titleEl = document.getElementById('contact-item-title');
+      if (codeEl) {
+        codeEl.textContent = lang === 'en' ? 'CART' : (lang === 'pt' ? 'CARRINHO' : 'CARRITO');
+      }
+      if (titleEl) {
+        const countLabel = lang === 'en'
+          ? `${totalQty} ${totalQty === 1 ? 'item' : 'items'}`
+          : (lang === 'pt' ? `${totalQty} ${totalQty === 1 ? 'peça' : 'peças'}` : `${totalQty} ${totalQty === 1 ? 'pieza' : 'piezas'}`);
+        titleEl.textContent = `${countLabel} • ${formattedTotal}`;
+      }
+
+      const shortSummary = cart.length <= 3
+        ? cart.map(i => `${i.code} x${i.qty}`).join(', ')
+        : `${totalQty} ${lang === 'en' ? 'items' : (lang === 'pt' ? 'peças' : 'piezas')}`;
+      const itemsList = cart.map(i => {
+        const dbItem = findProjectByCode(i.code);
+        const title = getLocalized((dbItem && dbItem.title) || i.titleObj || i.code, lang);
+        const linePrice = formatPrice(i.priceUsd * i.qty, lang, false);
+        return `- ${i.code} (${title}) x${i.qty}: ${linePrice}`;
+      }).join('\n');
+
+      const reasonInput = document.getElementById('contact-reason');
+      const msgInput = document.getElementById('contact-message');
+
+      if (reasonInput) {
+        if (lang === 'en') {
+          reasonInput.value = `Order: ${shortSummary}`;
+        } else {
+          reasonInput.value = `Compra: ${shortSummary}`;
+        }
+        validateReasonWordCount(reasonInput);
+      }
+
+      if (msgInput) {
+        if (lang === 'en') {
+          msgInput.value = `Order summary:\n${itemsList}\n\nEstimated subtotal: ${formattedTotal} (shipping cost not included — to be arranged)\n\nDelivery details / Notes:\nCity / Address:\nNotes:`;
+        } else if (lang === 'pt') {
+          msgInput.value = `Resumo do pedido:\n${itemsList}\n\nSubtotal estimado: ${formattedTotal} (custo de envio não previsto — a combinar)\n\nDados de entrega / Observações:\nCidade / Endereço:\nNotas:`;
+        } else {
+          msgInput.value = `Resumen del pedido:\n${itemsList}\n\nSubtotal estimado: ${formattedTotal} (costo de envío no previsto — a convenir)\n\nDatos de entrega / Comentarios:\nCiudad / Dirección:\nComentarios:`;
+        }
+      }
+    }
+
+    function proceedToCheckoutStep() {
+      if (cart.length === 0) return;
+      closeCartDrawer();
+      openContactModal(true);
+    }
+
+    // ==================== 5. CONTACT POPUP MODAL ====================
+    function openContactModal(fromCart = false) {
+      window.contactOpenedFromCart = Boolean(fromCart);
+      const lang = currentLanguage || 'es';
+      const feedbackEl = document.getElementById('contact-feedback');
+      if (feedbackEl) {
+        feedbackEl.className = 'hidden';
+        feedbackEl.innerHTML = '';
+      }
+
+      if (window.contactOpenedFromCart && cart.length > 0) {
+        populateCartCheckoutFields();
+      } else {
+        const panelItems = (projectsDatabase && projectsDatabase[activePanelId]) || (projectsDatabase && projectsDatabase['p1']) || [];
+        const data = panelItems[activeItemIdx] || panelItems[0] || { code: 'TRDI', title: { es: 'Consulta General', en: 'General Inquiry', pt: 'Consulta Geral' } };
+
+        const codeEl = document.getElementById('contact-item-code');
+        const titleEl = document.getElementById('contact-item-title');
+        if (codeEl) codeEl.textContent = data.code;
+        if (titleEl) titleEl.textContent = getLocalized(data.title, lang);
+
+        const reasonInput = document.getElementById('contact-reason');
+        const msgInput = document.getElementById('contact-message');
+        if (reasonInput) {
+          reasonInput.value = '';
+          validateReasonWordCount(reasonInput);
+        }
+        if (msgInput) {
+          msgInput.value = '';
+        }
+      }
+
+      const modal = document.getElementById('contact-modal');
+      if (modal) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+      }
+    }
+
+    function validateReasonWordCount(el) {
+      if (!el) return;
+      const text = el.value.trim();
+      const words = text ? text.split(/\s+/).filter(Boolean) : [];
+      const counter = document.getElementById('contact-reason-counter');
+      const warning = document.getElementById('contact-reason-warning');
+      const unit = (i18nData[currentLanguage] && i18nData[currentLanguage]['contact-words-unit']) || 'palabras';
+
+      if (words.length > 10) {
+        el.value = words.slice(0, 10).join(' ');
+        if (counter) {
+          counter.textContent = `10 / 10 ${unit}`;
+          counter.className = 'text-[10px] text-red-400 font-mono-tech font-bold';
+        }
+        if (warning) warning.classList.remove('hidden');
+      } else {
+        if (counter) {
+          counter.textContent = `${words.length} / 10 ${unit}`;
+          counter.className = words.length === 10 ? 'text-[10px] text-red-400 font-mono-tech font-bold' : 'text-[10px] text-zinc-500 font-mono-tech';
+        }
+        if (warning) warning.classList.add('hidden');
+      }
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contact-modal');
+      if (modal) {
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    // Aliases for compatibility
+    function openCommissionModal() { openContactModal(false); }
+    function closeCommissionModal() { closeContactModal(); }
+
+    function handleContactSubmit(event) {
+      event.preventDefault();
+
+      const lang = currentLanguage || 'es';
+      const codeEl = document.getElementById('contact-item-code');
+      const titleEl = document.getElementById('contact-item-title');
+      const pieceCode = codeEl ? codeEl.textContent.trim() : 'TRDI';
+      const pieceTitle = titleEl ? titleEl.textContent.trim() : '';
+
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
+      const reasonEl = document.getElementById('contact-reason');
+      validateReasonWordCount(reasonEl);
+      const reason = reasonEl ? reasonEl.value.trim() : '';
+      const message = document.getElementById('contact-message').value.trim();
+
+      const subject = reason ? `${reason} [${pieceCode}]` : `[TRDI] ${pieceCode} - ${pieceTitle}`;
+      const body = lang === 'en'
+        ? `Full Name: ${name}\nEmail: ${email}\nPhone / WhatsApp: ${phone || 'Not specified'}\n\nReference: ${pieceCode} (${pieceTitle})\nSubject: ${reason}\n\nMessage:\n${message}`
+        : (lang === 'pt'
+          ? `Nome: ${name}\nE-mail: ${email}\nTelefone / WhatsApp: ${phone || 'Não informado'}\n\nReferência: ${pieceCode} (${pieceTitle})\nMotivo: ${reason}\n\nMensagem:\n${message}`
+          : `Nombre y Apellido: ${name}\nCorreo: ${email}\nTeléfono / WhatsApp: ${phone || 'No especificado'}\n\nReferencia: ${pieceCode} (${pieceTitle})\nMotivo del contacto: ${reason}\n\nMensaje:\n${message}`);
+
+      const mailtoUrl = `mailto:tomasrtrejo99@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Display feedback in dialog
+      const feedbackEl = document.getElementById('contact-feedback');
+      if (feedbackEl) {
+        feedbackEl.className = 'bg-industrial/15 border border-industrial text-industrial p-3.5 text-xs leading-relaxed block';
+        if (lang === 'en') {
+          feedbackEl.innerHTML = `
+            <div class="font-bold text-white mb-1">✓ INQUIRY READY</div>
+            <div>Your email client will open to send directly to <strong>tomasrtrejo99@gmail.com</strong>.</div>
+            <a href="${mailtoUrl}" class="inline-block mt-2 font-bold underline text-white hover:text-industrial">Open Email Manually ✉</a>
+          `;
+        } else if (lang === 'pt') {
+          feedbackEl.innerHTML = `
+            <div class="font-bold text-white mb-1">✓ CONSULTA GERADA</div>
+            <div>Seu aplicativo de e-mail abrirá para enviar diretamente para <strong>tomasrtrejo99@gmail.com</strong>.</div>
+            <a href="${mailtoUrl}" class="inline-block mt-2 font-bold underline text-white hover:text-industrial">Abrir E-mail Manualmente ✉</a>
+          `;
+        } else {
+          feedbackEl.innerHTML = `
+            <div class="font-bold text-white mb-1">✓ CONSULTA GENERADA CON ÉXITO</div>
+            <div>Se abrirá tu gestor de correo para enviar directamente a <strong>tomasrtrejo99@gmail.com</strong> con todos los datos precargados.</div>
+            <a href="${mailtoUrl}" class="inline-block mt-2 font-bold underline text-white hover:text-industrial">Abrir Correo Manualmente ✉</a>
+          `;
+        }
+      }
+
+      window.location.href = mailtoUrl;
+    }
+
+    // Initialize default language, quote timer, live exchange rates, and project folders
+    setLanguage('es');
+    resetQuoteTimer();
+    fetchLiveExchangeRates();
+    setTimeout(() => {
+      loadProjectsFromFolders();
+    }, 100);
+  </script>
+</body>
+</html>
