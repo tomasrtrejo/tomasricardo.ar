@@ -1,0 +1,66 @@
+{
+  "code": "ind-05-cmr",
+  "folderName": "ind-05-cmr",
+  "year": "2026",
+  "category": {
+    "es": "04 // ESCALABILIDAD INDUSTRIAL",
+    "en": "04 // INDUSTRIAL SCALABILITY",
+    "pt": "04 // ESCALABILIDADE INDUSTRIAL"
+  },
+  "badge": {
+    "es": "MAQUINARIA // REMOLQUE & ASERRADO",
+    "en": "MACHINERY // TRAILER & SAWMILL",
+    "pt": "MAQUINÁRIO // REBOQUE & SERRARIA"
+  },
+  "title": {
+    "es": "Aserradero Portátil",
+    "en": "Portable Sawmill",
+    "pt": "Serraria Portátil"
+  },
+  "subtitle": {
+    "es": "Remolque largo con carro de sierra sin fin para aserrar troncos grandes en el lugar, desmontable para usar también como carro de transporte",
+    "en": "Long trailer with a traveling bandsaw carriage to mill large logs on site, removable to double as a heavy transport trailer",
+    "pt": "Reboque longo com carro de serra fita para serrar toras grandes no local, desmontável para uso como carreta de transporte"
+  },
+  "specs": [
+    {
+      "label": "CHASIS Y RODADO",
+      "value": "Remolque de gran longitud con dos ejes con balancines y patas para anclarlo firme al piso al momento de trabajar"
+    },
+    {
+      "label": "CORTE Y FIJACIÓN",
+      "value": "Carro móvil que lleva la sierra sin fin, con trabas en la parte baja para los troncos y escuadradoras para cortar prolijo"
+    },
+    {
+      "label": "APROVECHAMIENTO",
+      "value": "Su largo permite aserrar troncos de gran tamaño y aprovechar al máximo las distintas medidas de madera"
+    },
+    {
+      "label": "DOBLE FUNCIÓN",
+      "value": "Se puede quitar el carro móvil de la sierra para usar la estructura directamente como carro de transporte"
+    }
+  ],
+  "report": {
+    "es": "Este aserradero portátil está armado sobre un remolque que, gracias a su largo, permite aserrar troncos de gran tamaño para aprovechar al máximo las distintas medidas de la madera. Cuenta con dos ejes con balancines para el traslado y patas para anclarlo al piso y dejarlo bien fijo cuando se pone a trabajar. Arriba corre un carro móvil que lleva la sierra sin fin, mientras que en la parte baja tiene trabas para sujetar los troncos y escuadradoras para que los cortes salgan bien prolijos. Además, está pensado para poder sacarle el carro móvil de corte y usarlo directamente como carro de transporte.",
+    "en": "This portable sawmill is built onto a long trailer bed capable of handling large logs to maximize lumber yield across sizes. It rides on tandem walking-beam axles and features leveling legs to anchor it firmly to the ground during milling. A traveling carriage carries the bandsaw head, while the lower bed integrates log clamps and squaring guides for clean, accurate cuts. The saw carriage can also be removed so the trailer doubles as a heavy-duty utility hauler.",
+    "pt": "Serraria portátil montada sobre um reboque longo que permite serrar toras de grande porte. Conta com dois eixos com balancim, sapatas para fixação no solo, carro móvel com serra fita, travas inferiores e esquadrejadores para cortes limpos, podendo remover o cabeçote para uso como carreta de transporte."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "MAQUINARIA FORESTAL",
+      "en": "FORESTRY EQUIPMENT",
+      "pt": "MAQUINÁRIO FLORESTAL"
+    },
+    "caption": {
+      "es": "Diseño y fabricación de aserraderos portátiles y carros de trabajo pesado",
+      "en": "Design and build of portable sawmills and heavy-duty trailers",
+      "pt": "Projeto e fabricação de serrarias portáteis e carretas pesadas"
+    },
+    "buttonText": {
+      "es": "CONSULTAR ASERRADERO",
+      "en": "INQUIRE SAWMILL",
+      "pt": "CONSULTAR SERRARIA"
+    }
+  }
+}

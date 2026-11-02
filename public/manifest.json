@@ -1,0 +1,359 @@
+{
+  "categories": [
+    {
+      "id": "p1",
+      "folder": "01-bitacora",
+      "name": "La Bitácora"
+    },
+    {
+      "id": "p2",
+      "folder": "02-artefactos",
+      "name": "Artefactos Personales"
+    },
+    {
+      "id": "p3",
+      "folder": "03-colaborativa",
+      "name": "Manufactura Colaborativa"
+    },
+    {
+      "id": "p4",
+      "folder": "04-industrial",
+      "name": "Escalabilidad Industrial"
+    }
+  ],
+  "projects": {
+    "p1": [
+      {
+        "folder": "01-bitacora/btr-01-csl",
+        "autoImages": [
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg",
+          "6.jpg",
+          "7.jpg"
+        ],
+        "isDraft": false,
+        "views": 12
+      },
+      {
+        "folder": "01-bitacora/btr-02-gtr",
+        "autoImages": [
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg",
+          "6.jpg",
+          "7.jpg",
+          "8.jpg",
+          "9.jpg",
+          "10.jpg",
+          "11.jpg",
+          "12.JPG"
+        ],
+        "isDraft": false,
+        "views": 8
+      },
+      {
+        "folder": "01-bitacora/btr-03-grf",
+        "autoImages": [
+          "1.jpg",
+          "3.png",
+          "4.jpg",
+          "7.png",
+          "8.jpg",
+          "9.png",
+          "11.jpg",
+          "12.jpg"
+        ],
+        "isDraft": false,
+        "views": 5
+      },
+      {
+        "folder": "01-bitacora/btr-04-dlp",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "6.png",
+          "7.png",
+          "8.png",
+          "9.png",
+          "10.png"
+        ],
+        "isDraft": false,
+        "views": 14
+      },
+      {
+        "folder": "01-bitacora/btr-05-daq",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png",
+          "5.png",
+          "6.png"
+        ],
+        "isDraft": false,
+        "views": 19
+      },
+      {
+        "folder": "01-bitacora/btr-06-raq",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png",
+          "5.png",
+          "6.png"
+        ],
+        "isDraft": false,
+        "views": 7
+      },
+      {
+        "folder": "01-bitacora/btr-07-mds",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png"
+        ],
+        "isDraft": false,
+        "views": 4
+      },
+      {
+        "folder": "01-bitacora/btr-08-pva",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png",
+          "5.png",
+          "6.png",
+          "7.png",
+          "8.png",
+          "9.png"
+        ],
+        "isDraft": false,
+        "views": 11
+      },
+      {
+        "folder": "01-bitacora/btr-09-cpr",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png",
+          "5.png"
+        ],
+        "isDraft": false,
+        "views": 6
+      },
+      {
+        "folder": "01-bitacora/btr-10-lds",
+        "autoImages": [
+          "1.jpg",
+          "2.jpg",
+          "3.jpg"
+        ],
+        "isDraft": false,
+        "views": 9
+      },
+      {
+        "folder": "01-bitacora/btr-11-csl",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png",
+          "5.png",
+          "6.png",
+          "7.png",
+          "8.png"
+        ],
+        "isDraft": false,
+        "views": 16
+      },
+      {
+        "folder": "01-bitacora/btr-12-est",
+        "autoImages": [
+          "1.png",
+          "2.png"
+        ],
+        "isDraft": false,
+        "views": 22
+      },
+      {
+        "folder": "01-bitacora/btr-13-mst",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png"
+        ],
+        "isDraft": false,
+        "views": 25
+      },
+      {
+        "folder": "01-bitacora/btr-14-sll",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png"
+        ],
+        "isDraft": false,
+        "views": 21
+      },
+      {
+        "folder": "01-bitacora/btr-15-ppr",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png",
+          "5.png",
+          "6.png",
+          "7.png",
+          "8.png",
+          "9.png",
+          "10.png",
+          "11.png",
+          "12.png"
+        ],
+        "isDraft": true,
+        "views": 0
+      },
+      {
+        "folder": "01-bitacora/btr-16-esc",
+        "autoImages": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png"
+        ],
+        "isDraft": true,
+        "views": 0
+      }
+    ],
+    "p2": [
+      {
+        "folder": "02-artefactos/art-01-mrk",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 18
+      },
+      {
+        "folder": "02-artefactos/art-02-pra",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 11
+      },
+      {
+        "folder": "02-artefactos/art-03-lmn",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 15
+      },
+      {
+        "folder": "02-artefactos/art-04-jwr",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 17
+      }
+    ],
+    "p3": [
+      {
+        "folder": "03-colaborativa/col-01-mep",
+        "autoImages": [
+          "1.jpeg",
+          "2.jpeg",
+          "3.jpeg"
+        ],
+        "isDraft": false,
+        "views": 13
+      },
+      {
+        "folder": "03-colaborativa/col-02-mrm",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 16
+      },
+      {
+        "folder": "03-colaborativa/col-03-prp",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 10
+      },
+      {
+        "folder": "03-colaborativa/col-04-avr",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 14
+      },
+      {
+        "folder": "03-colaborativa/col-05-bid",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 20
+      },
+      {
+        "folder": "03-colaborativa/col-06-ecj",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 19
+      }
+    ],
+    "p4": [
+      {
+        "folder": "04-industrial/ind-01-map",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 12
+      },
+      {
+        "folder": "04-industrial/ind-02-cdp",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 15
+      },
+      {
+        "folder": "04-industrial/ind-03-rec",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 18
+      },
+      {
+        "folder": "04-industrial/ind-04-ibr",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 23
+      },
+      {
+        "folder": "04-industrial/ind-05-cmr",
+        "autoImages": [
+          "1.svg"
+        ],
+        "isDraft": false,
+        "views": 31
+      },
+      {
+        "folder": "04-industrial/ind-06-rcf",
+        "autoImages": [],
+        "isDraft": false,
+        "views": 27
+      },
+      {
+        "folder": "04-industrial/ind-07-trm",
+        "autoImages": [],
+        "isDraft": true,
+        "views": 0
+      },
+      {
+        "folder": "04-industrial/ind-08-csms",
+        "autoImages": [],
+        "isDraft": true,
+        "views": 0
+      }
+    ]
+  }
+}

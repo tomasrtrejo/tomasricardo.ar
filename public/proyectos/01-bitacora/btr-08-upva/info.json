@@ -1,0 +1,66 @@
+{
+  "code": "btr-08-upva",
+  "folderName": "btr-08-upva",
+  "year": "2024",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "FACULTAD // ROTOMOLDEO 2024",
+    "en": "UNIVERSITY // ROTOMOLDING 2024",
+    "pt": "FACULDADE // ROTOMOLDAGEM 2024"
+  },
+  "title": {
+    "es": "Puesto de Venta Ambulante de Frutas",
+    "en": "Mobile Fruit Street Cart",
+    "pt": "Ponto de Venda Ambulante de Frutas"
+  },
+  "subtitle": {
+    "es": "Puesto móvil en rotomoldeo pensado para la venta de frutas, ensaladas o licuados en la vía pública (2024)",
+    "en": "Rotomolded mobile street cart designed for selling fresh fruit, fruit salads, and smoothies (2024)",
+    "pt": "Módulo móvel rotomoldado pensado para venda de frutas, saladas de frutas ou vitaminas (2024)"
+  },
+  "specs": [
+    {
+      "label": "AÑO",
+      "value": "2024"
+    },
+    {
+      "label": "USO",
+      "value": "Venta de frutas al paso y transformación en el momento (ensaladas de fruta o licuados)"
+    },
+    {
+      "label": "PROCESO",
+      "value": "Monocasco plástico autoportante en rotomoldeo que reduce ensambles y uniones mecánicas"
+    },
+    {
+      "label": "MOVILIDAD",
+      "value": "Sistema de rodado pensado para subir cordones y moverse por adoquines con el mínimo esfuerzo"
+    }
+  ],
+  "report": {
+    "es": "Proyecto universitario de 2024 pensado para la venta ambulante de frutas o su transformación en el lugar en ensaladas o licuados. Se diseñó para fabricarse en rotomoldeo: la pieza principal es un monocasco plástico autoportante de gran volumen que reduce ensambles y uniones mecánicas, achicando costos de matricería. Además, el sistema de ruedas fue pensado para poder subir cordones y moverse por calles adoquinadas haciendo la menor fuerza posible.",
+    "en": "A 2024 university project designed for street vending of fresh fruit, fruit salads, or smoothies. Engineered for rotational molding, the main body is a self-supporting high-volume plastic monocoque that minimizes mechanical joints and tooling costs, paired with wheel geometry capable of climbing curbs and rolling over cobblestones with minimal effort.",
+    "pt": "Projeto universitário de 2024 pensado para a venda ambulante de frutas, saladas ou vitaminas. Projetado para fabricação em rotomoldagem com corpo monobloco autoportante e rodado preparado para subir guias e ruas de paralelepípedo com pouco esforço."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "ARCHIVO // 2024",
+      "en": "ARCHIVE // 2024",
+      "pt": "ARQUIVO // 2024"
+    },
+    "caption": {
+      "es": "Diseño universitario para rotomoldeo y equipamiento urbano",
+      "en": "University rotomolding and urban street equipment design",
+      "pt": "Design universitário para rotomoldagem e equipamento urbano"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}

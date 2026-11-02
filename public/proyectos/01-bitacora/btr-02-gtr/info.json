@@ -1,0 +1,66 @@
+{
+  "code": "btr-02-gtr",
+  "folderName": "btr-02-gtr",
+  "year": "2021",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "LUTHERÍA // 2021 - 2026",
+    "en": "LUTHIERY // 2021 - 2026",
+    "pt": "LUTHIERIA // 2021 - 2026"
+  },
+  "title": {
+    "es": "Guitarra Acústica",
+    "en": "Acoustic Guitar",
+    "pt": "Violão Acústico"
+  },
+  "subtitle": {
+    "es": "Diseño y fabricación autodidacta de guitarra acústica en caoba y purple heart con herramientas manuales y propias (2021), hoy en digitalización para nuevos instrumentos (2026)",
+    "en": "Self-taught design and build of a mahogany and purpleheart acoustic guitar using handmade tools (2021), expanding into digital plans for new instruments in 2026",
+    "pt": "Design e fabricação autodidata de violão em mogno e roxinho com ferramentas manuais (2021), hoje em digitalização para novos instrumentos (2026)"
+  },
+  "specs": [
+    {
+      "label": "AÑO",
+      "value": "2021 (Construcción física) // 2026 (Registro digital y nuevos modelos)"
+    },
+    {
+      "label": "MADERAS",
+      "value": "Caoba y Purple Heart"
+    },
+    {
+      "label": "PROCESO",
+      "value": "100% autodidacta con herramientas manuales y herramientas fabricadas a medida para el proyecto"
+    },
+    {
+      "label": "PROYECCIÓN",
+      "value": "Desarrollo de bajos y guitarras tanto acústicos como eléctricos"
+    }
+  ],
+  "report": {
+    "es": "En 2021 diseñé y fabriqué esta guitarra acústica en madera de caoba y purple heart. Fue un trabajo hecho de forma completamente autodidacta, usando herramientas manuales y fabricando mis propias herramientas y moldes a medida para poder resolver cada parte del instrumento. Ahora en 2026 empecé el registro digital de este trabajo junto con la proyección de otros instrumentos —tanto bajos como guitarras, acústicos y eléctricos—, lo que me abre la puerta a futuro para la fabricación de varios instrumentos.",
+    "en": "In 2021 I designed and built this acoustic guitar out of mahogany and purpleheart. It was a completely self-taught build using hand tools alongside custom jigs and tools I fabricated specifically for the project. Now in 2026, I am creating the digital CAD records and planning future acoustic and electric guitars and basses.",
+    "pt": "Em 2021 projetei e construí este violão acústico em mogno e purple heart de forma totalmente autodidata, usando ferramentas manuais e ferramentas feitas sob medida. Em 2026 iniciei o registro digital e o projeto de novos baixos e guitarras acústicos e elétricos."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "LUTHERÍA & DESARROLLO",
+      "en": "LUTHIERY & DESIGN",
+      "pt": "LUTHIERIA & PROJETO"
+    },
+    "caption": {
+      "es": "Construcción artesanal y proyección de instrumentos de cuerda",
+      "en": "Handcrafted luthiery and string instrument development",
+      "pt": "Construção artesanal e projeto de instrumentos de corda"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}

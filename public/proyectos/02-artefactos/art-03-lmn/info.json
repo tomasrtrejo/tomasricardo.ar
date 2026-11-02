@@ -1,0 +1,66 @@
+{
+  "code": "art-03-lmn",
+  "folderName": "art-03-lmn",
+  "year": "2026",
+  "category": {
+    "es": "02 // LO ARTESANAL",
+    "en": "02 // THE CRAFT",
+    "pt": "02 // O ARTESANAL"
+  },
+  "badge": {
+    "es": "ILUMINACIÓN // TALLER",
+    "en": "LIGHTING // WORKSHOP",
+    "pt": "ILUMINAÇÃO // OFICINA"
+  },
+  "title": {
+    "es": "Luminarias",
+    "en": "Lighting Pieces",
+    "pt": "Luminárias"
+  },
+  "subtitle": {
+    "es": "Piezas de iluminación que voy armando en el taller con el tiempo, probando cemento, hierro y madera",
+    "en": "Lighting pieces built over time in the workshop experimenting with concrete, iron, and wood",
+    "pt": "Peças de iluminação feitas ao longo do tempo na oficina testando cimento, ferro e madeira"
+  },
+  "specs": [
+    {
+      "label": "MATERIALES",
+      "value": "Mezcla de bases de cemento, estructuras de hierro y partes en madera"
+    },
+    {
+      "label": "PROCESO",
+      "value": "Búsqueda libre en el taller, armando cada lámpara a medida que surgen las ideas"
+    },
+    {
+      "label": "ELÉCTRICA",
+      "value": "Cables textiles, portalámparas resistentes y focos de luz cálida"
+    },
+    {
+      "label": "FORMATO",
+      "value": "Lámparas de mesa, de escritorio o colgantes según lo que pida cada pieza"
+    }
+  ],
+  "report": {
+    "es": "Estas luminarias no responden a un único molde fijo, sino que son piezas de iluminación que voy haciendo con el tiempo a medida que van saliendo en el taller. Me sirven para probar combinaciones entre el peso del cemento, el hierro doblado o soldado y el calor de la madera, buscando que cada lámpara tenga su propia forma y dé una buena luz cálida.",
+    "en": "These lamps aren't built from a single fixed template; they are lighting pieces I put together over time as ideas come up in the shop. They let me test combinations of cast concrete, bent or welded iron, and warm timber.",
+    "pt": "Essas luminárias não seguem um molde único; são peças de iluminação que vou construindo com o tempo conforme as ideias surgem na oficina, combinando cimento, ferro e madeira."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "PIEZAS ÚNICAS",
+      "en": "ONE-OFF PIECES",
+      "pt": "PEÇAS ÚNICAS"
+    },
+    "caption": {
+      "es": "Lámparas armadas de forma artesanal en el taller",
+      "en": "Handcrafted lamps built in the workshop",
+      "pt": "Luminárias construídas artesanalmente na oficina"
+    },
+    "buttonText": {
+      "es": "CONSULTAR LUMINARIAS",
+      "en": "INQUIRE LIGHTING",
+      "pt": "CONSULTAR LUMINÁRIAS"
+    }
+  }
+}

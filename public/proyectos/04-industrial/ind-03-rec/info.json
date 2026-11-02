@@ -1,0 +1,66 @@
+{
+  "code": "ind-03-rec",
+  "folderName": "ind-03-rec",
+  "year": "2026",
+  "category": {
+    "es": "04 // ESCALABILIDAD INDUSTRIAL",
+    "en": "04 // INDUSTRIAL SCALABILITY",
+    "pt": "04 // ESCALABILIDADE INDUSTRIAL"
+  },
+  "badge": {
+    "es": "RECICLADO // PLANTA PRODUCTIVA",
+    "en": "RECYCLING // PRODUCTION PLANT",
+    "pt": "RECICLAGEM // PLANTA PRODUTIVA"
+  },
+  "title": {
+    "es": "Planta de Reciclado",
+    "en": "Recycling Plant",
+    "pt": "Planta de Reciclagem"
+  },
+  "subtitle": {
+    "es": "Escalabilidad de una planta de reciclado desde cero hasta la fabricación de productos útiles a partir de papeles, vidrios, plásticos, hierros y orgánicos",
+    "en": "Scalable recycling plant planned from scratch all the way to manufacturing usable products from paper, glass, plastics, iron, and organic waste",
+    "pt": "Escalabilidade de uma planta de reciclagem do zero até a fabricação de produtos úteis a partir de papel, vidro, plástico, ferro e orgânicos"
+  },
+  "specs": [
+    {
+      "label": "PLÁSTICOS Y VIDRIOS",
+      "value": "Separación, limpieza y triturado para transformarlos en materia prima lista para nuevos productos"
+    },
+    {
+      "label": "PAPELES Y HIERROS",
+      "value": "Recuperación, prensado y procesamiento de papel, cartón y chatarra metálica para volver al circuito productivo"
+    },
+    {
+      "label": "RESIDUOS ORGÁNICOS",
+      "value": "Aprovechamiento de toda la parte orgánica para transformarla en compost y tierra fértil"
+    },
+    {
+      "label": "META DEL PROYECTO",
+      "value": "No quedarse solo en separar basura, sino cubrir el proceso completo hasta fabricar cosas utilizables"
+    }
+  ],
+  "report": {
+    "es": "Este proyecto plantea cómo escalar una planta de reciclado desde cero hasta llegar a la fabricación de productos terminados. La idea es organizar el recorrido completo que lleva cada material —papeles, vidrios, plásticos, hierros y compost con lo orgánico—, entendiendo qué máquinas y qué pasos necesita cada uno desde que entra como descarte hasta que se convierte de nuevo en algo utilizable.",
+    "en": "This project maps out how to scale a recycling facility from the ground up all the way to manufacturing finished, usable goods. Every material stream—paper, glass, plastics, scrap iron, and organic waste turned into compost—follows its own processing line until it becomes a practical product again.",
+    "pt": "Este projeto planeja a escalabilidade de uma planta de reciclagem do zero até a fabricação de produtos úteis, cobrindo o processo específico de papéis, vidros, plásticos, ferros e compostagem de orgânicos."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "PROYECTO DE ESCALA",
+      "en": "SCALE PROJECT",
+      "pt": "PROJETO DE ESCALA"
+    },
+    "caption": {
+      "es": "Desarrollo de procesos y equipamiento para plantas de reciclado y transformación",
+      "en": "Process layout and equipment planning for recycling and manufacturing plants",
+      "pt": "Desenvolvimento de processos e equipamentos para reciclagem"
+    },
+    "buttonText": {
+      "es": "CONSULTAR PLANTA",
+      "en": "INQUIRE PLANT",
+      "pt": "CONSULTAR PLANTA"
+    }
+  }
+}

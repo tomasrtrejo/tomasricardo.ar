@@ -1,0 +1,69 @@
+{
+  "code": "col-03-prp",
+  "folderName": "col-03-prp",
+  "year": "2026",
+  "category": {
+    "es": "03 // MANUFACTURA COLABORATIVA",
+    "en": "03 // COLLABORATIVE MANUFACTURING",
+    "pt": "03 // MANUFATURA COLABORATIVA"
+  },
+  "badge": {
+    "es": "IMPRESIÓN 3D // VARILLAS",
+    "en": "3D PRINTING // WOOD DOWELS",
+    "pt": "IMPRESSÃO 3D // VARETAS"
+  },
+  "title": {
+    "es": "Perchero de Pie",
+    "en": "Standing Coat Rack",
+    "pt": "Cabideiro de Chão"
+  },
+  "subtitle": {
+    "es": "Perchero de pie armado combinando uniones hechas en impresión 3D y varillas redondas vinculadas con tornillos",
+    "en": "Standing coat rack built by combining 3D-printed joint hubs and round rods fastened with screws",
+    "pt": "Cabideiro de chão montado combinando conexões em impressão 3D e varetas redondas fixadas com parafusos"
+  },
+  "specs": [
+    {
+      "label": "NUDOS Y UNIONES",
+      "value": "Piezas diseñadas en CAD y fabricadas en impresión 3D con buena pared y relleno estructural"
+    },
+    {
+      "label": "ESTRUCTURA",
+      "value": "Varillas redondas estándar que forman las patas y los brazos para colgar"
+    },
+    {
+      "label": "ARMADO",
+      "value": "Unión directa y firme con tornillos entre las piezas impresas y las varillas"
+    },
+    {
+      "label": "ESTANDARIZACIÓN",
+      "value": "Fácil de producir en serie, desarmar y enviar en caja chica"
+    }
+  ],
+  "report": {
+    "es": "Un perchero de pie pensado para ser práctico de fabricar y armar. En lugar de hacer encastres complejos a mano en cada pieza, diseñé los conectores para imprimirlos en 3D y usarlos como nudos donde entran las varillas redondas. Todo queda fijo y rígido ajustando con tornillos entre la impresión y las varillas, logrando un producto fácil de estandarizar y repetir.",
+    "en": "A practical standing coat rack designed for straightforward fabrication and assembly. Custom 3D-printed connector hubs receive standard round rods, locked together with screws to create a rigid, repeatable structure that is easy to produce in batches.",
+    "pt": "Um cabideiro de chão prático de fabricar e montar, usando conectores impressos em 3D que unem varetas redondas fixadas com parafusos."
+  },
+  "commercial": {
+    "type": "batch",
+    "price": 22,
+    "currency": "USD",
+    "isFromPrice": false,
+    "badge": {
+      "es": "PRODUCCIÓN SERIADA",
+      "en": "BATCH PRODUCTION",
+      "pt": "PRODUÇÃO SERIADA"
+    },
+    "caption": {
+      "es": "Diseño estandarizado listo para armar por encargo o en cantidad",
+      "en": "Standardized design ready for single orders or batch runs",
+      "pt": "Design padronizado pronto para encomendas ou lotes"
+    },
+    "buttonText": {
+      "es": "CONSULTAR PERCHERO",
+      "en": "INQUIRE COAT RACK",
+      "pt": "CONSULTAR CABIDEIRO"
+    }
+  }
+}
