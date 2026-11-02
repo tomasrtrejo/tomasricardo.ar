@@ -578,7 +578,7 @@
             <input type="text" id="contact-name" required placeholder="Ej. Martín González" data-i18n-placeholder="contact-ph-name" class="w-full bg-[#121418] border border-cnc-border focus:border-industrial text-white px-3.5 py-2.5 text-xs outline-none transition-colors">
           </div>
 
-          <!-- Email & Teléfono -->
+          <!-- Email & Teléfono con selector de país -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-zinc-400 uppercase font-semibold text-[11px] mb-1.5" for="contact-email" data-i18n="contact-lbl-email">
@@ -590,7 +590,26 @@
               <label class="block text-zinc-400 uppercase font-semibold text-[11px] mb-1.5" for="contact-phone" data-i18n="contact-lbl-phone">
                 TELÉFONO / WHATSAPP
               </label>
-              <input type="tel" id="contact-phone" placeholder="+54 9 11 ..." data-i18n-placeholder="contact-ph-phone" class="w-full bg-[#121418] border border-cnc-border focus:border-industrial text-white px-3.5 py-2.5 text-xs outline-none transition-colors">
+              <div class="flex items-stretch">
+                <select id="contact-phone-prefix" aria-label="Código de país" class="bg-[#16191F] border border-r-0 border-cnc-border focus:border-industrial text-zinc-200 px-2 py-2.5 text-xs outline-none transition-colors cursor-pointer shrink-0 font-mono-tech">
+                  <option value="54" selected>🇦🇷 +54</option>
+                  <option value="598">🇺🇾 +598</option>
+                  <option value="55">🇧🇷 +55</option>
+                  <option value="56">🇨🇱 +56</option>
+                  <option value="595">🇵🇾 +595</option>
+                  <option value="591">🇧🇴 +591</option>
+                  <option value="51">🇵🇪 +51</option>
+                  <option value="57">🇨🇴 +57</option>
+                  <option value="52">🇲🇽 +52</option>
+                  <option value="1">🇺🇸 +1</option>
+                  <option value="34">🇪🇸 +34</option>
+                  <option value="39">🇮🇹 +39</option>
+                  <option value="49">🇩🇪 +49</option>
+                  <option value="33">🇫🇷 +33</option>
+                  <option value="44">🇬🇧 +44</option>
+                </select>
+                <input type="tel" id="contact-phone" placeholder="11 2345 6789" data-i18n-placeholder="contact-ph-phone" class="w-full min-w-0 bg-[#121418] border border-cnc-border focus:border-industrial text-white px-3 py-2.5 text-xs outline-none transition-colors">
+              </div>
             </div>
           </div>
 
@@ -619,8 +638,8 @@
 
           <!-- Botones de Acción -->
           <div class="pt-2 flex items-center justify-end gap-3">
-            <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20">
-              <span data-i18n="contact-btn-submit">ENVIAR CORREO</span>
+            <button type="submit" id="contact-submit-btn" class="w-full sm:w-auto px-6 py-2.5 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20 disabled:opacity-50 disabled:pointer-events-none">
+              <span id="contact-submit-text" data-i18n="contact-btn-submit">ENVIAR CORREO</span>
               <span>✉</span>
             </button>
           </div>
@@ -876,7 +895,7 @@
         'contact-lbl-email': 'CORREO ELECTRÓNICO *',
         'contact-ph-email': 'tu@email.com',
         'contact-lbl-phone': 'TELÉFONO / WHATSAPP',
-        'contact-ph-phone': '+54 9 11 ...',
+        'contact-ph-phone': '11 2345 6789',
         'contact-lbl-reason': 'MOTIVO DEL CONTACTO *',
         'contact-ph-reason': 'Escribí el motivo de tu consulta (máx. 10 palabras)...',
         'contact-reason-limit': 'Límite de 10 palabras alcanzado.',
@@ -985,7 +1004,7 @@
         'contact-lbl-email': 'EMAIL ADDRESS *',
         'contact-ph-email': 'you@email.com',
         'contact-lbl-phone': 'PHONE / WHATSAPP',
-        'contact-ph-phone': '+1 / +54 ...',
+        'contact-ph-phone': '11 2345 6789',
         'contact-lbl-reason': 'SUBJECT / REASON FOR INQUIRY *',
         'contact-ph-reason': 'Write the subject or reason for your inquiry (max 10 words)...',
         'contact-reason-limit': '10-word limit reached.',
@@ -1094,7 +1113,7 @@
         'contact-lbl-email': 'E-MAIL *',
         'contact-ph-email': 'voce@email.com',
         'contact-lbl-phone': 'TELEFONE / WHATSAPP',
-        'contact-ph-phone': '+55 / +54 ...',
+        'contact-ph-phone': '11 98765 4321',
         'contact-lbl-reason': 'MOTIVO DO CONTATO *',
         'contact-ph-reason': 'Escreva o motivo da sua consulta (máx. 10 palavras)...',
         'contact-reason-limit': 'Limite de 10 palavras atingido.',
@@ -1788,11 +1807,11 @@
         const items = projectsDatabase && projectsDatabase[panelId];
         if (!items || items.length === 0) return;
 
-        // Sort items dynamically by views descending (ties by code)
+        // Sort items by optional custom order (item.orden), then by folder code numbering (01, 02, 03...)
         items.sort((a, b) => {
-          const vA = typeof a.views === 'number' ? a.views : 0;
-          const vB = typeof b.views === 'number' ? b.views : 0;
-          if (vB !== vA) return vB - vA;
+          const ordA = typeof a.orden === 'number' ? a.orden : 9999;
+          const ordB = typeof b.orden === 'number' ? b.orden : 9999;
+          if (ordA !== ordB) return ordA - ordB;
           return (a.code || '').localeCompare(b.code || '', undefined, { numeric: true, sensitivity: 'base' });
         });
 
@@ -1804,7 +1823,6 @@
           const validImages = (item.images || []).filter(f => typeof f === 'string' && !f.toLowerCase().endsWith('cover.svg'));
           const firstImg = validImages[0];
           const imgUrl = firstImg ? (firstImg.startsWith('http') || firstImg.startsWith('/') ? firstImg : `/proyectos/${item._folder}/${firstImg}`) : null;
-          const views = typeof item.views === 'number' ? item.views : 0;
 
           return `
             <div onclick="openTechModal('${panelId}', ${idx})" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm overflow-hidden">
@@ -1818,10 +1836,6 @@
                 <div>
                   <div class="flex justify-between items-start font-mono-tech text-[11px] text-zinc-500 mb-3">
                     <span class="text-industrial font-semibold">${code}</span>
-                    <span class="text-zinc-500 font-mono-tech text-[10px] flex items-center gap-1 group-hover/card:text-zinc-300 transition-colors" title="${views} visitas">
-                      <span class="text-zinc-600 text-[11px]">👁</span>
-                      <span>${views}</span>
-                    </span>
                   </div>
                   <h4 class="text-base font-bold text-white mb-2 leading-snug">${title}</h4>
                   <p class="text-xs text-zinc-400 leading-normal">${desc}</p>
@@ -1880,9 +1894,6 @@
                 data._folder = relFolder;
                 data.folderName = relFolder.split('/').pop();
                 data.code = data.folderName;
-                if (entry && entry.views !== undefined) {
-                  data.views = entry.views;
-                }
                 if ((!data.images || data.images.length === 0) && autoImages.length > 0) {
                   data.images = autoImages;
                 }
@@ -1923,14 +1934,6 @@
       activePanelId = panelId;
       activeItemIdx = itemIdx;
 
-      // Increment view count dynamically and notify backend
-      const items = projectsDatabase && projectsDatabase[panelId];
-      const item = items && items[itemIdx];
-      if (item && item.code) {
-        item.views = (typeof item.views === 'number' ? item.views : 0) + 1;
-        fetch('/api/projects/' + encodeURIComponent(item.code) + '/view', { method: 'POST' }).catch(() => {});
-      }
-
       renderTechModalContent();
 
       const modalEl = document.getElementById('tech-modal');
@@ -1955,11 +1958,6 @@
         boxEl.classList.add('scale-95', 'opacity-0');
         modalEl.classList.remove('opacity-100');
         modalEl.classList.add('opacity-0', 'pointer-events-none');
-      }
-
-      // Re-render active grid to update rank and view counter
-      if (activePanelId) {
-        renderPanelGrid(activePanelId);
       }
     }
 
@@ -2909,11 +2907,18 @@
         feedbackEl.innerHTML = '';
       }
 
+      const submitBtn = document.getElementById('contact-submit-btn');
+      const submitTextEl = document.getElementById('contact-submit-text');
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitTextEl) {
+        submitTextEl.textContent = (i18nData[lang] && i18nData[lang]['contact-btn-submit']) || 'ENVIAR CORREO';
+      }
+
       if (window.contactOpenedFromCart && cart.length > 0) {
         populateCartCheckoutFields();
       } else {
         const panelItems = (projectsDatabase && projectsDatabase[activePanelId]) || (projectsDatabase && projectsDatabase['p1']) || [];
-        const data = panelItems[activeItemIdx] || panelItems[0] || { code: 'TRDI', title: { es: 'Consulta General', en: 'General Inquiry', pt: 'Consulta Geral' } };
+        const data = panelItems[activeItemIdx] || panelItems[0] || { code: 'TRDI', title: { es: 'Consulta general', en: 'General inquiry', pt: 'Consulta geral' } };
 
         const codeEl = document.getElementById('contact-item-code');
         const titleEl = document.getElementById('contact-item-title');
@@ -2974,10 +2979,19 @@
     function openCommissionModal() { openContactModal(false); }
     function closeCommissionModal() { closeContactModal(); }
 
-    function handleContactSubmit(event) {
+    async function handleContactSubmit(event) {
       event.preventDefault();
 
+      const submitBtn = document.getElementById('contact-submit-btn');
+      const submitTextEl = document.getElementById('contact-submit-text');
+      if (submitBtn && submitBtn.disabled) return;
+
       const lang = currentLanguage || 'es';
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitTextEl) {
+        submitTextEl.textContent = lang === 'en' ? 'SENDING...' : 'ENVIANDO...';
+      }
+
       const codeEl = document.getElementById('contact-item-code');
       const titleEl = document.getElementById('contact-item-title');
       const pieceCode = codeEl ? codeEl.textContent.trim() : 'TRDI';
@@ -2985,47 +2999,89 @@
 
       const name = document.getElementById('contact-name').value.trim();
       const email = document.getElementById('contact-email').value.trim();
-      const phone = document.getElementById('contact-phone').value.trim();
+      const prefixEl = document.getElementById('contact-phone-prefix');
+      const prefix = prefixEl ? prefixEl.value.trim() : '54';
+      const rawPhone = document.getElementById('contact-phone').value.trim();
       const reasonEl = document.getElementById('contact-reason');
       validateReasonWordCount(reasonEl);
       const reason = reasonEl ? reasonEl.value.trim() : '';
       const message = document.getElementById('contact-message').value.trim();
 
+      // Build clean phone digits and direct clickable WhatsApp link
+      let cleanDigits = rawPhone.replace(/\D/g, '').replace(/^0+/, '');
+      const fullPhoneDigits = cleanDigits
+        ? (cleanDigits.startsWith(prefix) && cleanDigits.length > prefix.length + 6 ? cleanDigits : `${prefix}${cleanDigits}`)
+        : '';
+      const formattedPhone = cleanDigits ? `+${prefix} ${rawPhone}` : 'No especificado';
+      const whatsappLink = fullPhoneDigits
+        ? `https://wa.me/${fullPhoneDigits}?text=${encodeURIComponent(`Hola ${name}, te escribo por tu consulta en TRDI (${pieceCode}).`)}`
+        : 'No especificado';
+
       const subject = reason ? `${reason} [${pieceCode}]` : `[TRDI] ${pieceCode} - ${pieceTitle}`;
-      const body = lang === 'en'
-        ? `Full Name: ${name}\nEmail: ${email}\nPhone / WhatsApp: ${phone || 'Not specified'}\n\nReference: ${pieceCode} (${pieceTitle})\nSubject: ${reason}\n\nMessage:\n${message}`
-        : (lang === 'pt'
-          ? `Nome: ${name}\nE-mail: ${email}\nTelefone / WhatsApp: ${phone || 'Não informado'}\n\nReferência: ${pieceCode} (${pieceTitle})\nMotivo: ${reason}\n\nMensagem:\n${message}`
-          : `Nombre y Apellido: ${name}\nCorreo: ${email}\nTeléfono / WhatsApp: ${phone || 'No especificado'}\n\nReferencia: ${pieceCode} (${pieceTitle})\nMotivo del contacto: ${reason}\n\nMensaje:\n${message}`);
 
-      const mailtoUrl = `mailto:tomasrtrejo99@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Fire email dispatch in background with keepalive so UI responds instantaneously
+      fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
+        method: 'POST',
+        keepalive: true,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: subject,
+          _replyto: email,
+          _template: 'table',
+          'Nombre y Apellido': name,
+          'Correo Electrónico': email,
+          'Teléfono': formattedPhone,
+          'WhatsApp Directo': whatsappLink,
+          'Referencia': `${pieceCode} (${pieceTitle})`,
+          'Motivo del Contacto': reason,
+          'Mensaje / Especificaciones': message
+        })
+      }).catch(() => {});
 
-      // Display feedback in dialog
+      await new Promise(resolve => setTimeout(resolve, 250));
+
+      // Show clean confirmation message (only "✓ CONSULTA GENERADA CON ÉXITO")
       const feedbackEl = document.getElementById('contact-feedback');
       if (feedbackEl) {
         feedbackEl.className = 'bg-industrial/15 border border-industrial text-industrial p-3.5 text-xs leading-relaxed block';
         if (lang === 'en') {
-          feedbackEl.innerHTML = `
-            <div class="font-bold text-white mb-1">✓ INQUIRY READY</div>
-            <div>Your email client will open to send directly to <strong>tomasrtrejo99@gmail.com</strong>.</div>
-            <a href="${mailtoUrl}" class="inline-block mt-2 font-bold underline text-white hover:text-industrial">Open Email Manually ✉</a>
-          `;
+          feedbackEl.innerHTML = `<div class="font-bold text-white">✓ INQUIRY GENERATED SUCCESSFULLY</div>`;
         } else if (lang === 'pt') {
-          feedbackEl.innerHTML = `
-            <div class="font-bold text-white mb-1">✓ CONSULTA GERADA</div>
-            <div>Seu aplicativo de e-mail abrirá para enviar diretamente para <strong>tomasrtrejo99@gmail.com</strong>.</div>
-            <a href="${mailtoUrl}" class="inline-block mt-2 font-bold underline text-white hover:text-industrial">Abrir E-mail Manualmente ✉</a>
-          `;
+          feedbackEl.innerHTML = `<div class="font-bold text-white">✓ CONSULTA GERADA COM SUCESSO</div>`;
         } else {
-          feedbackEl.innerHTML = `
-            <div class="font-bold text-white mb-1">✓ CONSULTA GENERADA CON ÉXITO</div>
-            <div>Se abrirá tu gestor de correo para enviar directamente a <strong>tomasrtrejo99@gmail.com</strong> con todos los datos precargados.</div>
-            <a href="${mailtoUrl}" class="inline-block mt-2 font-bold underline text-white hover:text-industrial">Abrir Correo Manualmente ✉</a>
-          `;
+          feedbackEl.innerHTML = `<div class="font-bold text-white">✓ CONSULTA GENERADA CON ÉXITO</div>`;
         }
       }
 
-      window.location.href = mailtoUrl;
+      if (window.contactOpenedFromCart) {
+        cart = [];
+        updateCartUI();
+      }
+
+      // Automatically close the contact modal and return to the previous view after 1.3s
+      setTimeout(() => {
+        closeContactModal();
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const phoneInput = document.getElementById('contact-phone');
+        const reasonInput = document.getElementById('contact-reason');
+        const msgInput = document.getElementById('contact-message');
+        if (nameInput) nameInput.value = '';
+        if (emailInput) emailInput.value = '';
+        if (phoneInput) phoneInput.value = '';
+        if (reasonInput) {
+          reasonInput.value = '';
+          validateReasonWordCount(reasonInput);
+        }
+        if (msgInput) msgInput.value = '';
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitTextEl) {
+          submitTextEl.textContent = (i18nData[currentLanguage] && i18nData[currentLanguage]['contact-btn-submit']) || 'ENVIAR CORREO';
+        }
+      }, 1300);
     }
 
     // Initialize default language, quote timer, live exchange rates, and project folders
