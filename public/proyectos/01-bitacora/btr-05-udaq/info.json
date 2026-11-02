@@ -1,0 +1,62 @@
+{
+  "code": "btr-05-udaq",
+  "folderName": "btr-05-udaq",
+  "year": "2023",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "FACULTAD // MODELADO & RENDER 2023",
+    "en": "UNIVERSITY // 3D & RENDER 2023",
+    "pt": "FACULDADE // 3D & RENDER 2023"
+  },
+  "title": {
+    "es": "Dron Acuático",
+    "en": "Aquatic Drone",
+    "pt": "Drone Aquático"
+  },
+  "subtitle": {
+    "es": "Proyecto de modelado 3D en SolidWorks y renderizado en KeyShot y 3ds Max + V-Ray (2023)",
+    "en": "3D modeling project built in SolidWorks and rendered in KeyShot and 3ds Max + V-Ray (2023)",
+    "pt": "Projeto de modelagem 3D no SolidWorks e renderização no KeyShot e 3ds Max + V-Ray (2023)"
+  },
+  "specs": [
+    {
+      "label": "AÑO",
+      "value": "2023"
+    },
+    {
+      "label": "MODELADO 3D",
+      "value": "Modelado por completo en SolidWorks"
+    },
+    {
+      "label": "RENDERIZADO",
+      "value": "Pruebas de iluminación, materiales y entorno en KeyShot y en 3ds Max + V-Ray"
+    }
+  ],
+  "report": {
+    "es": "Trabajo realizado en 2023 enfocado puramente en el manejo de herramientas digitales. Fue un proyecto modelado por completo en SolidWorks y después llevado a dos motores distintos —KeyShot y 3ds Max con V-Ray— para practicar texturas, luces y renderizado.",
+    "en": "A 2023 digital modeling and visualization project. The aquatic drone was modeled entirely in SolidWorks and subsequently rendered using both KeyShot and 3ds Max with V-Ray.",
+    "pt": "Projeto de 2023 focado em modelagem completa no SolidWorks e renderização no KeyShot e no 3ds Max com V-Ray."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "MODELADO & RENDER // 2023",
+      "en": "3D & RENDER // 2023",
+      "pt": "3D & RENDER // 2023"
+    },
+    "caption": {
+      "es": "Práctica de modelado CAD en SolidWorks y renderizado digital",
+      "en": "SolidWorks CAD modeling and digital rendering practice",
+      "pt": "Prática de modelagem CAD no SolidWorks e renderização digital"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}

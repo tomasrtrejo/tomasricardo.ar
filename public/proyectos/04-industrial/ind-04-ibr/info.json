@@ -1,0 +1,66 @@
+{
+  "code": "ind-04-ibr",
+  "folderName": "ind-04-ibr",
+  "year": "2026",
+  "category": {
+    "es": "04 // ESCALABILIDAD INDUSTRIAL",
+    "en": "04 // INDUSTRIAL SCALABILITY",
+    "pt": "04 // ESCALABILIDADE INDUSTRIAL"
+  },
+  "badge": {
+    "es": "CONSTRUCCIÓN 3D // BARRO & CEMENTO",
+    "en": "3D CONSTRUCTION // MUD & CONCRETE",
+    "pt": "CONSTRUÇÃO 3D // BARRO & CIMENTO"
+  },
+  "title": {
+    "es": "Me Da Impresión",
+    "en": "Me Da Impresión (3D House Printer)",
+    "pt": "Me Da Impresión (Impressora de Casas)"
+  },
+  "subtitle": {
+    "es": "Diseño de una impresora 3D de casas desarmable, pensada para imprimir tanto en barro como en cemento y adaptar cada diseño a medida",
+    "en": "Collapsible 3D house printer designed to extrude both mud and concrete, adapting housing designs to custom needs",
+    "pt": "Projeto de impressora 3D de casas desmontável, pensada para imprimir tanto em barro quanto em cimento sob medida"
+  },
+  "specs": [
+    {
+      "label": "ESTRUCTURA",
+      "value": "Máquina desarmable y transportable para poder armarla directamente en el terreno de obra"
+    },
+    {
+      "label": "MATERIALES DE IMPRESIÓN",
+      "value": "Preparada para bombear e imprimir tanto mezclas de barro como de cemento"
+    },
+    {
+      "label": "FLEXIBILIDAD",
+      "value": "Permite adaptar los planos y las medidas de cada construcción según lo que necesite el lugar o la persona"
+    },
+    {
+      "label": "OBJETIVO",
+      "value": "Llevar la lógica de la impresión 3D de escritorio a la escala real de una vivienda"
+    }
+  ],
+  "report": {
+    "es": "Bajo el nombre 'Me Da Impresión', la idea de este proyecto es diseñar una impresora 3D de casas que sea completamente desarmable para poder llevarla al terreno, armarla y ponerse a levantar paredes. Está pensada para que no quede atada a un solo material, sino que pueda imprimir tanto en cemento como en barro, y que los diseños de las viviendas se puedan ir adaptando a medida según cada proyecto.",
+    "en": "Titled 'Me Da Impresión', this project focuses on designing a collapsible, transportable 3D house printer that can be assembled right on the building site. It is engineered to print with both concrete and raw mud mixes, allowing housing layouts to be customized to measure.",
+    "pt": "Sob o nome 'Me Da Impresión', o objetivo deste projeto é desenvolver uma impressora 3D de casas desmontável que possa imprimir tanto em cimento quanto em barro, adaptando os projetos sob medida."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "DESARROLLO TECNOLÓGICO",
+      "en": "TECH DEVELOPMENT",
+      "pt": "DESENVOLVIMENTO TECNOLÓGICO"
+    },
+    "caption": {
+      "es": "Diseño de maquinaria de construcción impresa en barro y cemento",
+      "en": "Machinery design for 3D printed mud and concrete construction",
+      "pt": "Projeto de maquinário para construção impressa em barro e cimento"
+    },
+    "buttonText": {
+      "es": "CONSULTAR PROYECTO",
+      "en": "INQUIRE PROJECT",
+      "pt": "CONSULTAR PROJETO"
+    }
+  }
+}

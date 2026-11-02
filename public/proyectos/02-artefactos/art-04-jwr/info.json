@@ -1,0 +1,66 @@
+{
+  "code": "art-04-jwr",
+  "folderName": "art-04-jwr",
+  "year": "2026",
+  "category": {
+    "es": "02 // LO ARTESANAL",
+    "en": "02 // THE CRAFT",
+    "pt": "02 // O ARTESANAL"
+  },
+  "badge": {
+    "es": "EXPLORACIÓN // METALES",
+    "en": "EXPLORATION // METALWORK",
+    "pt": "EXPLORAÇÃO // METAIS"
+  },
+  "title": {
+    "es": "Joyería",
+    "en": "Jewelry",
+    "pt": "Joalheria"
+  },
+  "subtitle": {
+    "es": "Exploración de un oficio nuevo trabajando metales a escala chica con alambre trenzado, martillo y soplete",
+    "en": "Exploring a new craft by working metals at a small scale with braided wire, hammer, and torch",
+    "pt": "Exploração de um novo ofício trabalhando metais em pequena escala com arame trançado, martelo e maçarico"
+  },
+  "specs": [
+    {
+      "label": "ETAPA",
+      "value": "Aprendizaje y práctica activa de un rubro nuevo dentro del taller"
+    },
+    {
+      "label": "TÉCNICAS",
+      "value": "Trenzado de alambres, conformado a golpes de martillo y soldadura a soplete"
+    },
+    {
+      "label": "MATERIALES",
+      "value": "Pruebas en cobre, bronce, alpaca, latón y plata"
+    },
+    {
+      "label": "PIEZAS",
+      "value": "Anillos, pulseras rígidas y dijes hechos completamente a mano"
+    }
+  ],
+  "report": {
+    "es": "La joyería es una exploración personal en un rubro nuevo que recién estoy aprendiendo.Acostumbrado a trabajar con piezas grandes de madera y hierro, acá llevo la mano y las herramientas a una escala mucho más chica: trenzar alambres, darle forma al metal a golpe de martillo sobre el yunque y unir con soldadura y fuego. Es puro aprendizaje, prueba y error en el banco de trabajo.",
+    "en": "Jewelry is a personal exploration into a new craft I am currently learning. Used to working with heavy timber and steel, here I bring tools and handcraft down to a much smaller scale: braiding wire, shaping metal by hammer on the anvil, and torch brazing.",
+    "pt": "A joalheria é uma exploração pessoal em um ramo novo que estou começando a aprender, levando o trabalho manual com metais, martelo e fogo para uma escala muito menor na bancada."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "OFICIO EN PROCESO",
+      "en": "CRAFT IN PROGRESS",
+      "pt": "OFÍCIO EM PROCESSO"
+    },
+    "caption": {
+      "es": "Piezas experimentales hechas a mano en el banco de taller",
+      "en": "Experimental pieces handmade at the workshop bench",
+      "pt": "Peças experimentais feitas à mão na bancada"
+    },
+    "buttonText": {
+      "es": "CONSULTAR JOYERÍA",
+      "en": "INQUIRE JEWELRY",
+      "pt": "CONSULTAR JOALHERIA"
+    }
+  }
+}

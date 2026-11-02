@@ -1,0 +1,74 @@
+{
+  "code": "col-01-mep",
+  "folderName": "col-01-mep",
+  "year": "2026",
+  "category": {
+    "es": "03 // MANUFACTURA COLABORATIVA",
+    "en": "03 // COLLABORATIVE MANUFACTURING",
+    "pt": "03 // MANUFATURA COLABORATIVA"
+  },
+  "badge": {
+    "es": "VARILLAS // TALLA EN MADERA",
+    "en": "WOOD RODS // CARVING",
+    "pt": "VARETAS // ENTALHE EM MADEIRA"
+  },
+  "title": {
+    "es": "Encuadres",
+    "en": "Framings",
+    "pt": "Enquadramentos"
+  },
+  "subtitle": {
+    "es": "Marcos de espejos rústicos hechos con varillas de madera, con una línea en desarrollo de marcos tallados a mano",
+    "en": "Rustic mirror frames built with wooden rods, alongside an upcoming line of hand-carved frames",
+    "pt": "Molduras de espelho rústicas feitas com varetas de madeira e linha em desenvolvimento de molduras entalhadas"
+  },
+  "specs": [
+    {
+      "label": "LÍNEA VARILLAS",
+      "value": "Marcos armados uniendo varillas de madera con una estética bien rústica y directa"
+    },
+    {
+      "label": "PRÓXIMA ETAPA",
+      "value": "Exploración de versiones talladas y más trabajadas sobre la madera"
+    },
+    {
+      "label": "CRISTAL",
+      "value": "Espejo a medida calzado firme desde la estructura trasera"
+    },
+    {
+      "label": "PRODUCCIÓN",
+      "value": "Pensado para armar en serie junto a carpinteros y artesanos talladores"
+    }
+  ],
+  "report": {
+    "es": "Encuadres es una serie de espejos pensada desde el trabajo del marco. Hoy los armo con varillas de madera dándoles una impronta rústica y simple, donde el material queda bien a la vista. A la par, estoy proyectando sumar versiones talladas y más trabajadas a mano para probar otras texturas y relieves junto a artesanos de la madera.",
+    "en": "Framings is a mirror series focused on the craft of the frame itself. Currently built using wooden rods with a raw, rustic look, while developing a second line featuring hand-carved, more intricate wood reliefs in collaboration with local woodworkers.",
+    "pt": "Enquadramentos é uma série de espelhos focada no trabalho da moldura. Hoje construída com varetas de madeira em estilo rústico, e em paralelo desenvolvendo versões entalhadas à mão."
+  },
+  "commercial": {
+    "type": "batch",
+    "price": 26,
+    "currency": "USD",
+    "isFromPrice": true,
+    "badge": {
+      "es": "MANUFACTURA COLABORATIVA",
+      "en": "COLLABORATIVE BUILD",
+      "pt": "MANUFATURA COLABORATIVA"
+    },
+    "caption": {
+      "es": "Marcos a medida en formato rústico de varillas o por encargo",
+      "en": "Custom-sized rustic rod frames built to order",
+      "pt": "Molduras sob medida em formato rústico ou por encomenda"
+    },
+    "buttonText": {
+      "es": "CONSULTAR ENCUADRES",
+      "en": "INQUIRE FRAMINGS",
+      "pt": "CONSULTAR ENQUADRAMENTOS"
+    }
+  },
+  "images": [
+    "1.jpeg",
+    "2.jpeg",
+    "3.jpeg"
+  ]
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" fill="none">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#1A1C22"/>
+  <defs>
+    <pattern id="art-grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#262B34" stroke-width="0.8"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#art-grid)"/>
+
+  <!-- Isometric Machined Dodecahedron & Precision Monolith -->
+  <g transform="translate(160, 85)">
+    <!-- Concentric toolpath arcs -->
+    <circle cx="0" cy="0" r="58" stroke="#3A414B" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <circle cx="0" cy="0" r="42" stroke="#3A414B" stroke-width="0.8"/>
+    <circle cx="0" cy="0" r="26" stroke="#FF6B26" stroke-width="1.2" stroke-dasharray="4 2"/>
+
+    <!-- Machined polygon core -->
+    <polygon points="0,-48 42,-24 42,24 0,48 -42,24 -42,-24" fill="#242933" stroke="#E1E8F2" stroke-width="2"/>
+    <line x1="0" y1="-48" x2="0" y2="48" stroke="#3A414B" stroke-width="1"/>
+    <line x1="-42" y1="-24" x2="42" y2="24" stroke="#3A414B" stroke-width="1"/>
+    <line x1="-42" y1="24" x2="42" y2="-24" stroke="#3A414B" stroke-width="1"/>
+
+    <circle cx="0" cy="0" r="14" fill="#FF6B26" fill-opacity="0.25" stroke="#FF6B26" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4" fill="#FF6B26"/>
+  </g>
+
+  <!-- Typography overlay -->
+  <text x="28" y="162" fill="#8892A0" font-family="'JetBrains Mono', monospace" font-size="8">02 // ARTEFACTOS MECANIZADOS</text>
+  <text x="292" y="162" fill="#FF6B26" font-family="'JetBrains Mono', monospace" font-size="8" text-anchor="end">CNC 5-EJES • Ra 0.4</text>
+</svg>

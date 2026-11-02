@@ -1,0 +1,62 @@
+{
+  "code": "btr-03-ugrf",
+  "folderName": "btr-03-ugrf",
+  "year": "2023",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "FACULTAD // PRODUCTO",
+    "en": "UNIVERSITY // PRODUCT",
+    "pt": "FACULDADE // PRODUTO"
+  },
+  "title": {
+    "es": "Familia de Grifería",
+    "en": "Faucet Line",
+    "pt": "Família de Metais"
+  },
+  "subtitle": {
+    "es": "Proyecto de la facultad trabajado con líneas rectas, facetas y zonas anguladas jugando con luces, sombras y brillos",
+    "en": "University design project built around straight lines, facets, and angled surfaces playing with light and reflections",
+    "pt": "Projeto da faculdade trabalhado com linhas retas, facetas e áreas anguladas explorando luzes e reflexos"
+  },
+  "specs": [
+    {
+      "label": "ORIGEN",
+      "value": "Proyecto de la universidad (U)"
+    },
+    {
+      "label": "MORFOLOGÍA",
+      "value": "Líneas rectas, facetas marcadas y zonas anguladas"
+    },
+    {
+      "label": "AUTOCRÍTICA",
+      "value": "Con el paso del tiempo veo que faltó integrar mejor el monocomando al volumen principal para no dejar dos volúmenes separados"
+    }
+  ],
+  "report": {
+    "es": "Proyecto de la universidad donde diseñé una familia de grifería con líneas rectas, facetas y zonas anguladas. El objetivo fue combinar elegancia con funcionalidad a través de un juego de luces y sombras entre los componentes, sus transparencias y sus brillos. Viéndolo hoy con el paso del tiempo, pienso que le faltó una vuelta más de resolución en la incorporación del monocomando, ya que al integrarlo directo al volumen principal se unificaría toda la pieza y no quedarían dos volúmenes por separado.",
+    "en": "A university project developing a faucet line defined by straight lines, facets, and angled planes, aiming to pair elegance and utility through the interplay of light, shadow, and surface shine. Looking back on it today, I feel the single-lever control needed tighter integration into the main body so it would read as one unified volume rather than two separate parts.",
+    "pt": "Projeto universitário de uma linha de metais com linhas retas, facetas e ângulos. Olhando hoje, acredito que faltou integrar melhor o comando único ao volume principal para unificar a peça."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "ARCHIVO UNIVERSITARIO",
+      "en": "UNIVERSITY ARCHIVE",
+      "pt": "ARQUIVO UNIVERSITÁRIO"
+    },
+    "caption": {
+      "es": "Exploración morfológica y diseño de producto en etapa de facultad",
+      "en": "Morphological exploration and product design during university studies",
+      "pt": "Exploração morfológica e design de produto na faculdade"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}

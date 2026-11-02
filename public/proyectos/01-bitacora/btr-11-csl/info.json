@@ -1,0 +1,62 @@
+{
+  "code": "btr-11-csl",
+  "folderName": "btr-11-csl",
+  "year": "2024",
+  "category": {
+    "es": "01 // LA BITÁCORA",
+    "en": "01 // THE LOGBOOK",
+    "pt": "01 // O DIÁRIO DE BORDO"
+  },
+  "badge": {
+    "es": "MOBILIARIO // 2024",
+    "en": "FURNITURE // 2024",
+    "pt": "MOBILIÁRIO // 2024"
+  },
+  "title": {
+    "es": "Sillas y Banquetas 0.1",
+    "en": "Chairs & Stools 0.1",
+    "pt": "Cadeiras e Banquetas 0.1"
+  },
+  "subtitle": {
+    "es": "Diseño conceptual de sillas y banquetas de inspiración nórdica pensadas íntegramente en madera curvada (2024)",
+    "en": "Conceptual Nordic-inspired chairs and stools designed entirely in bent wood (2024)",
+    "pt": "Design conceitual de cadeiras e banquetas de inspiração nórdica pensadas inteiramente em madeira curvada (2024)"
+  },
+  "specs": [
+    {
+      "label": "AÑO",
+      "value": "2024"
+    },
+    {
+      "label": "ESTILO",
+      "value": "Inspiración en el diseño nórdico de líneas limpias"
+    },
+    {
+      "label": "MATERIAL Y TÉCNICA",
+      "value": "Fabricadas completamente en madera, trabajando principalmente madera curvada"
+    }
+  ],
+  "report": {
+    "es": "Diseño conceptual realizado en 2024 de una línea de sillas y banquetas inspiradas en el diseño nórdico. La propuesta fue pensada para fabricarse completamente en madera, apoyándose principalmente en el uso de madera curvada para resolver respaldos y estructuras.",
+    "en": "A 2024 conceptual design for a line of Nordic-inspired chairs and barstools conceived to be crafted entirely out of wood, relying primarily on bentwood techniques.",
+    "pt": "Projeto conceitual de 2024 de cadeiras e banquetas inspiradas no design nórdico, pensadas para fabricação 100% em madeira, principalmente madeira curvada."
+  },
+  "commercial": {
+    "type": "rfq",
+    "badge": {
+      "es": "ARCHIVO // 2024",
+      "en": "ARCHIVE // 2024",
+      "pt": "ARQUIVO // 2024"
+    },
+    "caption": {
+      "es": "Diseño conceptual de mobiliario en madera curvada",
+      "en": "Conceptual bentwood seating design",
+      "pt": "Design conceitual de assentos em madeira curvada"
+    },
+    "buttonText": {
+      "es": "CONSULTAR",
+      "en": "INQUIRE",
+      "pt": "CONSULTAR"
+    }
+  }
+}
