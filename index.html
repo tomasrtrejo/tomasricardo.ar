@@ -579,7 +579,7 @@
             <span>↗</span>
           </a>
 
-          <button onclick="closeAboutModal(); openContactModal(false);" class="w-full sm:w-auto px-5 py-2 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20" data-i18n="about-btn-contact">
+          <button onclick="closeAboutModal(); openContactModal('about');" class="w-full sm:w-auto px-5 py-2 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20" data-i18n="about-btn-contact">
             <span>CONTACTAR</span>
             <span>→</span>
           </button>
@@ -2866,8 +2866,9 @@
     }
 
     // ==================== 5. CONTACT POPUP MODAL ====================
-    function openContactModal(fromCart = false) {
-      window.contactOpenedFromCart = Boolean(fromCart);
+    function openContactModal(source = false) {
+      window.contactOpenedFromCart = (source === true);
+      window.contactSource = source;
       const lang = currentLanguage || 'es';
       const feedbackEl = document.getElementById('contact-feedback');
       if (feedbackEl) {
@@ -2884,6 +2885,23 @@
 
       if (window.contactOpenedFromCart && cart.length > 0) {
         populateCartCheckoutFields();
+      } else if (source === 'about') {
+        const codeEl = document.getElementById('contact-item-code');
+        const titleEl = document.getElementById('contact-item-title');
+        const aboutLabel = lang === 'en' ? 'About me' : (lang === 'pt' ? 'Sobre mim' : 'Sobre mí');
+        if (codeEl) codeEl.textContent = 'TRDI';
+        if (titleEl) titleEl.textContent = aboutLabel;
+
+        const reasonInput = document.getElementById('contact-reason');
+        const msgInput = document.getElementById('contact-message');
+        if (reasonInput) {
+          const prefix = lang === 'en' ? 'Inquiry' : 'Consulta';
+          reasonInput.value = `${prefix}: ${aboutLabel}`;
+          validateReasonWordCount(reasonInput);
+        }
+        if (msgInput) {
+          msgInput.value = '';
+        }
       } else {
         const panelItems = (projectsDatabase && projectsDatabase[activePanelId]) || (projectsDatabase && projectsDatabase['p1']) || [];
         const data = panelItems[activeItemIdx] || panelItems[0] || { code: 'TRDI', title: { es: 'Consulta general', en: 'General inquiry', pt: 'Consulta geral' } };
@@ -2896,7 +2914,8 @@
         const reasonInput = document.getElementById('contact-reason');
         const msgInput = document.getElementById('contact-message');
         if (reasonInput) {
-          reasonInput.value = '';
+          const prefix = lang === 'en' ? 'Inquiry' : 'Consulta';
+          reasonInput.value = `${prefix}: ${data.code}`;
           validateReasonWordCount(reasonInput);
         }
         if (msgInput) {
@@ -2985,7 +3004,13 @@
         ? `https://wa.me/${fullPhoneDigits}?text=${encodeURIComponent(`Hola ${name}, te escribo por tu consulta en TRDI (${pieceCode}).`)}`
         : 'No especificado';
 
-      const inquiryId = Math.floor(1000 + Math.random() * 9000);
+      let inquiryId = 1;
+      try {
+        const lastSeq = parseInt(localStorage.getItem('trdi_inquiry_seq_v1') || '0', 10);
+        inquiryId = (isNaN(lastSeq) || lastSeq < 0) ? 1 : lastSeq + 1;
+        localStorage.setItem('trdi_inquiry_seq_v1', String(inquiryId));
+      } catch (_e) {}
+
       const subject = reason
         ? `${reason} [${pieceCode}] #${inquiryId}`
         : `[TRDI] ${pieceCode} - ${pieceTitle} #${inquiryId}`;
@@ -3005,13 +3030,20 @@
       formData.append('Mensaje', message);
 
       try {
-        await fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
+        const sendPromise = fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
           method: 'POST',
+          keepalive: true,
           headers: {
             'Accept': 'application/json'
           },
           body: formData
-        });
+        }).catch(() => {});
+
+        // Wait max 1.2s so data reaches server completely without hanging UI on slow SMTP queues
+        await Promise.race([
+          sendPromise,
+          new Promise(resolve => setTimeout(resolve, 1200))
+        ]);
       } catch (_err) {
         // Fallback if network error occurs
       }
