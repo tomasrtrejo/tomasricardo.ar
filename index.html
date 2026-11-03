@@ -3015,31 +3015,63 @@
         ? `${reason} [${pieceCode}] #${inquiryId}`
         : `[TRDI] ${pieceCode} - ${pieceTitle} #${inquiryId}`;
 
-      const formData = new FormData();
-      formData.append('_subject', subject);
-      formData.append('_replyto', email);
-      formData.append('_captcha', 'false');
-      formData.append('_template', 'table');
-      formData.append('Consulta_Nro', `#${inquiryId}`);
-      formData.append('Referencia', `${pieceCode} (${pieceTitle})`);
-      formData.append('Nombre_y_Apellido', name);
-      formData.append('Email', email);
-      formData.append('Telefono', formattedPhone);
-      formData.append('Link_WhatsApp', whatsappLink);
-      formData.append('Motivo', reason);
-      formData.append('Mensaje', message);
+      const web3Payload = {
+        access_key: 'bd5964d5-ee9c-4166-b043-2880555aa45b',
+        subject: subject,
+        from_name: `TRDI // ${name}`,
+        replyto: email,
+        Consulta_Nro: `#${inquiryId}`,
+        Referencia: `${pieceCode} (${pieceTitle})`,
+        Nombre_y_Apellido: name,
+        Email: email,
+        Telefono: formattedPhone,
+        Link_WhatsApp: whatsappLink,
+        Motivo: reason,
+        Mensaje: message
+      };
+
+      const sendBackupFormSubmit = () => {
+        const formData = new FormData();
+        formData.append('_subject', subject);
+        formData.append('_replyto', email);
+        formData.append('_captcha', 'false');
+        formData.append('_template', 'table');
+        formData.append('Consulta_Nro', `#${inquiryId}`);
+        formData.append('Referencia', `${pieceCode} (${pieceTitle})`);
+        formData.append('Nombre_y_Apellido', name);
+        formData.append('Email', email);
+        formData.append('Telefono', formattedPhone);
+        formData.append('Link_WhatsApp', whatsappLink);
+        formData.append('Motivo', reason);
+        formData.append('Mensaje', message);
+
+        return fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
+          method: 'POST',
+          keepalive: true,
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        }).catch(() => {});
+      };
 
       try {
-        const sendPromise = fetch('https://formsubmit.co/ajax/tomasrtrejo99@gmail.com', {
+        const sendPromise = fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           keepalive: true,
           headers: {
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: formData
-        }).catch(() => {});
+          body: JSON.stringify(web3Payload)
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (!data || !data.success) {
+              return sendBackupFormSubmit();
+            }
+          })
+          .catch(() => sendBackupFormSubmit());
 
-        // Wait max 1.2s so data reaches server completely without hanging UI on slow SMTP queues
+        // Wait max 1.2s so data reaches server completely without hanging UI
         await Promise.race([
           sendPromise,
           new Promise(resolve => setTimeout(resolve, 1200))
