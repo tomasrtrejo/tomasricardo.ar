@@ -2,61 +2,7 @@
   "code": "btr-07-umds",
   "folderName": "btr-07-umds",
   "year": "2024",
-  "category": {
-    "es": "01 // LA BITÁCORA",
-    "en": "01 // THE LOGBOOK",
-    "pt": "01 // O DIÁRIO DE BORDO"
-  },
-  "badge": {
-    "es": "FACULTAD // CONCEPTO 2024",
-    "en": "UNIVERSITY // CONCEPT 2024",
-    "pt": "FACULDADE // CONCEITO 2024"
-  },
-  "title": {
-    "es": "Electrodoméstico",
-    "en": "Health Appliance",
-    "pt": "Eletrodoméstico"
-  },
-  "subtitle": {
-    "es": "Diseño conceptual de máquina saludable de estética futurista y esencia analógica para cuidado de la piel (2024)",
-    "en": "Conceptual health device blending futuristic lines with analog essence for skin care and anomaly detection (2024)",
-    "pt": "Design conceitual de máquina saudável com estética futurista e essência analógica para cuidado da pele (2024)"
-  },
-  "specs": [
-    {
-      "label": "AÑO",
-      "value": "2024"
-    },
-    {
-      "label": "ESTÉTICA",
-      "value": "Búsqueda de un diseño futurista pero sin perder la esencia de lo analógico"
-    },
-    {
-      "label": "FUNCIONAMIENTO",
-      "value": "Aplicación de productos corporales mediante una especie de caracol que recorre el cuerpo y detecta anomalías en la piel"
-    }
-  ],
-  "report": {
-    "es": "Diseño conceptual de una 'máquina saludable' realizado para la facultad en 2024. La consigna buscaba lograr un diseño futurista pero sin perder la esencia de lo analógico. Estaba pensada para aplicar productos corporales mediante una especie de 'caracol' que iba recorriendo el cuerpo, y que a su vez servía para detectar anomalías en la piel.",
-    "en": "A 2024 university concept for a 'healthy machine' balancing a futuristic look with an analog tactile feel. It was conceived to apply body care products through a snail-like moving head that traveled along the body while scanning for skin anomalies.",
-    "pt": "Projeto conceitual de 2024 de uma 'máquina saudável' que buscava um visual futurista sem perder a essência analógica, aplicando produtos corporais e detectando anomalias na pele."
-  },
-  "commercial": {
-    "type": "rfq",
-    "badge": {
-      "es": "ARCHIVO // 2024",
-      "en": "ARCHIVE // 2024",
-      "pt": "ARQUIVO // 2024"
-    },
-    "caption": {
-      "es": "Diseño conceptual universitario de producto",
-      "en": "University conceptual product design",
-      "pt": "Design conceitual universitário de produto"
-    },
-    "buttonText": {
-      "es": "CONSULTAR",
-      "en": "INQUIRE",
-      "pt": "CONSULTAR"
-    }
-  }
+  "title": "Electrodoméstico",
+  "subtitle": "Diseño conceptual de máquina saludable de estética futurista y esencia analógica para cuidado de la piel (2024)",
+  "report": "Diseño conceptual de una 'máquina saludable' realizado para la facultad en 2024. La consigna buscaba lograr un diseño futurista pero sin perder la esencia de lo analógico. Estaba pensada para aplicar productos corporales mediante una especie de 'caracol' que iba recorriendo el cuerpo, y que a su vez servía para detectar anomalías en la piel."
 }
