@@ -3015,20 +3015,19 @@
         ? `${reason} [${pieceCode}] #${inquiryId}`
         : `[TRDI] ${pieceCode} - ${pieceTitle} #${inquiryId}`;
 
-      const web3Payload = {
-        access_key: 'bd5964d5-ee9c-4166-b043-2880555aa45b',
-        subject: subject,
-        from_name: `TRDI // ${name}`,
-        replyto: email,
-        Consulta_Nro: `#${inquiryId}`,
-        Referencia: `${pieceCode} (${pieceTitle})`,
-        Nombre_y_Apellido: name,
-        Email: email,
-        Telefono: formattedPhone,
-        Link_WhatsApp: whatsappLink,
-        Motivo: reason,
-        Mensaje: message
-      };
+      const web3FormData = new FormData();
+      web3FormData.append('access_key', 'bd5964d5-ee9c-4166-b043-2880555aa45b');
+      web3FormData.append('subject', subject);
+      web3FormData.append('from_name', `TRDI // ${name}`);
+      web3FormData.append('name', name);
+      web3FormData.append('email', email);
+      web3FormData.append('replyto', email);
+      web3FormData.append('Consulta_Nro', `#${inquiryId}`);
+      web3FormData.append('Referencia', `${pieceCode} (${pieceTitle})`);
+      web3FormData.append('Telefono', formattedPhone);
+      web3FormData.append('Link_WhatsApp', whatsappLink);
+      web3FormData.append('Motivo', reason);
+      web3FormData.append('message', message);
 
       const sendBackupFormSubmit = () => {
         const formData = new FormData();
@@ -3058,10 +3057,9 @@
           method: 'POST',
           keepalive: true,
           headers: {
-            'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify(web3Payload)
+          body: web3FormData
         })
           .then(res => res.json())
           .then(data => {
@@ -3071,10 +3069,10 @@
           })
           .catch(() => sendBackupFormSubmit());
 
-        // Wait max 1.2s so data reaches server completely without hanging UI
+        // Wait up to 4s (Web3Forms responds in ~0.5s) so the request always completes cleanly
         await Promise.race([
           sendPromise,
-          new Promise(resolve => setTimeout(resolve, 1200))
+          new Promise(resolve => setTimeout(resolve, 4000))
         ]);
       } catch (_err) {
         // Fallback if network error occurs
