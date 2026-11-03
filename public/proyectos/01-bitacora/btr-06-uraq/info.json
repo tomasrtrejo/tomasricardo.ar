@@ -2,61 +2,7 @@
   "code": "btr-06-uraq",
   "folderName": "btr-06-uraq",
   "year": "2024",
-  "category": {
-    "es": "01 // LA BITÁCORA",
-    "en": "01 // THE LOGBOOK",
-    "pt": "01 // O DIÁRIO DE BORDO"
-  },
-  "badge": {
-    "es": "FACULTAD // CONCEPTO 2024",
-    "en": "UNIVERSITY // CONCEPT 2024",
-    "pt": "FACULDADE // CONCEITO 2024"
-  },
-  "title": {
-    "es": "Recolector de Agua",
-    "en": "Water Collector",
-    "pt": "Coletor de Água"
-  },
-  "subtitle": {
-    "es": "Proyecto conceptual de un sistema doméstico de captación de agua inspirado en formas orgánicas (2024)",
-    "en": "Conceptual domestic water collection system inspired by organic forms (2024)",
-    "pt": "Projeto conceitual de sistema doméstico de captação de água inspirado em formas orgânicas (2024)"
-  },
-  "specs": [
-    {
-      "label": "AÑO",
-      "value": "2024"
-    },
-    {
-      "label": "TIPO",
-      "value": "Proyecto conceptual de la facultad"
-    },
-    {
-      "label": "LENGUAJE FORMAL",
-      "value": "Inspirado en formas orgánicas para uso doméstico"
-    }
-  ],
-  "report": {
-    "es": "Proyecto conceptual de la facultad realizado en 2024. La idea fue plantear un sistema doméstico de captación de agua saliendo de la forma del típico tanque cuadrado o cilíndrico, buscando una estética inspirada en formas orgánicas.",
-    "en": "A 2024 university concept project proposing a domestic water harvesting system shaped around organic forms.",
-    "pt": "Projeto conceitual da faculdade de 2024 para um sistema doméstico de captação de água inspirado em formas orgânicas."
-  },
-  "commercial": {
-    "type": "rfq",
-    "badge": {
-      "es": "ARCHIVO // 2024",
-      "en": "ARCHIVE // 2024",
-      "pt": "ARQUIVO // 2024"
-    },
-    "caption": {
-      "es": "Diseño conceptual universitario de captación de agua",
-      "en": "University conceptual design for domestic water harvesting",
-      "pt": "Design conceitual universitário de captação de água"
-    },
-    "buttonText": {
-      "es": "CONSULTAR",
-      "en": "INQUIRE",
-      "pt": "CONSULTAR"
-    }
-  }
+  "title": "Recolector de agua",
+  "subtitle": "Proyecto conceptual de un sistema doméstico de captación de agua inspirado en formas orgánicas (2024)",
+  "report": "Proyecto conceptual de la facultad realizado en 2024. La idea fue plantear un sistema doméstico de captación de agua saliendo de la forma del típico tanque cuadrado o cilíndrico, buscando una estética inspirada en formas orgánicas."
 }
