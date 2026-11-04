@@ -339,12 +339,12 @@
   </main>
 
   <!-- ==================== FLOATING TECHNICAL CONSOLE (MODAL) ==================== -->
-  <div id="tech-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-5 lg:p-8 opacity-0 pointer-events-none transition-all duration-300">
+  <div id="tech-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 lg:p-8 opacity-0 pointer-events-none transition-all duration-300">
     <!-- Click backdrop to close -->
     <div class="absolute inset-0 z-0 cursor-pointer" onclick="closeTechModal()"></div>
 
     <!-- Floating Console Box -->
-    <div id="tech-modal-box" class="relative z-10 w-full max-w-4xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[92vh] overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+    <div id="tech-modal-box" class="relative z-10 w-full max-w-4xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[82vh] sm:max-h-[90vh] overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
       
       <!-- Modal Top Bar -->
       <div class="h-14 border-b border-cnc-border bg-[#202328] px-4 sm:px-6 flex items-center justify-between gap-3 shrink-0 select-none">
@@ -387,11 +387,11 @@
   </div>
 
   <!-- ==================== POPUP MODAL: CONTACTO ==================== -->
-  <div id="contact-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+  <div id="contact-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
     <div class="absolute inset-0 z-0 cursor-pointer" onclick="closeContactModal()"></div>
     
     <!-- Modal Dialog Window -->
-    <div class="relative z-10 w-full max-w-xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
+    <div class="relative z-10 w-full max-w-xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[82vh] sm:max-h-[90vh] overflow-hidden">
       <!-- Modal Header -->
       <div class="h-14 border-b border-cnc-border bg-[#202328] px-5 sm:px-6 flex items-center justify-between shrink-0 select-none">
         <div class="flex items-center gap-2.5">
@@ -493,12 +493,12 @@
   </div>
 
   <!-- ==================== ABOUT ME (SOBRE MÍ) MODAL ==================== -->
-  <div id="about-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+  <div id="about-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
     <!-- Click backdrop to close -->
     <div class="absolute inset-0 z-0 cursor-pointer" onclick="closeAboutModal()"></div>
 
     <!-- Modal Box -->
-    <div id="about-modal-box" class="relative z-10 w-full max-w-2xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[90vh] overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+    <div id="about-modal-box" class="relative z-10 w-full max-w-2xl bg-[#181B20] border border-cnc-border shadow-2xl flex flex-col max-h-[82vh] sm:max-h-[90vh] overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
       
       <!-- Modal Top Bar -->
       <div class="h-14 border-b border-cnc-border bg-[#202328] px-4 sm:px-6 flex items-center justify-between shrink-0 select-none">
@@ -578,7 +578,7 @@
             <span>↗</span>
           </a>
 
-          <button onclick="closeAboutModal(); openContactModal('about');" class="w-full sm:w-auto px-5 py-2 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20" data-i18n="about-btn-contact">
+          <button onclick="closeAboutModal(true); openContactModal('about');" class="w-full sm:w-auto px-5 py-2 bg-industrial hover:bg-industrial-dark text-black font-bold uppercase tracking-wider text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-industrial/20" data-i18n="about-btn-contact">
             <span>CONTACTAR</span>
             <span>→</span>
           </button>
@@ -1739,7 +1739,7 @@
           const desc = getLocalized(item.subtitle) || getLocalized(item.description);
           const folderName = item.folderName || (item._folder ? item._folder.split('/').pop() : '') || item.code || '';
           const code = folderName;
-          const rawStatus = item.estado || item.status || item.badge || '';
+          const rawStatus = item.estado || '';
           const statusText = rawStatus ? getLocalized(rawStatus) : '';
           const validImages = (item.images || []).filter(f => typeof f === 'string' && !f.toLowerCase().endsWith('cover.svg'));
           const firstImg = validImages[0];
@@ -1847,9 +1847,70 @@
       }
     }
 
-    // ==================== 3. FLOATING MODAL LOGIC & GESTURES ====================
+    // ==================== 3. FLOATING MODAL LOGIC, MOBILE BACK BUTTON & GESTURES ====================
     let activePanelId = 'p1';
     let activeItemIdx = 0;
+    let overlayHistoryDepth = 0;
+    let ignoreNextPopState = 0;
+
+    function pushOverlayHistoryState(modalName) {
+      try {
+        overlayHistoryDepth++;
+        window.history.pushState({ trdiOverlay: modalName, depth: overlayHistoryDepth }, '');
+      } catch (_e) {}
+    }
+
+    function popOverlayHistoryState() {
+      if (overlayHistoryDepth > 0) {
+        overlayHistoryDepth--;
+        ignoreNextPopState++;
+        try {
+          window.history.back();
+        } catch (_e) {
+          ignoreNextPopState = Math.max(0, ignoreNextPopState - 1);
+        }
+      }
+    }
+
+    window.addEventListener('popstate', () => {
+      if (ignoreNextPopState > 0) {
+        ignoreNextPopState--;
+        return;
+      }
+      if (overlayHistoryDepth > 0) {
+        overlayHistoryDepth--;
+      }
+
+      const lightbox = document.getElementById('tech-lightbox');
+      if (lightbox && !lightbox.classList.contains('hidden')) {
+        closeLightbox(true);
+        return;
+      }
+
+      const contactModal = document.getElementById('contact-modal');
+      if (contactModal && !contactModal.classList.contains('pointer-events-none')) {
+        closeContactModal(true);
+        return;
+      }
+
+      const cartDrawer = document.getElementById('cart-drawer');
+      if (cartDrawer && !cartDrawer.classList.contains('pointer-events-none')) {
+        closeCartDrawer(true);
+        return;
+      }
+
+      const aboutModal = document.getElementById('about-modal');
+      if (aboutModal && !aboutModal.classList.contains('pointer-events-none')) {
+        closeAboutModal(true);
+        return;
+      }
+
+      const techModal = document.getElementById('tech-modal');
+      if (techModal && !techModal.classList.contains('pointer-events-none')) {
+        closeTechModal(true);
+        return;
+      }
+    });
 
     function openTechModal(panelId, itemIdx) {
       activePanelId = panelId;
@@ -1860,10 +1921,14 @@
       const modalEl = document.getElementById('tech-modal');
       const boxEl = document.getElementById('tech-modal-box');
       if (modalEl && boxEl) {
+        const wasClosed = modalEl.classList.contains('pointer-events-none');
         modalEl.classList.remove('opacity-0', 'pointer-events-none');
         modalEl.classList.add('opacity-100');
         boxEl.classList.remove('scale-95', 'opacity-0');
         boxEl.classList.add('scale-100', 'opacity-100');
+        if (wasClosed) {
+          pushOverlayHistoryState('tech');
+        }
       }
 
       // Scroll modal body to top
@@ -1871,14 +1936,18 @@
       if (scrollArea) scrollArea.scrollTop = 0;
     }
 
-    function closeTechModal() {
+    function closeTechModal(fromPopState = false) {
       const modalEl = document.getElementById('tech-modal');
       const boxEl = document.getElementById('tech-modal-box');
       if (modalEl && boxEl) {
+        const wasOpen = !modalEl.classList.contains('pointer-events-none');
         boxEl.classList.remove('scale-100', 'opacity-100');
         boxEl.classList.add('scale-95', 'opacity-0');
         modalEl.classList.remove('opacity-100');
         modalEl.classList.add('opacity-0', 'pointer-events-none');
+        if (wasOpen && !fromPopState) {
+          popOverlayHistoryState();
+        }
       }
     }
 
@@ -1948,7 +2017,7 @@
       const badgeEl = document.getElementById('modal-status-badge');
       const counterEl = document.getElementById('modal-index-counter');
 
-      const rawModalStatus = data.estado || data.status || data.badge || '';
+      const rawModalStatus = data.estado || '';
       if (codeEl) codeEl.textContent = data.folderName || (data._folder ? data._folder.split('/').pop() : '') || data.code;
       if (catEl && data.category) catEl.textContent = getLocalized(data.category, lang);
       if (badgeEl) {
@@ -2347,14 +2416,19 @@
         document.body.appendChild(lightbox);
       }
 
+      const wasClosed = lightbox.classList.contains('hidden');
       renderLightboxContent();
       lightbox.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleLightboxKeyDown);
+      if (wasClosed) {
+        pushOverlayHistoryState('lightbox');
+      }
     }
 
-    function closeLightbox() {
+    function closeLightbox(fromPopState = false) {
       const lightbox = document.getElementById('tech-lightbox');
+      const wasOpen = lightbox && !lightbox.classList.contains('hidden');
       if (lightbox) {
         lightbox.classList.add('hidden');
       }
@@ -2363,6 +2437,9 @@
 
       // Synchronize back to reel position
       scrollToModalImage(window.currentLightboxIndex);
+      if (wasOpen && !fromPopState) {
+        popOverlayHistoryState();
+      }
     }
 
     function handleLightboxKeyDown(e) {
@@ -2580,21 +2657,29 @@
       const modal = document.getElementById('about-modal');
       const box = document.getElementById('about-modal-box');
       if (modal && box) {
+        const wasClosed = modal.classList.contains('pointer-events-none');
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modal.classList.add('opacity-100');
         box.classList.remove('scale-95', 'opacity-0');
         box.classList.add('scale-100', 'opacity-100');
+        if (wasClosed) {
+          pushOverlayHistoryState('about');
+        }
       }
     }
 
-    function closeAboutModal() {
+    function closeAboutModal(fromPopState = false) {
       const modal = document.getElementById('about-modal');
       const box = document.getElementById('about-modal-box');
       if (modal && box) {
+        const wasOpen = !modal.classList.contains('pointer-events-none');
         box.classList.remove('scale-100', 'opacity-100');
         box.classList.add('scale-95', 'opacity-0');
         modal.classList.remove('opacity-100');
         modal.classList.add('opacity-0', 'pointer-events-none');
+        if (wasOpen && !fromPopState) {
+          popOverlayHistoryState();
+        }
       }
     }
 
@@ -2747,19 +2832,24 @@
       const backdrop = document.getElementById('cart-drawer-backdrop');
       const box = document.getElementById('cart-drawer-box');
       if (drawer && backdrop && box) {
+        const wasClosed = drawer.classList.contains('pointer-events-none');
         drawer.classList.remove('pointer-events-none');
         backdrop.classList.remove('opacity-0');
         backdrop.classList.add('opacity-100');
         box.classList.remove('translate-x-full');
         box.classList.add('translate-x-0');
+        if (wasClosed) {
+          pushOverlayHistoryState('cart');
+        }
       }
     }
 
-    function closeCartDrawer() {
+    function closeCartDrawer(fromPopState = false) {
       const drawer = document.getElementById('cart-drawer');
       const backdrop = document.getElementById('cart-drawer-backdrop');
       const box = document.getElementById('cart-drawer-box');
       if (drawer && backdrop && box) {
+        const wasOpen = !drawer.classList.contains('pointer-events-none');
         backdrop.classList.remove('opacity-100');
         backdrop.classList.add('opacity-0');
         box.classList.remove('translate-x-0');
@@ -2767,6 +2857,9 @@
         setTimeout(() => {
           drawer.classList.add('pointer-events-none');
         }, 300);
+        if (wasOpen && !fromPopState) {
+          popOverlayHistoryState();
+        }
       }
     }
 
@@ -2823,12 +2916,12 @@
 
     function proceedToCheckoutStep() {
       if (cart.length === 0) return;
-      closeCartDrawer();
-      openContactModal(true);
+      closeCartDrawer(true);
+      openContactModal(true, true);
     }
 
     // ==================== 5. CONTACT POPUP MODAL ====================
-    function openContactModal(source = false) {
+    function openContactModal(source = false, reuseHistorySlot = false) {
       window.contactOpenedFromCart = (source === true);
       window.contactSource = source;
       const lang = currentLanguage || 'es';
@@ -2887,8 +2980,12 @@
 
       const modal = document.getElementById('contact-modal');
       if (modal) {
+        const wasClosed = modal.classList.contains('pointer-events-none');
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modal.classList.add('opacity-100');
+        if (wasClosed && !reuseHistorySlot && source !== 'about') {
+          pushOverlayHistoryState('contact');
+        }
       }
     }
 
@@ -2916,11 +3013,15 @@
       }
     }
 
-    function closeContactModal() {
+    function closeContactModal(fromPopState = false) {
       const modal = document.getElementById('contact-modal');
       if (modal) {
+        const wasOpen = !modal.classList.contains('pointer-events-none');
         modal.classList.remove('opacity-100');
         modal.classList.add('opacity-0', 'pointer-events-none');
+        if (wasOpen && !fromPopState) {
+          popOverlayHistoryState();
+        }
       }
     }
 
