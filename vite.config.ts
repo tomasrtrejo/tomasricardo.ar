@@ -4,6 +4,26 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+function getArgentinaDateFormatted(date = new Date()): string {
+  try {
+    const parts = new Intl.DateTimeFormat('es-AR', {
+      timeZone: 'America/Argentina/Buenos_Aires',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    }).formatToParts(date);
+    const day = parts.find(p => p.type === 'day')?.value || String(date.getDate()).padStart(2, '0');
+    const month = parts.find(p => p.type === 'month')?.value || String(date.getMonth() + 1).padStart(2, '0');
+    const year = parts.find(p => p.type === 'year')?.value || String(date.getFullYear());
+    return `${day}.${month}.${year}`;
+  } catch (_e) {
+    const d = String(date.getDate()).padStart(2, '0');
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const y = date.getFullYear();
+    return `${d}.${m}.${y}`;
+  }
+}
+
 function autoProjectsManifestPlugin() {
   const updateManifest = () => {
     try {
@@ -17,10 +37,15 @@ function autoProjectsManifestPlugin() {
         { id: 'p4', folder: '04-industrial', name: '04 // Escalabilidad Industrial' }
       ];
 
+      const now = new Date();
       const manifest: {
+        lastUpdated: string;
+        lastUpdatedFormatted: string;
         categories: typeof categoryMap;
         projects: Record<string, any[]>;
       } = {
+        lastUpdated: now.toISOString(),
+        lastUpdatedFormatted: getArgentinaDateFormatted(now),
         categories: categoryMap,
         projects: { p1: [], p2: [], p3: [], p4: [] }
       };
@@ -50,53 +75,22 @@ function autoProjectsManifestPlugin() {
             const infoPath = path.join(projectDir, 'info.json');
             if (!fs.existsSync(infoPath)) {
               const isCommercial = cat.id === 'p2' || cat.id === 'p3';
-              const starterInfo = {
+              const starterInfo: Record<string, any> = {
                 code: dirName,
                 folderName: dirName,
                 year: String(new Date().getFullYear()),
-                category: {
-                  es: cat.name.toUpperCase(),
-                  en: cat.name.toUpperCase(),
-                  pt: cat.name.toUpperCase()
-                },
-                badge: {
-                  es: 'REGISTRO DE TALLER',
-                  en: 'WORKSHOP LOG',
-                  pt: 'REGISTRO DE OFICINA'
-                },
-                title: {
-                  es: dirName.toUpperCase(),
-                  en: dirName.toUpperCase(),
-                  pt: dirName.toUpperCase()
-                },
-                subtitle: {
-                  es: 'Proyecto en proceso de documentación',
-                  en: 'Project documentation in progress',
-                  pt: 'Projeto em processo de documentação'
-                },
-                specs: [],
-                report: {
-                  es: 'Documentación en proceso.',
-                  en: 'Documentation in progress.',
-                  pt: 'Documentação em andamento.'
-                },
-                commercial: isCommercial
-                  ? {
-                      type: 'direct',
-                      price: 50,
-                      currency: 'USD',
-                      isFromPrice: true,
-                      badge: { es: 'VENTA DIRECTA', en: 'DIRECT SALE', pt: 'VENDA DIRETA' },
-                      caption: { es: 'Producción a pedido // Envíos a coordinar', en: 'Made to order // Shipping arranged directly', pt: 'Produção sob encomenda // Frete a combinar' },
-                      buttonText: { es: 'ENCARGAR PIEZA', en: 'ORDER PIECE', pt: 'ENCOMENDAR PEÇA' }
-                    }
-                  : {
-                      type: 'rfq',
-                      badge: { es: 'CONSULTA', en: 'INQUIRY', pt: 'CONSULTA' },
-                      caption: { es: 'Consulta directa por desarrollo o proyecto', en: 'Direct inquiry for development or project', pt: 'Consulta direta para desenvolvimento ou projeto' },
-                      buttonText: { es: 'CONSULTA', en: 'INQUIRY', pt: 'CONSULTA' }
-                    }
+                title: dirName.toUpperCase(),
+                subtitle: 'Proyecto en proceso de documentación',
+                report: 'Documentación en proceso.'
               };
+              if (isCommercial) {
+                starterInfo.commercial = {
+                  type: 'direct',
+                  price: 50,
+                  currency: 'USD',
+                  isFromPrice: true
+                };
+              }
               try {
                 fs.writeFileSync(infoPath, JSON.stringify(starterInfo, null, 2), 'utf-8');
               } catch (_e) {}
@@ -134,6 +128,13 @@ function autoProjectsManifestPlugin() {
     name: 'auto-projects-manifest',
     buildStart() {
       updateManifest();
+    },
+    transformIndexHtml(html: string) {
+      const formatted = getArgentinaDateFormatted();
+      return html.replace(
+        /(<span id="last-updated-date"[^>]*>)([^<]*)(<\/span>)/,
+        `$1${formatted}$3`
+      );
     },
     configureServer(server: any) {
       updateManifest();
