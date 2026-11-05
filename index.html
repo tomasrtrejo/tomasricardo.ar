@@ -1769,10 +1769,10 @@
       } catch (_e) {
         try {
           const fixed = rawText
-            // Convert "estado": "Finalizado", "Restauracion", into "estado": ["Finalizado", "Restauracion"],
-            .replace(/("[\w-]+")\s*:\s*("[^"]*"(?:\s*,\s*"[^"]*")+)\s*(,?)/g, '$1: [$2]$3')
+            // Convert "estado": "Finalizado", "Restauracion", on the same line into "estado": ["Finalizado", "Restauracion"],
+            .replace(/("[\w-]+")[ \t]*:[ \t]*("[^"\r\n]*"(?:[ \t]*,[ \t]*"[^"\r\n]*")+)[ \t]*(,?)/g, '$1: [$2]$3')
             // Add missing comma at end of line when next line starts with "key":
-            .replace(/([0-9\]\}\"]|true|false|null)[ \t]*\r?\n([ \t]*"[^"]+"\s*:)/g, '$1,\n$2')
+            .replace(/([0-9\]\}\"]|true|false|null)[ \t]*\r?\n([ \t]*"[^"\r\n]+"\s*:)/g, '$1,\n$2')
             // Remove trailing commas before } or ]
             .replace(/,(\s*[\}\]])/g, '$1');
           return JSON.parse(fixed);
