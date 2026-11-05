@@ -247,6 +247,8 @@
       <div id="drawer-1" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <!-- Dynamic Tag Filter Bar -->
+            <div id="tags-p1" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
             <!-- Series Grid -->
             <div id="grid-p1" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
@@ -284,6 +286,7 @@
       <div id="drawer-2" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <div id="tags-p2" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
             <div id="grid-p2" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
         </div>
@@ -320,6 +323,7 @@
       <div id="drawer-3" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <div id="tags-p3" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
             <div id="grid-p3" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
         </div>
@@ -356,6 +360,7 @@
       <div id="drawer-4" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
+            <div id="tags-p4" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
             <div id="grid-p4" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
         </div>
@@ -1748,22 +1753,143 @@
       return (typeof val === 'object' && val[lang]) ? val[lang] : esText;
     }
 
+    const activePanelTagFilter = {
+      p1: null,
+      p2: null,
+      p3: null,
+      p4: null
+    };
+
+    function getEstadoTagKey(rawEstado) {
+      if (!rawEstado) return '';
+      const str = typeof rawEstado === 'string' ? rawEstado : (rawEstado.es || Object.values(rawEstado)[0] || '');
+      return String(str).trim().toLowerCase();
+    }
+
+    function getEstadoSortPriority(rawEstado) {
+      const key = getEstadoTagKey(rawEstado);
+      if (!key) return 9000; // Untagged items go after tagged items
+      const priorityMap = {
+        'disponible': 100,
+        'en stock': 100,
+        'en producción': 200,
+        'producción activa': 200,
+        'finalizado': 300,
+        'terminado': 300,
+        'prototipo de taller': 400,
+        'fase: prototipo de taller': 400,
+        'prototipo': 420,
+        'en proceso': 500,
+        'en desarrollo': 500,
+        'fase: en desarrollo': 500,
+        'concepto cad': 600,
+        'fase: concepto cad': 600,
+        'proyecto universitario': 700
+      };
+      return priorityMap[key] !== undefined ? priorityMap[key] : 350;
+    }
+
+    function setPanelTagFilter(panelId, tagKey) {
+      if (activePanelTagFilter[panelId] === tagKey) {
+        activePanelTagFilter[panelId] = null;
+      } else {
+        activePanelTagFilter[panelId] = tagKey || null;
+      }
+      renderPanelGrid(panelId);
+    }
+
     function renderPanelGrid(panelId) {
       try {
         const gridEl = document.getElementById('grid-' + panelId);
+        const tagsEl = document.getElementById('tags-' + panelId);
         if (!gridEl) return;
         const items = projectsDatabase && projectsDatabase[panelId];
         if (!items || items.length === 0) return;
 
-        // Sort items by optional custom order (item.orden), then by folder code numbering (01, 02, 03...)
+        // Sort items by: 1) optional manual item.orden, 2) estado tag priority & tag grouping, 3) folder code numbering
         items.sort((a, b) => {
           const ordA = typeof a.orden === 'number' ? a.orden : 9999;
           const ordB = typeof b.orden === 'number' ? b.orden : 9999;
           if (ordA !== ordB) return ordA - ordB;
+
+          const prioA = getEstadoSortPriority(a.estado);
+          const prioB = getEstadoSortPriority(b.estado);
+          if (prioA !== prioB) return prioA - prioB;
+
+          const keyA = getEstadoTagKey(a.estado);
+          const keyB = getEstadoTagKey(b.estado);
+          if (keyA !== keyB) return keyA.localeCompare(keyB, 'es', { sensitivity: 'base' });
+
           return (a.code || '').localeCompare(b.code || '', undefined, { numeric: true, sensitivity: 'base' });
         });
 
-        gridEl.innerHTML = items.map((item, idx) => {
+        // Build dynamic tag filter bar from all unique estado tags present in this panel
+        const tagMap = new Map();
+        items.forEach(item => {
+          const key = getEstadoTagKey(item.estado);
+          if (key) {
+            if (!tagMap.has(key)) {
+              tagMap.set(key, { key, raw: item.estado, count: 1 });
+            } else {
+              tagMap.get(key).count += 1;
+            }
+          }
+        });
+
+        const uniqueTags = Array.from(tagMap.values());
+        if (activePanelTagFilter[panelId] && !tagMap.has(activePanelTagFilter[panelId])) {
+          activePanelTagFilter[panelId] = null;
+        }
+        const activeTag = activePanelTagFilter[panelId];
+
+        if (tagsEl) {
+          if (uniqueTags.length > 0) {
+            const lang = currentLanguage || 'es';
+            const allLabel = lang === 'en' ? 'ALL' : 'TODOS';
+            const filterPrefix = lang === 'en' ? 'TAGS //' : (lang === 'pt' ? 'ETIQUETAS //' : 'ETIQUETAS //');
+
+            const allBtnClass = !activeTag
+              ? 'px-2.5 py-1 bg-industrial text-black font-bold border border-industrial'
+              : 'px-2.5 py-1 bg-[#14171C] text-zinc-400 hover:text-white border border-cnc-border hover:border-industrial/60';
+
+            const tagButtonsHtml = uniqueTags.map(t => {
+              const isSelected = activeTag === t.key;
+              const btnClass = isSelected
+                ? 'px-2.5 py-1 bg-industrial text-black font-bold border border-industrial'
+                : 'px-2.5 py-1 bg-[#14171C] text-zinc-300 hover:text-white border border-industrial/40 hover:border-industrial';
+              const label = getLocalized(t.raw, lang);
+              const escapedKey = t.key.replace(/'/g, "\\'");
+              return `
+                <button onclick="setPanelTagFilter('${panelId}', '${escapedKey}')" class="${btnClass} font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5">
+                  <span>${label}</span>
+                  <span class="opacity-70 text-[9px]">(${t.count})</span>
+                </button>
+              `;
+            }).join('');
+
+            tagsEl.innerHTML = `
+              <span class="font-mono-tech text-[10px] text-zinc-500 uppercase tracking-widest mr-1 select-none">${filterPrefix}</span>
+              <button onclick="setPanelTagFilter('${panelId}', null)" class="${allBtnClass} font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5">
+                <span>${allLabel}</span>
+                <span class="opacity-70 text-[9px]">(${items.length})</span>
+              </button>
+              ${tagButtonsHtml}
+            `;
+            tagsEl.classList.remove('hidden');
+            tagsEl.classList.add('flex');
+          } else {
+            tagsEl.innerHTML = '';
+            tagsEl.classList.add('hidden');
+            tagsEl.classList.remove('flex');
+          }
+        }
+
+        const visibleItems = activeTag
+          ? items.filter(item => getEstadoTagKey(item.estado) === activeTag)
+          : items;
+
+        gridEl.innerHTML = visibleItems.map((item) => {
+          const realIdx = items.indexOf(item);
           const title = getLocalized(item.title);
           const desc = getLocalized(item.subtitle) || getLocalized(item.description);
           const folderName = item.folderName || (item._folder ? item._folder.split('/').pop() : '') || item.code || '';
@@ -1775,7 +1901,7 @@
           const imgUrl = firstImg ? (firstImg.startsWith('http') || firstImg.startsWith('/') ? firstImg : `/proyectos/${item._folder}/${firstImg}`) : null;
 
           return `
-            <div onclick="openTechModal('${panelId}', ${idx})" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm overflow-hidden">
+            <div onclick="openTechModal('${panelId}', ${realIdx})" class="bg-cnc-surface/60 border border-cnc-border hover:border-industrial hover:bg-cnc-surface/90 transition-all flex flex-col justify-between cursor-pointer group/card shadow-sm overflow-hidden">
               ${imgUrl ? `
                 <div class="w-full h-36 bg-cnc-base border-b border-cnc-border relative overflow-hidden flex items-center justify-center">
                   <img src="${imgUrl}" alt="${title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-300" onerror="this.parentElement.style.display='none'" />
@@ -2209,6 +2335,7 @@
       // Build gallery of project images (only real uploaded images, no default placeholder SVGs)
       let imagesList = [];
       const rawImages = data.images || (data.gallery ? data.gallery : (data.cover ? [data.cover] : []));
+      const rawCaptions = data.epigrafes || data.captions || null;
       if (rawImages && rawImages.length > 0) {
         imagesList = rawImages
           .filter(img => {
@@ -2216,14 +2343,26 @@
             return name && !name.endsWith('cover.svg');
           })
           .map((img, idx) => {
+            const fileName = typeof img === 'string' ? img.split('/').pop() : (img.url ? img.url.split('/').pop() : '');
+            const baseName = fileName ? fileName.replace(/\.[^/.]+$/, '') : '';
+            let rawCaption = (typeof img === 'object' && img.caption) ? img.caption : '';
+            if (!rawCaption && rawCaptions) {
+              if (Array.isArray(rawCaptions)) {
+                rawCaption = rawCaptions[idx] || '';
+              } else if (typeof rawCaptions === 'object') {
+                rawCaption = rawCaptions[fileName] || rawCaptions[baseName] || rawCaptions[String(idx + 1)] || rawCaptions[String(idx).padStart(2, '0')] || '';
+              }
+            }
+            const captionText = rawCaption ? getLocalized(rawCaption, lang) : '';
+
             if (typeof img === 'string') {
               const url = (img.startsWith('http') || img.startsWith('/')) ? img : (data._folder ? `/proyectos/${data._folder}/${img}` : img);
-              return { url, tag: `FIG. 0${idx + 1}` };
+              return { url, tag: `FIG. 0${idx + 1}`, caption: captionText };
             }
             if (img.url && !img.url.startsWith('http') && !img.url.startsWith('/') && data._folder) {
-              return { ...img, url: `/proyectos/${data._folder}/${img.url}` };
+              return { ...img, url: `/proyectos/${data._folder}/${img.url}`, caption: captionText };
             }
-            return img;
+            return { ...img, caption: captionText };
           });
       }
 
@@ -2241,6 +2380,8 @@
       const descHeaderLabel = lang === 'en'
         ? 'DESCRIPTION'
         : (lang === 'pt' ? 'DESCRIÇÃO' : 'DESCRIPCIÓN');
+
+      const firstCaption = (imagesList[0] && imagesList[0].caption) ? imagesList[0].caption : '';
 
       const mediaSectionHtml = imagesList.length > 0 ? `
           <!-- 2. SERIE DE IMÁGENES (SCROLLEABLE HORIZONTALMENTE + BOTONES FLECHA + BOTÓN AGRANDAR) -->
@@ -2269,11 +2410,17 @@
             </button>
 
             <!-- Cuadradito en la esquina derecha abajo para agrandar las imágenes -->
-            <button id="reel-expand-btn" onclick="openLightboxFromReel(event)" title="Agrandar imagen" class="absolute bottom-3 right-3 z-30 w-8 h-8 bg-black/85 hover:bg-industrial hover:text-black border border-white/20 hover:border-industrial text-white flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm group" aria-label="Agrandar imagen">
+            <button id="reel-expand-btn" onclick="openLightboxFromReel(event)" title="Agrandar imagen" class="absolute bottom-10 right-3 z-30 w-8 h-8 bg-black/85 hover:bg-industrial hover:text-black border border-white/20 hover:border-industrial text-white flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm group" aria-label="Agrandar imagen">
               <svg class="w-4 h-4 transition-transform group-hover:scale-110 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
               </svg>
             </button>
+
+            <!-- Epígrafe opcional por imagen (solo aparece si el proyecto define "epigrafes" en info.json) -->
+            <div id="reel-caption-box" class="${firstCaption ? 'flex' : 'hidden'} items-center justify-between gap-2 bg-[#14171C] border-x border-b border-cnc-border px-3.5 py-2 font-mono-tech text-xs text-zinc-300">
+              <span id="reel-caption-text" class="truncate">${firstCaption}</span>
+              <span id="reel-caption-counter" class="text-industrial text-[11px] shrink-0">01 / 0${imagesList.length}</span>
+            </div>
 
             <!-- Indicadores sutiles de posición -->
             <div class="flex items-center justify-center gap-2 mt-3" id="reel-indicators">
@@ -2318,9 +2465,7 @@
               </div>
               
               <div class="prose prose-invert max-w-none text-zinc-300 font-light leading-relaxed text-sm sm:text-base bg-[#15171B] border border-cnc-border/60 p-6 sm:p-7">
-                <p class="leading-relaxed">
-                  ${getLocalized(data.report, lang)}
-                </p>
+                <p class="leading-relaxed whitespace-pre-line">${getLocalized(data.report, lang)}</p>
               </div>
             </div>
           </div>
@@ -2371,14 +2516,31 @@
 
     function updateReelDots(activeIndex) {
       const container = document.getElementById('reel-indicators');
-      if (!container) return;
-      Array.from(container.children).forEach((dot, idx) => {
-        if (idx === activeIndex) {
-          dot.className = 'w-6 sm:w-8 h-1 bg-industrial transition-all cursor-pointer';
+      if (container) {
+        Array.from(container.children).forEach((dot, idx) => {
+          if (idx === activeIndex) {
+            dot.className = 'w-6 sm:w-8 h-1 bg-industrial transition-all cursor-pointer';
+          } else {
+            dot.className = 'w-6 sm:w-8 h-1 bg-zinc-700 hover:bg-zinc-500 transition-all cursor-pointer';
+          }
+        });
+      }
+      const captionBox = document.getElementById('reel-caption-box');
+      const captionTextEl = document.getElementById('reel-caption-text');
+      const captionCounterEl = document.getElementById('reel-caption-counter');
+      const imgs = window.currentModalImages || [];
+      const currentImg = imgs[activeIndex];
+      if (captionBox && captionTextEl && captionCounterEl) {
+        if (currentImg && currentImg.caption) {
+          captionTextEl.textContent = currentImg.caption;
+          captionCounterEl.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(imgs.length).padStart(2, '0')}`;
+          captionBox.classList.remove('hidden');
+          captionBox.classList.add('flex');
         } else {
-          dot.className = 'w-6 sm:w-8 h-1 bg-zinc-700 hover:bg-zinc-500 transition-all cursor-pointer';
+          captionBox.classList.add('hidden');
+          captionBox.classList.remove('flex');
         }
-      });
+      }
     }
 
     function updateReelButtons(activeIdx, total) {
@@ -2570,9 +2732,10 @@
             </button>
           </div>
 
-          <!-- Barra inferior sutil: solo contador -->
-          <div class="mt-3 flex items-center justify-center w-full font-mono-tech text-xs border-t border-cnc-border/40 pt-2 px-1">
-            <span class="text-industrial font-bold">${idx + 1} / ${total}</span>
+          <!-- Barra inferior sutil: contador + epígrafe opcional -->
+          <div class="mt-3 flex items-center ${current.caption ? 'justify-between' : 'justify-center'} gap-3 w-full font-mono-tech text-xs border-t border-cnc-border/40 pt-2 px-1">
+            ${current.caption ? `<span class="text-zinc-300 truncate">${current.caption}</span>` : ''}
+            <span class="text-industrial font-bold shrink-0">${idx + 1} / ${total}</span>
           </div>
         </div>
       `;
