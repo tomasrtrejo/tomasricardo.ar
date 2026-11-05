@@ -383,7 +383,7 @@
           <span class="w-2 h-2 bg-industrial inline-block animate-pulse shrink-0"></span>
           <span id="modal-code" class="font-mono-tech text-xs sm:text-sm font-bold text-industrial tracking-wider shrink-0">BTR-01A</span>
         </div>
-        <span id="modal-status-badge" class="hidden px-2.5 py-1 bg-[#14171C] border border-industrial/40 text-zinc-200 font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider shrink-0"></span>
+        <div id="modal-status-badge" class="hidden flex-wrap items-center justify-end gap-1.5 shrink-0"></div>
       </div>
 
       <!-- Main Scrollable Content Container (With Drag & Touch Listener) -->
@@ -1685,7 +1685,9 @@
       "producción activa": { es: "Producción activa", en: "Active production", pt: "Produção ativa" },
       "finalizado": { es: "Finalizado", en: "Completed", pt: "Finalizado" },
       "terminado": { es: "Terminado", en: "Completed", pt: "Concluído" },
-      "proyecto universitario": { es: "Proyecto universitario", en: "University project", pt: "Projeto universitário" }
+      "proyecto universitario": { es: "Proyecto universitario", en: "University project", pt: "Projeto universitário" },
+      "restauración": { es: "Restauración", en: "Restoration", pt: "Restauração" },
+      "restauracion": { es: "Restauración", en: "Restoration", pt: "Restauração" }
     });
 
     const autoTranslationCache = {};
@@ -1760,15 +1762,55 @@
       p4: null
     };
 
-    function getEstadoTagKey(rawEstado) {
-      if (!rawEstado) return '';
-      const str = typeof rawEstado === 'string' ? rawEstado : (rawEstado.es || Object.values(rawEstado)[0] || '');
-      return String(str).trim().toLowerCase();
+    function parseRelaxedInfoJson(rawText) {
+      if (!rawText || typeof rawText !== 'string') return null;
+      try {
+        return JSON.parse(rawText);
+      } catch (_e) {
+        try {
+          const fixed = rawText
+            // Convert "estado": "Finalizado", "Restauracion", into "estado": ["Finalizado", "Restauracion"],
+            .replace(/("[\w-]+")\s*:\s*("[^"]*"(?:\s*,\s*"[^"]*")+)\s*(,?)/g, '$1: [$2]$3')
+            // Add missing comma at end of line when next line starts with "key":
+            .replace(/([0-9\]\}\"]|true|false|null)[ \t]*\r?\n([ \t]*"[^"]+"\s*:)/g, '$1,\n$2')
+            // Remove trailing commas before } or ]
+            .replace(/,(\s*[\}\]])/g, '$1');
+          return JSON.parse(fixed);
+        } catch (_e2) {
+          return null;
+        }
+      }
     }
 
-    function getEstadoSortPriority(rawEstado) {
-      const key = getEstadoTagKey(rawEstado);
-      if (!key) return 9000; // Untagged items go after tagged items
+    function getProjectEstadoTags(rawEstado) {
+      if (!rawEstado) return [];
+      let list = [];
+      if (Array.isArray(rawEstado)) {
+        list = rawEstado;
+      } else if (typeof rawEstado === 'string') {
+        list = [rawEstado];
+      } else if (typeof rawEstado === 'object') {
+        const val = rawEstado.es || Object.values(rawEstado)[0] || '';
+        list = Array.isArray(val) ? val : [val];
+      }
+      const result = [];
+      const seen = new Set();
+      list.forEach(entry => {
+        if (typeof entry !== 'string') return;
+        entry.split(/[,/;]+/).forEach(part => {
+          const trimmed = part.trim();
+          const key = trimmed.toLowerCase();
+          if (trimmed && !seen.has(key)) {
+            seen.add(key);
+            result.push(trimmed);
+          }
+        });
+      });
+      return result;
+    }
+
+    function getSingleTagPriority(tagKey) {
+      if (!tagKey) return 9000;
       const priorityMap = {
         'disponible': 100,
         'en stock': 100,
@@ -1786,7 +1828,18 @@
         'fase: concepto cad': 600,
         'proyecto universitario': 700
       };
-      return priorityMap[key] !== undefined ? priorityMap[key] : 350;
+      return priorityMap[tagKey] !== undefined ? priorityMap[tagKey] : 350;
+    }
+
+    function getEstadoTagKey(rawEstado) {
+      const tags = getProjectEstadoTags(rawEstado);
+      return tags.length > 0 ? tags[0].toLowerCase() : '';
+    }
+
+    function getEstadoSortPriority(rawEstado) {
+      const tags = getProjectEstadoTags(rawEstado);
+      if (tags.length === 0) return 9000; // Untagged items go after tagged items
+      return Math.min(...tags.map(t => getSingleTagPriority(t.toLowerCase())));
     }
 
     function setPanelTagFilter(panelId, tagKey) {
@@ -1823,20 +1876,27 @@
           return (a.code || '').localeCompare(b.code || '', undefined, { numeric: true, sensitivity: 'base' });
         });
 
-        // Build dynamic tag filter bar from all unique estado tags present in this panel
+        // Build dynamic tag filter bar from all unique individual estado tags present in this panel
         const tagMap = new Map();
         items.forEach(item => {
-          const key = getEstadoTagKey(item.estado);
-          if (key) {
+          const itemTags = getProjectEstadoTags(item.estado);
+          itemTags.forEach(rawTag => {
+            const key = rawTag.toLowerCase();
             if (!tagMap.has(key)) {
-              tagMap.set(key, { key, raw: item.estado, count: 1 });
+              tagMap.set(key, { key, raw: rawTag, count: 1 });
             } else {
               tagMap.get(key).count += 1;
             }
-          }
+          });
         });
 
-        const uniqueTags = Array.from(tagMap.values());
+        const uniqueTags = Array.from(tagMap.values()).sort((a, b) => {
+          const pA = getSingleTagPriority(a.key);
+          const pB = getSingleTagPriority(b.key);
+          if (pA !== pB) return pA - pB;
+          return a.key.localeCompare(b.key, 'es', { sensitivity: 'base' });
+        });
+
         if (activePanelTagFilter[panelId] && !tagMap.has(activePanelTagFilter[panelId])) {
           activePanelTagFilter[panelId] = null;
         }
@@ -1885,7 +1945,7 @@
         }
 
         const visibleItems = activeTag
-          ? items.filter(item => getEstadoTagKey(item.estado) === activeTag)
+          ? items.filter(item => getProjectEstadoTags(item.estado).some(t => t.toLowerCase() === activeTag))
           : items;
 
         gridEl.innerHTML = visibleItems.map((item) => {
@@ -1894,8 +1954,8 @@
           const desc = getLocalized(item.subtitle) || getLocalized(item.description);
           const folderName = item.folderName || (item._folder ? item._folder.split('/').pop() : '') || item.code || '';
           const code = folderName;
-          const rawStatus = item.estado || '';
-          const statusText = rawStatus ? getLocalized(rawStatus) : '';
+          const itemTags = getProjectEstadoTags(item.estado);
+          const badgesHtml = itemTags.map(t => `<span class="px-2 py-0.5 bg-[#14171C] border border-industrial/40 text-zinc-200 text-[10px] uppercase tracking-wider">${getLocalized(t)}</span>`).join('');
           const validImages = (item.images || []).filter(f => typeof f === 'string' && !f.toLowerCase().endsWith('cover.svg'));
           const firstImg = validImages[0];
           const imgUrl = firstImg ? (firstImg.startsWith('http') || firstImg.startsWith('/') ? firstImg : `/proyectos/${item._folder}/${firstImg}`) : null;
@@ -1910,9 +1970,9 @@
               ` : ''}
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <div class="flex justify-between items-center gap-2 font-mono-tech text-[11px] text-zinc-500 mb-3">
-                    <span class="text-industrial font-semibold">${code}</span>
-                    ${statusText ? `<span class="px-2 py-0.5 bg-[#14171C] border border-industrial/40 text-zinc-200 text-[10px] uppercase tracking-wider">${statusText}</span>` : ''}
+                  <div class="flex justify-between items-start gap-2 font-mono-tech text-[11px] text-zinc-500 mb-3">
+                    <span class="text-industrial font-semibold shrink-0">${code}</span>
+                    ${badgesHtml ? `<div class="flex flex-wrap justify-end gap-1">${badgesHtml}</div>` : ''}
                   </div>
                   <h4 class="text-base font-bold text-white mb-2 leading-snug">${title}</h4>
                   <p class="text-xs text-zinc-400 leading-normal">${desc}</p>
@@ -1998,7 +2058,9 @@
             try {
               const infoRes = await fetch(`/proyectos/${relFolder}/info.json?t=${ts}`);
               if (infoRes.ok) {
-                const data = await infoRes.json();
+                const rawText = await infoRes.text();
+                const data = parseRelaxedInfoJson(rawText);
+                if (!data) return null;
                 data._folder = relFolder;
                 data.folderName = relFolder.split('/').pop();
                 data.code = data.folderName;
@@ -2203,16 +2265,20 @@
       const badgeEl = document.getElementById('modal-status-badge');
       const counterEl = document.getElementById('modal-index-counter');
 
-      const rawModalStatus = data.estado || '';
+      const modalTags = getProjectEstadoTags(data.estado);
       if (codeEl) codeEl.textContent = data.folderName || (data._folder ? data._folder.split('/').pop() : '') || data.code;
       if (catEl && data.category) catEl.textContent = getLocalized(data.category, lang);
       if (badgeEl) {
-        if (rawModalStatus) {
-          badgeEl.textContent = getLocalized(rawModalStatus, lang);
+        if (modalTags.length > 0) {
+          badgeEl.innerHTML = modalTags
+            .map(t => `<span class="px-2.5 py-1 bg-[#14171C] border border-industrial/40 text-zinc-200 font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider">${getLocalized(t, lang)}</span>`)
+            .join('');
           badgeEl.classList.remove('hidden');
+          badgeEl.classList.add('flex');
         } else {
-          badgeEl.textContent = '';
+          badgeEl.innerHTML = '';
           badgeEl.classList.add('hidden');
+          badgeEl.classList.remove('flex');
         }
       }
       if (counterEl) counterEl.textContent = `0${activeItemIdx + 1} / 0${items.length}`;
