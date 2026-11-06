@@ -2,6 +2,7 @@
   "code": "btr-05-udaq",
   "folderName": "btr-05-udaq",
   "year": "2023",
+  "estado": "Finalizado", "Universidad", "Conceptual",
   "title": "Dron acuático",
   "subtitle": "Proyecto de modelado 3D en SolidWorks y renderizado en KeyShot y 3ds Max + V-Ray (2023)",
   "report": "Trabajo realizado en 2023 enfocado puramente en el manejo de herramientas digitales. Fue un proyecto modelado por completo en SolidWorks y después llevado a dos motores distintos —KeyShot y 3ds Max con V-Ray— para practicar texturas, luces y renderizado."
