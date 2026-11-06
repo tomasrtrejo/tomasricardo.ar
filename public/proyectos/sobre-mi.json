@@ -1,0 +1,30 @@
+{
+  "nombre": "TOMÁS RICARDO",
+  "subtitulo": "Diseño & Fabricación // TRDI",
+  "instagram": "https://www.instagram.com/tomasrtrejo/",
+  "parrafos": [
+    "Soy Tomás Ricardo. Hago diseño y fabricación de conceptos, objetos, mobiliario y piezas técnicas, abarcando desde la primera idea y el modelado 3D hasta la construcción física.",
+    "Combino diseño técnico con oficio manual. Trabajo con dibujo a mano alzada, bocetos, herramientas digitales, planos y materiales reales pensándolos para que el desarrollo sea sólido, funcional y pensado para el uso real.",
+    "Me gusta integrar a las diferentes personas y actores que intervienen en el proceso creativo. Las piezas no nacen por arte de magia: hay que proyectarlas en sus distintos aspectos, tanto a nivel macro como en cada detalle micro.",
+    "Este espacio reúne proyectos de exploración, piezas de taller y desarrollos industriales, pensado como punto de encuentro para nuevos trabajos a medida, producciones en serie y colaboraciones."
+  ],
+  "tituloSeccion": "CÓMO TRABAJO",
+  "pilares": [
+    {
+      "titulo": "01. PLANOS TÉCNICOS & MODELADO",
+      "descripcion": "Bocetos a mano alzada, modelado 3D y documentación técnica precisa para definir y fabricar cada pieza."
+    },
+    {
+      "titulo": "02. PIEZAS ARTESANALES",
+      "descripcion": "Construcción física y oficio directo de taller, experimentando y trabajando con materiales reales."
+    },
+    {
+      "titulo": "03. DESARROLLO DE PRODUCTOS",
+      "descripcion": "Proyección integral de objetos y sistemas desde la idea inicial, resolviendo tanto la escala macro como el detalle micro."
+    },
+    {
+      "titulo": "04. PROYECTOS PARA TERCEROS Y COLABORATIVOS",
+      "descripcion": "Trabajos en conjunto y encargos, integrando clientes, proveedores, talleres y distintos oficios en el proceso."
+    }
+  ]
+}
