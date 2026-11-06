@@ -247,8 +247,8 @@
       <div id="drawer-1" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
-            <!-- Dynamic Tag Filter Bar -->
-            <div id="tags-p1" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
+            <!-- Dynamic Tag Filter Bar (Single Horizontal Scrollable Row) -->
+            <div id="tags-p1" class="hidden overflow-x-auto no-scrollbar whitespace-nowrap items-center gap-2 mb-6 pb-3.5 border-b border-cnc-border/60" style="scrollbar-width: none; -ms-overflow-style: none;"></div>
             <!-- Series Grid -->
             <div id="grid-p1" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
@@ -286,7 +286,7 @@
       <div id="drawer-2" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
-            <div id="tags-p2" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
+            <div id="tags-p2" class="hidden overflow-x-auto no-scrollbar whitespace-nowrap items-center gap-2 mb-6 pb-3.5 border-b border-cnc-border/60" style="scrollbar-width: none; -ms-overflow-style: none;"></div>
             <div id="grid-p2" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
         </div>
@@ -323,7 +323,7 @@
       <div id="drawer-3" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
-            <div id="tags-p3" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
+            <div id="tags-p3" class="hidden overflow-x-auto no-scrollbar whitespace-nowrap items-center gap-2 mb-6 pb-3.5 border-b border-cnc-border/60" style="scrollbar-width: none; -ms-overflow-style: none;"></div>
             <div id="grid-p3" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
         </div>
@@ -360,7 +360,7 @@
       <div id="drawer-4" class="drawer-grid border-t border-cnc-border/60 bg-cnc-graphite/30">
         <div class="overflow-hidden min-h-0">
           <div class="p-6 sm:p-8 md:p-12 flex flex-col">
-            <div id="tags-p4" class="hidden flex-wrap items-center gap-2 mb-6 pb-4 border-b border-cnc-border/60"></div>
+            <div id="tags-p4" class="hidden overflow-x-auto no-scrollbar whitespace-nowrap items-center gap-2 mb-6 pb-3.5 border-b border-cnc-border/60" style="scrollbar-width: none; -ms-overflow-style: none;"></div>
             <div id="grid-p4" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
           </div>
         </div>
@@ -552,51 +552,21 @@
               <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
               <span>TRDI // ID-01</span>
             </div>
-            <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight" data-i18n="about-title">TOMÁS RICARDO</h3>
-            <p class="text-xs text-zinc-400 font-mono-tech mt-0.5" data-i18n="about-subtitle">Diseño & Fabricación // TRDI</p>
+            <h3 id="about-name" class="text-xl sm:text-2xl font-black text-white tracking-tight">TOMÁS RICARDO</h3>
+            <p id="about-subtitle" class="text-xs text-zinc-400 font-mono-tech mt-0.5"></p>
           </div>
         </div>
 
-        <!-- Manifesto / Bio Paragraphs -->
-        <div class="space-y-3.5 text-xs text-zinc-300 leading-relaxed font-sans">
-          <p class="bg-[#121418] border-l-2 border-industrial p-3.5 text-zinc-200" data-i18n="about-bio-p1">
-            Soy Tomás Ricardo. Hago diseño y fabricación de conceptos, objetos, mobiliario y piezas técnicas, abarcando desde la primera idea y el modelado 3D hasta la construcción física.
-          </p>
-          <p data-i18n="about-bio-p2">
-            Combino diseño técnico con oficio manual. Trabajo con dibujo a mano alzada, bocetos, herramientas digitales, planos y materiales reales pensándolos para que el desarrollo sea sólido, funcional y pensado para el uso real.
-          </p>
-          <p data-i18n="about-bio-p3">
-            Me gusta integrar a las diferentes personas y actores que intervienen en el proceso creativo. Las piezas no nacen por arte de magia: hay que proyectarlas en sus distintos aspectos, tanto a nivel macro como en cada detalle micro.
-          </p>
-          <p class="text-zinc-400" data-i18n="about-bio-p4">
-            Este espacio reúne proyectos de exploración, piezas de taller y desarrollos industriales, pensado como punto de encuentro para nuevos trabajos a medida, producciones en serie y colaboraciones.
-          </p>
-        </div>
+        <!-- Manifesto / Bio Paragraphs (Loaded from /proyectos/sobre-mi.json) -->
+        <div id="about-bio-container" class="space-y-3.5 text-xs text-zinc-300 leading-relaxed font-sans"></div>
 
-        <!-- Pillars / Core Competencies -->
-        <div class="space-y-2.5 pt-2">
+        <!-- Pillars / Core Competencies (Loaded from /proyectos/sobre-mi.json) -->
+        <div id="about-pillars-section" class="space-y-2.5 pt-2">
           <div class="font-mono-tech text-[11px] text-zinc-400 uppercase font-semibold flex items-center gap-2">
             <span class="w-1.5 h-1.5 bg-industrial inline-block"></span>
-            <span data-i18n="about-pillars-title">CÓMO TRABAJO</span>
+            <span id="about-pillars-title"></span>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono-tech text-xs">
-            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
-              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-1-title">01. PLANOS TÉCNICOS & MODELADO</span>
-              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-1">Bocetos a mano alzada, modelado 3D y documentación técnica precisa para definir y fabricar cada pieza.</p>
-            </div>
-            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
-              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-2-title">02. PIEZAS ARTESANALES</span>
-              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-2">Construcción física y oficio directo de taller, experimentando y trabajando con materiales reales.</p>
-            </div>
-            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
-              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-3-title">03. DESARROLLO DE PRODUCTOS</span>
-              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-3">Proyección integral de objetos y sistemas desde la idea inicial, resolviendo tanto la escala macro como el detalle micro.</p>
-            </div>
-            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
-              <span class="text-industrial font-bold block mb-1" data-i18n="about-pillar-4-title">04. PROYECTOS PARA TERCEROS Y COLABORATIVOS</span>
-              <p class="text-[11px] text-zinc-400 leading-normal font-sans" data-i18n="about-pillar-4">Trabajos en conjunto y encargos, integrando clientes, proveedores, talleres y distintos oficios en el proceso.</p>
-            </div>
-          </div>
+          <div id="about-pillars-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono-tech text-xs"></div>
         </div>
 
         <!-- Action / Contact Row -->
@@ -740,26 +710,6 @@
         'btn-clear-canvas': 'RESETEAR LIENZO',
         'footer-rights': '© 2026 TOMÁS RICARDO • BUENOS AIRES, ARGENTINA',
         'about-header-title': 'PERFIL // SOBRE MÍ',
-        'about-title': 'TOMÁS RICARDO',
-        'about-subtitle': 'Diseño & Fabricación // TRDI',
-        'about-lbl-loc': 'UBICACIÓN',
-        'about-lbl-focus': 'ENFOQUE',
-        'about-lbl-norm': 'NORMATIVA',
-        'about-lbl-status': 'ESTADO',
-        'about-status-val': 'DISPONIBLE PARA PROYECTOS',
-        'about-bio-p1': 'Soy Tomás Ricardo. Hago diseño y fabricación de conceptos, objetos, mobiliario y piezas técnicas, abarcando desde la primera idea y el modelado 3D hasta la construcción física.',
-        'about-bio-p2': 'Combino diseño técnico con oficio manual. Trabajo con dibujo a mano alzada, bocetos, herramientas digitales, planos y materiales reales pensándolos para que el desarrollo sea sólido, funcional y pensado para el uso real.',
-        'about-bio-p3': 'Me gusta integrar a las diferentes personas y actores que intervienen en el proceso creativo. Las piezas no nacen por arte de magia: hay que proyectarlas en sus distintos aspectos, tanto a nivel macro como en cada detalle micro.',
-        'about-bio-p4': 'Este espacio reúne proyectos de exploración, piezas de taller y desarrollos industriales, pensado como punto de encuentro para nuevos trabajos a medida, producciones en serie y colaboraciones.',
-        'about-pillars-title': 'CÓMO TRABAJO',
-        'about-pillar-1-title': '01. PLANOS TÉCNICOS & MODELADO',
-        'about-pillar-1': 'Bocetos a mano alzada, modelado 3D y documentación técnica precisa para definir y fabricar cada pieza.',
-        'about-pillar-2-title': '02. PIEZAS ARTESANALES',
-        'about-pillar-2': 'Construcción física y oficio directo de taller, experimentando y trabajando con materiales reales.',
-        'about-pillar-3-title': '03. DESARROLLO DE PRODUCTOS',
-        'about-pillar-3': 'Proyección integral de objetos y sistemas desde la idea inicial, resolviendo tanto la escala macro como el detalle micro.',
-        'about-pillar-4-title': '04. PROYECTOS PARA TERCEROS Y COLABORATIVOS',
-        'about-pillar-4': 'Trabajos en conjunto y encargos, integrando clientes, proveedores, talleres y distintos oficios en el proceso.',
         'about-btn-contact': 'CONTACTAR',
         'btn-add-cart': 'AGREGAR AL CARRITO',
         'contact-header-title': 'CONTACTAR A TOMÁS RICARDO',
@@ -850,26 +800,6 @@
         'btn-clear-canvas': 'RESET CANVAS',
         'footer-rights': '© 2026 TOMÁS RICARDO • BUENOS AIRES, ARGENTINA',
         'about-header-title': 'PROFILE // ABOUT ME',
-        'about-title': 'TOMÁS RICARDO',
-        'about-subtitle': 'Design & Fabrication // TRDI',
-        'about-lbl-loc': 'LOCATION',
-        'about-lbl-focus': 'FOCUS',
-        'about-lbl-norm': 'STANDARD',
-        'about-lbl-status': 'STATUS',
-        'about-status-val': 'OPEN FOR COMMISSIONS & PROJECTS',
-        'about-bio-p1': 'I am Tomás Ricardo. I design and fabricate concepts, objects, furniture, and technical pieces, covering everything from the initial idea and 3D modeling to physical construction.',
-        'about-bio-p2': 'I combine technical design with manual craft. I work with freehand drawing, sketches, digital tools, blueprints, and real materials—thinking them through so each development is solid, functional, and built for real-world use.',
-        'about-bio-p3': 'I like integrating the different people and actors involved in the creative process. Pieces do not appear by magic: they have to be projected across multiple dimensions, both at the macro scale and down to the micro detail.',
-        'about-bio-p4': 'This space brings together exploratory projects, workshop pieces, and industrial developments, conceived as a meeting point for bespoke commissions, batch production, and collaborations.',
-        'about-pillars-title': 'HOW I WORK',
-        'about-pillar-1-title': '01. TECHNICAL PLANS & 3D MODELING',
-        'about-pillar-1': 'Freehand sketches, 3D modeling, and accurate technical documentation to define and build each piece.',
-        'about-pillar-2-title': '02. ARTISANAL PIECES',
-        'about-pillar-2': 'Physical construction and hands-on workshop craft, experimenting and working directly with real materials.',
-        'about-pillar-3-title': '03. PRODUCT DEVELOPMENT',
-        'about-pillar-3': 'End-to-end projection of objects and systems from initial concept, solving both the macro view and micro details.',
-        'about-pillar-4-title': '04. THIRD-PARTY & COLLABORATIVE PROJECTS',
-        'about-pillar-4': 'Joint projects and commissions, integrating clients, suppliers, workshops, and diverse trades into the process.',
         'about-btn-contact': 'GET IN TOUCH',
         'btn-add-cart': 'ADD TO CART',
         'contact-header-title': 'CONTACT TOMÁS RICARDO',
@@ -960,26 +890,6 @@
         'btn-clear-canvas': 'REINICIAR TELA',
         'footer-rights': '© 2026 TOMÁS RICARDO • BUENOS AIRES, ARGENTINA',
         'about-header-title': 'PERFIL // SOBRE MIM',
-        'about-title': 'TOMÁS RICARDO',
-        'about-subtitle': 'Design & Fabricação // TRDI',
-        'about-lbl-loc': 'LOCALIZAÇÃO',
-        'about-lbl-focus': 'FOCO',
-        'about-lbl-norm': 'NORMATIVA',
-        'about-lbl-status': 'STATUS',
-        'about-status-val': 'DISPONÍVEL PARA PROJETOS',
-        'about-bio-p1': 'Sou Tomás Ricardo. Faço design e fabricação de conceitos, objetos, mobiliário e peças técnicas, abrangendo desde a primeira ideia e a modelagem 3D até a construção física.',
-        'about-bio-p2': 'Combino design técnico com ofício manual. Trabalho com desenho à mão livre, esboços, ferramentas digitais, plantas técnicas e materiais reais, pensando cada detalhe para que o desenvolvimento seja sólido, funcional e feito para o uso real.',
-        'about-bio-p3': 'Gosto de integrar as diferentes pessoas e atores que participam do processo criativo. As peças não nascem num passe de mágica: é preciso projetá-las em seus diversos aspectos, tanto em nível macro quanto no detalhe micro.',
-        'about-bio-p4': 'Este espaço reúne projetos de exploração, peças de oficina e desenvolvimentos industriais, pensado como ponto de encontro para novos trabalhos sob medida, produções em série e colaborações.',
-        'about-pillars-title': 'COMO TRABALHO',
-        'about-pillar-1-title': '01. DESENHOS TÉCNICOS & MODELAGEM',
-        'about-pillar-1': 'Esboços à mão livre, modelagem 3D e documentação técnica precisa para definir e fabricar cada peça.',
-        'about-pillar-2-title': '02. PEÇAS ARTESANAIS',
-        'about-pillar-2': 'Construção física e ofício direto na oficina, experimentando e trabalhando com materiais reais.',
-        'about-pillar-3-title': '03. DESENVOLVIMENTO DE PRODUTOS',
-        'about-pillar-3': 'Projeção integral de objetos e sistemas desde a ideia inicial, resolvendo tanto a escala macro quanto o detalhe micro.',
-        'about-pillar-4-title': '04. PROJETOS PARA TERCEIROS E COLABORATIVOS',
-        'about-pillar-4': 'Trabalhos em conjunto e encomendas, integrando clientes, fornecedores, oficinas e diferentes ofícios no processo.',
         'about-btn-contact': 'ENTRAR EM CONTATO',
         'btn-add-cart': 'ADICIONAR AO CARRINHO',
         'contact-header-title': 'CONTATAR TOMÁS RICARDO',
@@ -1130,6 +1040,9 @@
       }
       if (typeof renderAllGrids === 'function') {
         renderAllGrids();
+      }
+      if (typeof renderAboutModalContent === 'function') {
+        renderAboutModalContent();
       }
       if (typeof updateCartUI === 'function') {
         updateCartUI();
@@ -1687,7 +1600,15 @@
       "terminado": { es: "Terminado", en: "Completed", pt: "Concluído" },
       "proyecto universitario": { es: "Proyecto universitario", en: "University project", pt: "Projeto universitário" },
       "restauración": { es: "Restauración", en: "Restoration", pt: "Restauração" },
-      "restauracion": { es: "Restauración", en: "Restoration", pt: "Restauração" }
+      "restauracion": { es: "Restauración", en: "Restoration", pt: "Restauração" },
+      "diseño industrial • taller & manufactura": { es: "Diseño Industrial • Taller & Manufactura", en: "Industrial Design • Workshop & Manufacturing", pt: "Design Industrial • Oficina & Manufatura" },
+      "soy diseñador industrial enfocado en hacer que las ideas bajen del plano al taller. me gusta involucrarme en todo el proceso: desde el boceto, el modelado 3d y los planos técnicos, hasta el trabajo directo con madera, hierro, fundición, plásticos y mecanizado.": { es: "Soy diseñador industrial enfocado en hacer que las ideas bajen del plano al taller. Me gusta involucrarme en todo el proceso: desde el boceto, el modelado 3D y los planos técnicos, hasta el trabajo directo con madera, hierro, fundición, plásticos y mecanizado.", en: "I am an industrial designer focused on bringing ideas off the blueprint and into the workshop. I get hands-on across the entire process: from initial sketches, 3D modeling, and technical drawings to working directly with wood, steel, casting, plastics, and machining.", pt: "Sou designer industrial focado em tirar as ideias do papel e levá-las para a oficina. Gosto de me envolver em todo o processo: do esboço, modelagem 3D e desenho técnico até o trabalho direto com madeira, ferro, fundição, plásticos e usinagem." },
+      "mi trabajo se mueve entre cuatro frentes que se alimentan entre sí: el archivo de proyectos y experimentación (la bitácora), la búsqueda expresiva en el taller con materiales a mano (lo artesanal), el desarrollo de muebles y objetos seriados junto a talleres de oficio (manufactura colaborativa) y la ingeniería de máquinas y productos pensados para escala productiva (escalabilidad industrial).": { es: "Mi trabajo se mueve entre cuatro frentes que se alimentan entre sí: el archivo de proyectos y experimentación (La Bitácora), la búsqueda expresiva en el taller con materiales a mano (Lo Artesanal), el desarrollo de muebles y objetos seriados junto a talleres de oficio (Manufactura Colaborativa) y la ingeniería de máquinas y productos pensados para escala productiva (Escalabilidad Industrial).", en: "My work moves across four fronts that feed into each other: the project archive and experimentation (The Logbook), hands-on expressive exploration with raw materials (The Craft), small-batch furniture and objects built alongside local trades (Collaborative Manufacturing), and engineering machinery and products for serial production (Industrial Scalability).", pt: "Meu trabalho se divide em quatro frentes que se retroalimentam: o arquivo de projetos e experimentação (O Diário de Bordo), a busca expressiva na oficina (O Artesanal), o desenvolvimento de móveis e objetos em série com oficinas parceiras (Manufatura Colaborativa) e a engenharia de máquinas e produtos para escala produtiva (Escalabilidade Industrial)." },
+      "cómo trabajo": { es: "Cómo trabajo", en: "How I work", pt: "Como trabalho" },
+      "01. oficio & materia": { es: "01. Oficio & Materia", en: "01. Craft & Material", pt: "01. Ofício & Matéria" },
+      "entender cómo responde cada material en la mano y en la máquina antes de cerrar un plano definitivo.": { es: "Entender cómo responde cada material en la mano y en la máquina antes de cerrar un plano definitivo.", en: "Understanding how each material behaves by hand and in the machine before locking in a final drawing.", pt: "Entender como cada material responde na mão e na máquina antes de fechar um desenho definitivo." },
+      "02. diseño para fabricar": { es: "02. Diseño para Fabricar", en: "02. Design for Manufacturing", pt: "02. Design para Fabricar" },
+      "proyectar pensando en quién lo va a armar, con qué herramientas, qué encastres simplifican el trabajo y cómo hacer que dure.": { es: "Proyectar pensando en quién lo va a armar, con qué herramientas, qué encastres simplifican el trabajo y cómo hacer que dure.", en: "Designing with the builder in mind: which tools are available, which joints simplify assembly, and how to make it last.", pt: "Projetar pensando em quem vai montar, com quais ferramentas, quais encaixes simplificam o trabalho e como fazê-lo durar." }
     });
 
     const autoTranslationCache = {};
@@ -1716,6 +1637,9 @@
               } catch (_e) {}
               if (currentLanguage === targetLang) {
                 renderAllGrids();
+                if (typeof renderAboutModalContent === 'function') {
+                  renderAboutModalContent();
+                }
                 const modalEl = document.getElementById('tech-modal');
                 if (modalEl && !modalEl.classList.contains('pointer-events-none')) {
                   renderTechModalContent();
@@ -1909,18 +1833,18 @@
             const filterPrefix = lang === 'en' ? 'TAGS //' : (lang === 'pt' ? 'ETIQUETAS //' : 'ETIQUETAS //');
 
             const allBtnClass = !activeTag
-              ? 'px-2.5 py-1 bg-industrial text-black font-bold border border-industrial'
-              : 'px-2.5 py-1 bg-[#14171C] text-zinc-400 hover:text-white border border-cnc-border hover:border-industrial/60';
+              ? 'px-2.5 py-1 bg-industrial text-black font-bold border border-industrial shrink-0'
+              : 'px-2.5 py-1 bg-[#14171C] text-zinc-400 hover:text-white border border-cnc-border hover:border-industrial/60 shrink-0';
 
             const tagButtonsHtml = uniqueTags.map(t => {
               const isSelected = activeTag === t.key;
               const btnClass = isSelected
-                ? 'px-2.5 py-1 bg-industrial text-black font-bold border border-industrial'
-                : 'px-2.5 py-1 bg-[#14171C] text-zinc-300 hover:text-white border border-industrial/40 hover:border-industrial';
+                ? 'px-2.5 py-1 bg-industrial text-black font-bold border border-industrial shrink-0'
+                : 'px-2.5 py-1 bg-[#14171C] text-zinc-300 hover:text-white border border-industrial/40 hover:border-industrial shrink-0';
               const label = getLocalized(t.raw, lang);
               const escapedKey = t.key.replace(/'/g, "\\'");
               return `
-                <button onclick="setPanelTagFilter('${panelId}', '${escapedKey}')" class="${btnClass} font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5">
+                <button onclick="setPanelTagFilter('${panelId}', '${escapedKey}')" class="${btnClass} font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
                   <span>${label}</span>
                   <span class="opacity-70 text-[9px]">(${t.count})</span>
                 </button>
@@ -1928,8 +1852,8 @@
             }).join('');
 
             tagsEl.innerHTML = `
-              <span class="font-mono-tech text-[10px] text-zinc-500 uppercase tracking-widest mr-1 select-none">${filterPrefix}</span>
-              <button onclick="setPanelTagFilter('${panelId}', null)" class="${allBtnClass} font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5">
+              <span class="font-mono-tech text-[10px] text-zinc-500 uppercase tracking-widest mr-1 select-none shrink-0">${filterPrefix}</span>
+              <button onclick="setPanelTagFilter('${panelId}', null)" class="${allBtnClass} font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
                 <span>${allLabel}</span>
                 <span class="opacity-70 text-[9px]">(${items.length})</span>
               </button>
@@ -1955,7 +1879,19 @@
           const folderName = item.folderName || (item._folder ? item._folder.split('/').pop() : '') || item.code || '';
           const code = folderName;
           const itemTags = getProjectEstadoTags(item.estado);
-          const badgesHtml = itemTags.map(t => `<span class="px-2 py-0.5 bg-[#14171C] border border-industrial/40 text-zinc-200 text-[10px] uppercase tracking-wider">${getLocalized(t)}</span>`).join('');
+          let cardBadgesHtml = '';
+          if (itemTags.length > 0) {
+            const matchedTag = activeTag ? itemTags.find(t => t.toLowerCase() === activeTag) : null;
+            const primaryRawTag = matchedTag || itemTags[0];
+            const extraTags = itemTags.filter(t => t !== primaryRawTag).map(t => getLocalized(t));
+            const extraTooltip = extraTags.join(' • ');
+            cardBadgesHtml = `
+              <div class="flex items-center justify-end gap-1 min-w-0 shrink-0">
+                <span class="px-2 py-0.5 bg-[#14171C] border border-industrial/40 text-zinc-200 text-[10px] uppercase tracking-wider truncate max-w-[145px]">${getLocalized(primaryRawTag)}</span>
+                ${extraTags.length > 0 ? `<span class="px-1.5 py-0.5 bg-[#14171C] border border-industrial/50 text-industrial text-[10px] font-bold tracking-wider shrink-0" title="${extraTooltip}">+${extraTags.length}</span>` : ''}
+              </div>
+            `;
+          }
           const validImages = (item.images || []).filter(f => typeof f === 'string' && !f.toLowerCase().endsWith('cover.svg'));
           const firstImg = validImages[0];
           const imgUrl = firstImg ? (firstImg.startsWith('http') || firstImg.startsWith('/') ? firstImg : `/proyectos/${item._folder}/${firstImg}`) : null;
@@ -1970,9 +1906,9 @@
               ` : ''}
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <div class="flex justify-between items-start gap-2 font-mono-tech text-[11px] text-zinc-500 mb-3">
+                  <div class="flex justify-between items-center gap-2 font-mono-tech text-[11px] text-zinc-500 mb-3">
                     <span class="text-industrial font-semibold shrink-0">${code}</span>
-                    ${badgesHtml ? `<div class="flex flex-wrap justify-end gap-1">${badgesHtml}</div>` : ''}
+                    ${cardBadgesHtml}
                   </div>
                   <h4 class="text-base font-bold text-white mb-2 leading-snug">${title}</h4>
                   <p class="text-xs text-zinc-400 leading-normal">${desc}</p>
@@ -2270,9 +2206,12 @@
       if (catEl && data.category) catEl.textContent = getLocalized(data.category, lang);
       if (badgeEl) {
         if (modalTags.length > 0) {
-          badgeEl.innerHTML = modalTags
-            .map(t => `<span class="px-2.5 py-1 bg-[#14171C] border border-industrial/40 text-zinc-200 font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider">${getLocalized(t, lang)}</span>`)
-            .join('');
+          const primaryModalTag = getLocalized(modalTags[0], lang);
+          const extraModalCount = modalTags.length - 1;
+          badgeEl.innerHTML = `
+            <span class="px-2.5 py-1 bg-[#14171C] border border-industrial/40 text-zinc-200 font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider truncate max-w-[180px]">${primaryModalTag}</span>
+            ${extraModalCount > 0 ? `<span class="px-1.5 py-1 bg-[#14171C] border border-industrial/50 text-industrial font-mono-tech text-[10px] sm:text-[11px] font-bold tracking-wider">+${extraModalCount}</span>` : ''}
+          `;
           badgeEl.classList.remove('hidden');
           badgeEl.classList.add('flex');
         } else {
@@ -2503,6 +2442,12 @@
           </div>
       `;
 
+      const modalBodyTagsHtml = modalTags.length > 1 ? `
+        <div class="flex flex-wrap items-center gap-1.5 mt-4">
+          ${modalTags.map(t => `<span class="px-2.5 py-0.5 bg-[#14171C] border border-industrial/40 text-zinc-300 font-mono-tech text-[10px] uppercase tracking-wider">${getLocalized(t, lang)}</span>`).join('')}
+        </div>
+      ` : '';
+
       // Inject full content strictly in the requested order:
       // 1. NOMBRE DEL PROYECTO
       // 2. SERIE DE IMÁGENES (O AVISO DE DOCUMENTACIÓN EN PROCESO)
@@ -2518,6 +2463,7 @@
             <p class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed max-w-3xl">
               ${getLocalized(data.subtitle, lang)}
             </p>
+            ${modalBodyTagsHtml}
           </div>
 
           ${mediaSectionHtml}
@@ -2941,8 +2887,87 @@
       }
     });
 
-    // ==================== 6. ABOUT ME (SOBRE MÍ) MODAL ====================
+    // ==================== 6. ABOUT ME (SOBRE MÍ) MODAL (LOADED FROM /proyectos/sobre-mi.json) ====================
+    let aboutMeData = null;
+
+    function renderAboutModalContent() {
+      if (!aboutMeData) return;
+      const lang = currentLanguage || 'es';
+
+      const nameEl = document.getElementById('about-name');
+      const subtitleEl = document.getElementById('about-subtitle');
+      const bioContainer = document.getElementById('about-bio-container');
+      const pillarsSection = document.getElementById('about-pillars-section');
+      const pillarsTitleEl = document.getElementById('about-pillars-title');
+      const pillarsGridEl = document.getElementById('about-pillars-grid');
+      const igLinkEl = document.getElementById('about-instagram-link');
+
+      if (nameEl && aboutMeData.nombre) {
+        nameEl.textContent = aboutMeData.nombre;
+      }
+      if (subtitleEl && aboutMeData.subtitulo) {
+        subtitleEl.textContent = getLocalized(aboutMeData.subtitulo, lang);
+      }
+      if (igLinkEl && aboutMeData.instagram) {
+        igLinkEl.href = aboutMeData.instagram;
+      }
+
+      if (bioContainer) {
+        const rawParrafos = Array.isArray(aboutMeData.parrafos)
+          ? aboutMeData.parrafos
+          : (typeof aboutMeData.parrafos === 'string' ? aboutMeData.parrafos.split(/\n\s*\n/) : []);
+        bioContainer.innerHTML = rawParrafos
+          .filter(p => typeof p === 'string' && p.trim())
+          .map((p, idx, arr) => {
+            const text = getLocalized(p.trim(), lang);
+            if (idx === 0) {
+              return `<p class="bg-[#121418] border-l-2 border-industrial p-3.5 text-zinc-200 whitespace-pre-line">${text}</p>`;
+            }
+            if (idx === arr.length - 1 && arr.length > 2) {
+              return `<p class="text-zinc-400 whitespace-pre-line">${text}</p>`;
+            }
+            return `<p class="whitespace-pre-line">${text}</p>`;
+          })
+          .join('');
+      }
+
+      if (pillarsSection && pillarsTitleEl && pillarsGridEl) {
+        const pilaresList = Array.isArray(aboutMeData.pilares) ? aboutMeData.pilares : [];
+        if (pilaresList.length > 0) {
+          pillarsTitleEl.textContent = getLocalized(aboutMeData.tituloSeccion || 'CÓMO TRABAJO', lang);
+          pillarsGridEl.innerHTML = pilaresList.map(item => `
+            <div class="bg-cnc-surface/50 border border-cnc-border p-3.5">
+              <span class="text-industrial font-bold block mb-1">${getLocalized(item.titulo || '', lang)}</span>
+              <p class="text-[11px] text-zinc-400 leading-normal font-sans whitespace-pre-line">${getLocalized(item.descripcion || '', lang)}</p>
+            </div>
+          `).join('');
+          pillarsSection.classList.remove('hidden');
+        } else {
+          pillarsSection.classList.add('hidden');
+        }
+      }
+    }
+
+    async function loadAboutMeFromJson() {
+      try {
+        const res = await fetch('/proyectos/sobre-mi.json?t=' + Date.now());
+        if (res.ok) {
+          const rawText = await res.text();
+          const parsed = parseRelaxedInfoJson(rawText);
+          if (parsed) {
+            aboutMeData = parsed;
+            renderAboutModalContent();
+          }
+        }
+      } catch (_e) {}
+    }
+
     function openAboutModal() {
+      if (!aboutMeData) {
+        loadAboutMeFromJson();
+      } else {
+        renderAboutModalContent();
+      }
       const modal = document.getElementById('about-modal');
       const box = document.getElementById('about-modal-box');
       if (modal && box) {
@@ -3471,9 +3496,10 @@
       }, 1300);
     }
 
-    // Initialize default language, live exchange rates, and project folders
+    // Initialize default language, live exchange rates, about-me JSON, and project folders
     setLanguage('es');
     fetchLiveExchangeRates();
+    loadAboutMeFromJson();
     loadProjectsFromFolders();
   </script>
 </body>
