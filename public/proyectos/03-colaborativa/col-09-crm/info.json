@@ -1,0 +1,14 @@
+{
+  "code": "col-09-crm",
+  "folderName": "col-09-crm",
+  "year": "2026",
+  "title": "CRM",
+  "subtitle": ".",
+  "report": ".",
+  "commercial": {
+    "type": "batch",
+    "price": 26,
+    "currency": "USD",
+    "isFromPrice": true
+  }
+}
