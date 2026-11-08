@@ -119,8 +119,109 @@ function autoProjectsManifestPlugin() {
       }
 
       fs.writeFileSync(path.join(proyectosDir, 'manifest.json'), JSON.stringify(manifest, null, 2), 'utf-8');
+
+      // Auto-update sitemap.xml lastmod date
+      const sitemapPath = path.resolve(__dirname, 'public/sitemap.xml');
+      if (fs.existsSync(sitemapPath)) {
+        try {
+          const isoDate = now.toISOString().split('T')[0];
+          const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
+          const updatedSitemap = sitemapXml.replace(/<lastmod>[^<]*<\/lastmod>/g, `<lastmod>${isoDate}</lastmod>`);
+          fs.writeFileSync(sitemapPath, updatedSitemap, 'utf-8');
+        } catch (_e) {}
+      }
     } catch (_e) {
       // Safe catch
+    }
+  };
+
+  const escapeHtml = (str: string) =>
+    String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+
+  const getSpanishText = (val: any): string => {
+    if (!val) return '';
+    if (typeof val === 'string') return val;
+    if (typeof val === 'object' && typeof val.es === 'string') return val.es;
+    return '';
+  };
+
+  const buildSeoStaticCatalogHtml = (): string => {
+    try {
+      const proyectosDir = path.resolve(__dirname, 'public/proyectos');
+      if (!fs.existsSync(proyectosDir)) return '';
+
+      const chunks: string[] = [];
+
+      // 1. Sobre mí (sobre-mi.json)
+      const sobreMiPath = path.join(proyectosDir, 'sobre-mi.json');
+      if (fs.existsSync(sobreMiPath)) {
+        try {
+          const sobreMi = JSON.parse(fs.readFileSync(sobreMiPath, 'utf-8'));
+          chunks.push('<section>');
+          chunks.push(`<h3>${escapeHtml(sobreMi.nombre || 'Tomás Ricardo')} — ${escapeHtml(getSpanishText(sobreMi.subtitulo))}</h3>`);
+          if (Array.isArray(sobreMi.parrafos)) {
+            for (const p of sobreMi.parrafos) {
+              const txt = getSpanishText(p);
+              if (txt) chunks.push(`<p>${escapeHtml(txt)}</p>`);
+            }
+          }
+          if (Array.isArray(sobreMi.pilares)) {
+            chunks.push('<ul>');
+            for (const pil of sobreMi.pilares) {
+              chunks.push(`<li><strong>${escapeHtml(getSpanishText(pil.titulo))}:</strong> ${escapeHtml(getSpanishText(pil.descripcion))}</li>`);
+            }
+            chunks.push('</ul>');
+          }
+          chunks.push('</section>');
+        } catch (_e) {}
+      }
+
+      // 2. All projects across the 4 categories
+      const categoryMap = [
+        { id: 'p1', folder: '01-bitacora', name: '01 // La Bitácora — Diseño Industrial, Modelado 3D y Proyectos' },
+        { id: 'p2', folder: '02-artefactos', name: '02 // Lo Artesanal — Objetos de Taller, Madera y Metal' },
+        { id: 'p3', folder: '03-colaborativa', name: '03 // Manufactura Colaborativa — Mobiliario y Oficios' },
+        { id: 'p4', folder: '04-industrial', name: '04 // Escalabilidad Industrial — Maquinaria e Ingeniería de Producto' }
+      ];
+
+      for (const cat of categoryMap) {
+        const catPath = path.join(proyectosDir, cat.folder);
+        if (!fs.existsSync(catPath)) continue;
+        chunks.push(`<section><h3>${escapeHtml(cat.name)}</h3>`);
+        const subdirs = fs.readdirSync(catPath, { withFileTypes: true })
+          .filter(d => d.isDirectory())
+          .map(d => d.name)
+          .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+
+        for (const dirName of subdirs) {
+          const infoPath = path.join(catPath, dirName, 'info.json');
+          if (!fs.existsSync(infoPath)) continue;
+          try {
+            const info = JSON.parse(fs.readFileSync(infoPath, 'utf-8'));
+            const title = getSpanishText(info.title) || dirName;
+            const subtitle = getSpanishText(info.subtitle);
+            const report = getSpanishText(info.report);
+            const tags = Array.isArray(info.tags)
+              ? info.tags.map((t: any) => getSpanishText(t)).filter(Boolean).join(', ')
+              : '';
+            chunks.push('<article>');
+            chunks.push(`<h4>${escapeHtml(title)} (${escapeHtml(info.year || '')})</h4>`);
+            if (subtitle) chunks.push(`<p>${escapeHtml(subtitle)}</p>`);
+            if (tags) chunks.push(`<p>Etiquetas: ${escapeHtml(tags)}</p>`);
+            if (report) chunks.push(`<p>${escapeHtml(report)}</p>`);
+            chunks.push('</article>');
+          } catch (_e) {}
+        }
+        chunks.push('</section>');
+      }
+
+      return chunks.join('\n');
+    } catch (_e) {
+      return '';
     }
   };
 
@@ -131,13 +232,20 @@ function autoProjectsManifestPlugin() {
     },
     transformIndexHtml(html: string) {
       const formatted = getArgentinaDateFormatted();
-      return html.replace(
-        /(<span id="last-updated-date"[^>]*>)([^<]*)(<\/span>)/,
-        `$1${formatted}$3`
-      );
+      const seoCatalogHtml = buildSeoStaticCatalogHtml();
+      return html
+        .replace(
+          /(<span id="last-updated-date"[^>]*>)([^<]*)(<\/span>)/,
+          `$1${formatted}$3`
+        )
+        .replace(
+          '<div id="seo-dynamic-projects"></div>',
+          `<div id="seo-dynamic-projects">${seoCatalogHtml}</div>`
+        );
     },
     configureServer(server: any) {
-      updateManifest();
+      setTimeout(() => updateManifest(), 0);
+      if (!server || !server.watcher) return;
       server.watcher.on('add', (filePath: string) => {
         if (filePath.includes('public/proyectos')) {
           updateManifest();
