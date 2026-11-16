@@ -2,6 +2,7 @@
   "code": "btr-09-ucpr",
   "folderName": "btr-09-ucpr",
   "year": "2026",
+   "estado": "Finalizado", "Universidad", "Producto físico", "Modelado 3D", "Renderizado", "Planos técnicos",
   "title": "Cabina de pintura y secado",
   "subtitle": "Proyecto universitario de prácticas con mínimo uso de recursos, escalable a pintura epoxi y con filtros hechos en cartón cortado a láser (2026)",
   "report": "Proyecto universitario de prácticas realizado en 2026 donde se pidió usar los materiales que había disponibles y el mínimo de recursos posibles para lograr un espacio donde aplicar pintura. La resolución integra tanto una cabina de pintura como una cabina de secado, dejando abierta la opción de escalarlo para aplicar pintura epoxi y hacer su curado térmico. Se estudió en profundidad todo el sistema de ventilación y los riesgos generales de trabajo, lo que dio como resultado la creación de filtros propios cortando placas de cartón con láser y ensamblándolas."
